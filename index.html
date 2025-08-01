@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>99Labs.sh</title>
+    <meta name="description" content="Manage everything once. Secure everything always.">
+    <meta property="og:title" content="99Labs.sh">
+    <meta property="og:description" content="Manage everything once. Secure everything always.">
+    <meta property="twitter:title" content="99Labs.sh">
+    <meta property="twitter:description" content="Manage everything once. Secure everything always.">
+    <link rel="icon" href="favicon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #272525;
+            background-color: white;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .logo-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: #272525;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            background: white;
+            padding: 60px 40px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #272525;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        
+        .content-section {
+            padding: 20px;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .logo-container {
+                top: 15px;
+                left: 15px;
+                gap: 8px;
+            }
+            
+            .logo {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .logo-text {
+                font-size: 11px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="logo.png" alt="99Labs Logo" class="logo">
+        <span class="logo-text">99Labs</span>
+    </div>
+
+    <div class="container">
+        
+        <div class="grid">
+            <div class="content-section">
+                <h1>The AI-Native MSP + MSSP for Modern Businesses</h1>
+                <p class="tagline">Manage everything once. Secure everything always.</p>
+            </div>
+            
+            <div class="content-section">
+                <img src="hero.avif" alt="99Labs Platform" class="hero-image">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
