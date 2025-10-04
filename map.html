@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Layered IT/MSP Stack – with Cross-Layer Vendors</title>
+  <style>
+    :root {
+      --bg: #0b1016;
+      --panel: #121823;
+      --ink: #e7eef7;
+      --muted: #9bb0c8;
+      --accent: #5aa9ff;
+      --accent-2: #7bd389;
+      --accent-3: #ffb86b;
+      --accent-4: #de6fff;
+      --line: #2a3a50;
+      --chip: #172233;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans"; background: var(--bg); color: var(--ink); }
+    .wrap { max-width: 100%; margin: 24px auto; padding: 0 24px; }
+    h1 { font-size: 24px; margin: 0 0 16px; }
+    p.lead { color: var(--muted); margin: 0 0 24px; }
+
+    /* Grid layout: 3 columns */
+    .grid {
+      display: grid;
+      grid-template-columns: 260px 1fr 380px;
+      grid-template-rows: repeat(5, auto);
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .rowLabel, .rowBox { border-bottom: 1px solid var(--line); }
+    .rowLabel { background: var(--panel); font-weight: 700; letter-spacing: .2px; padding: 12px 14px; border-right: 1px solid var(--line); display: flex; align-items: center; }
+    .rowBox { background: var(--panel); padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { display: inline-flex; align-items: center; justify-content: center; background: var(--chip); padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 13px; line-height: 1.4; white-space: nowrap; }
+
+    /* Layer rows */
+    .L1 { grid-row: 1; }
+    .L2 { grid-row: 2; }
+    .L3 { grid-row: 3; }
+    .L4 { grid-row: 4; }
+    .L5 { grid-row: 5; border-bottom: none; }
+    .label { grid-column: 1; }
+    .box { grid-column: 2; }
+
+    /* Spanners */
+    .spanners { grid-column: 3; grid-row: 1 / span 5; border-left: 1px solid var(--line); background: var(--panel); display: flex; flex-direction: column; }
+    .card { border-bottom: 1px solid var(--line); padding: 14px; }
+    .card:last-child { border-bottom: none; }
+    .card h3 { margin: 0 0 8px; font-size: 15px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .b { display: inline-flex; align-items: center; justify-content: center; background: #112035; border: 1px solid var(--line); padding: 4px 10px; border-radius: 999px; font-size: 12px; white-space: nowrap; }
+    .on { outline: 2px solid var(--accent); }
+    .on2 { outline: 2px solid var(--accent-2); }
+    .on3 { outline: 2px solid var(--accent-3); }
+    .on4 { outline: 2px solid var(--accent-4); }
+
+    .muted { color: var(--muted); font-size: 13px; margin-top: 6px; }
+
+    /* Categories grid (full width) */
+    .grid2 {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0;
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .catLabel, .catBox { background: var(--panel); border-bottom: 1px solid var(--line); }
+    .catLabel { padding: 12px 14px; font-weight: 700; border-right: 1px solid var(--line); display: flex; align-items: center; }
+    .catBox { padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .catLast { border-bottom: none; }
+
+    /* Full landscape grid */
+    .grid3 {
+      display: grid;
+      grid-template-columns: 260px 1fr 380px;
+      gap: 0;
+      margin-top: 32px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .landLabel, .landBox { background: var(--panel); border-bottom: 1px solid var(--line); }
+    .landLabel { padding: 12px 14px; font-weight: 700; border-right: 1px solid var(--line); display: flex; align-items: center; }
+    .landBox { padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .landLast { border-bottom: none; }
+    .tag { font-size: 11px; opacity: .8; margin-left: 6px; }
+    .chip.tagged { position: relative; padding-right: 8px; }
+
+    /* Spanners column for full landscape */
+    .spanners3 {
+      grid-column: 3;
+      grid-row: 1 / span 5;
+      border-left: 1px solid var(--line);
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+    }
+    .spanners3 .card { border-bottom: 1px solid var(--line); padding: 14px; }
+    .spanners3 .card:last-child { border-bottom: none; }
+    .spanners3 h3 { margin: 0 0 8px; font-size: 15px; }
+    .spanners3 .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr; }
+      .rowLabel, .rowBox { border-right: none; }
+      .spanners { border-left: none; }
+      .grid2 { grid-template-columns: 1fr; }
+      .catLabel { border-right: none; }
+      .grid3 { grid-template-columns: 1fr; }
+      .landLabel { border-right: none; }
+      .spanners3 { border-left: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Layered IT / MSP Stack</h1>
+    <p class="lead">Rows are layers. Boxes show vendors in that layer. Right-hand cards show <strong>cross-layer</strong> vendors and which layers they cover.</p>
+
+    <div class="grid">
+      <!-- Identity -->
+      <div class="rowLabel L1 label">Identity &amp; Access</div>
+      <div class="rowBox L1 box">
+        <span class="chip">JumpCloud</span>
+        <span class="chip">Microsoft Entra ID / Azure AD</span>
+        <span class="chip">Okta</span>
+        <span class="chip">Google Workspace</span>
+      </div>
+
+      <!-- Endpoint -->
+      <div class="rowLabel L2 label">Endpoint / IT Ops (RMM)</div>
+      <div class="rowBox L2 box">
+        <span class="chip">NinjaOne</span>
+        <span class="chip">ConnectWise Automate</span>
+        <span class="chip">Datto RMM</span>
+        <span class="chip">Kaseya VSA</span>
+        <span class="chip">N-able</span>
+        <span class="chip">Atera</span>
+        <span class="chip">Syncro</span>
+        <span class="chip">SuperOps.ai</span>
+        <span class="chip">ManageEngine Endpoint Central</span>
+        <span class="chip">Jamf</span>
+        <span class="chip">Microsoft Intune</span>
+        <span class="chip">AirMDM</span>
+        <span class="chip">SimpleMDM</span>
+        <span class="chip">FleetDM</span>
+        <span class="chip">Electric.ai</span>
+        <span class="chip">UniFi Network</span>
+      </div>
+
+      <!-- Cloud / Tenant -->
+      <div class="rowLabel L3 label">Cloud / Tenant Automation</div>
+      <div class="rowBox L3 box">
+        <span class="chip">CyberDrain CIPP</span>
+        <span class="chip">Microsoft Lighthouse</span>
+        <span class="chip">Augmentt</span>
+        <span class="chip">IT Glue</span>
+      </div>
+
+      <!-- Security -->
+      <div class="rowLabel L4 label">Security / Detection &amp; Response</div>
+      <div class="rowBox L4 box">
+        <span class="chip">Huntress</span>
+        <span class="chip">SentinelOne</span>
+        <span class="chip">Arctic Wolf</span>
+        <span class="chip">Microsoft Defender for Endpoint</span>
+        <span class="chip">Wazuh</span>
+        <span class="chip">Splunk</span>
+        <span class="chip">CrowdStrike Falcon</span>
+        <span class="chip">Carbon Black</span>
+        <span class="chip">OpenEDR</span>
+        <span class="chip">OSSEC</span>
+        <span class="chip">Tripwire</span>
+        <span class="chip">AIDE</span>
+        <span class="chip">Falco</span>
+        <span class="chip">Zeek</span>
+        <span class="chip">Sophos</span>
+        <span class="chip">Wirespeed</span>
+        <span class="chip">NetSPI</span>
+        <span class="chip">Delve</span>
+        <span class="chip">Shuffle</span>
+        <span class="chip">OpenCTI</span>
+        <span class="chip">MISP</span>
+        <span class="chip">Filigran</span>
+      </div>
+
+      <!-- Compliance -->
+      <div class="rowLabel L5 label">Compliance &amp; Assurance</div>
+      <div class="rowBox L5 box">
+        <span class="chip">Drata</span>
+        <span class="chip">Vanta</span>
+        <span class="chip">Secureframe</span>
+        <span class="chip">Tugboat Logic</span>
+      </div>
+
+      <!-- Cross-layer vendors -->
+      <div class="spanners">
+        <div class="card">
+          <h3>Microsoft Suite</h3>
+          <div class="badges">
+            <span class="b on">Identity</span>
+            <span class="b on">Endpoint</span>
+            <span class="b on">Cloud</span>
+            <span class="b on">Security</span>
+            <span class="b on">Compliance</span>
+          </div>
+          <p class="muted">Entra ID, Intune, Lighthouse, Defender, evidence feeds.</p>
+        </div>
+
+        <div class="card">
+          <h3>ZipSec</h3>
+          <div class="badges">
+            <span class="b on2">Identity</span>
+            <span class="b on2">Endpoint</span>
+            <span class="b on2">Cloud</span>
+            <span class="b on2">Security</span>
+            <span class="b on2">Compliance</span>
+          </div>
+          <p class="muted">Turnkey security + IT orchestration for SMBs.</p>
+        </div>
+
+        <div class="card">
+          <h3>Kaseya IT Complete</h3>
+          <div class="badges">
+            <span class="b on3">Endpoint</span>
+            <span class="b on3">Security</span>
+            <span class="b on3">Compliance</span>
+          </div>
+          <p class="muted">VSA, EDR, vuln mgmt, compliance modules.</p>
+        </div>
+
+        <div class="card">
+          <h3>Datto Platform</h3>
+          <div class="badges">
+            <span class="b on4">Endpoint</span>
+            <span class="b on4">Cloud</span>
+            <span class="b on4">Security</span>
+          </div>
+          <p class="muted">RMM, BCDR, SaaS protection, SIEM integrations.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="margin:28px 0 12px;">Security & Ops Categories</h2>
+    <p class="lead">Each row is a category. Some vendors appear in multiple categories when they truly span capabilities.</p>
+
+    <div class="grid2">
+      <!-- XDR / EDR -->
+      <div class="catLabel">XDR / EDR</div>
+      <div class="catBox">
+        <span class="chip">CrowdStrike Falcon</span>
+        <span class="chip">SentinelOne</span>
+        <span class="chip">Microsoft Defender for Endpoint</span>
+        <span class="chip">Carbon Black</span>
+        <span class="chip">OpenEDR</span>
+        <span class="chip">Sophos</span>
+        <span class="chip">Wirespeed</span>
+      </div>
+
+      <!-- HIDS / HIDPS / FIM -->
+      <div class="catLabel">HIDS / HIDPS / FIM</div>
+      <div class="catBox">
+        <span class="chip">OSSEC</span>
+        <span class="chip">Wazuh</span>
+        <span class="chip">Tripwire</span>
+        <span class="chip">AIDE</span>
+        <span class="chip">Falco</span>
+      </div>
+
+      <!-- MDM -->
+      <div class="catLabel">MDM</div>
+      <div class="catBox">
+        <span class="chip">AirMDM</span>
+        <span class="chip">SimpleMDM</span>
+        <span class="chip">Jamf</span>
+        <span class="chip">Microsoft Intune</span>
+        <span class="chip">JumpCloud</span>
+        <span class="chip">FleetDM</span>
+      </div>
+
+      <!-- NDR / NPR (Network Detection & Monitoring) -->
+      <div class="catLabel">NDR / NPR</div>
+      <div class="catBox">
+        <span class="chip">Zeek</span>
+        <span class="chip">UniFi</span>
+        <span class="chip">Wirespeed</span>
+      </div>
+
+      <!-- SIEM -->
+      <div class="catLabel">SIEM</div>
+      <div class="catBox">
+        <span class="chip">Wazuh</span>
+        <span class="chip">Splunk</span>
+      </div>
+
+      <!-- SOAR -->
+      <div class="catLabel">SOAR</div>
+      <div class="catBox">
+        <span class="chip">Shuffle</span>
+      </div>
+
+      <!-- GRC / Compliance Automation -->
+      <div class="catLabel">GRC</div>
+      <div class="catBox">
+        <span class="chip">Drata</span>
+        <span class="chip">Vanta</span>
+        <span class="chip">Secureframe</span>
+        <span class="chip">Tugboat Logic</span>
+      </div>
+
+      <!-- AIMS (Asset Inventory & Management) -->
+      <div class="catLabel">AIMS</div>
+      <div class="catBox">
+        <span class="chip">FleetDM</span>
+        <span class="chip">UniFi</span>
+        <span class="chip">Microsoft Lighthouse</span>
+        <span class="chip">CyberDrain CIPP</span>
+      </div>
+
+      <!-- Threat Intelligence -->
+      <div class="catLabel">Threat Intelligence</div>
+      <div class="catBox">
+        <span class="chip">OpenCTI</span>
+        <span class="chip">MISP</span>
+        <span class="chip">Filigran</span>
+      </div>
+
+      <!-- IPS / IDS -->
+      <div class="catLabel">IPS / IDS</div>
+      <div class="catBox">
+        <span class="chip">Zeek</span>
+        <span class="chip">Falco</span>
+        <span class="chip">OSSEC</span>
+      </div>
+
+      <!-- Offensive Testing & Attack Surface -->
+      <div class="catLabel catLast">Offensive Testing & Attack Surface</div>
+      <div class="catBox catLast">
+        <span class="chip">NetSPI</span>
+        <span class="chip">Delve</span>
+      </div>
+    </div>
+
+    <h2 style="margin:32px 0 12px;">All Vendors by Layer (Full Landscape)</h2>
+    <p class="lead">This section lists the full set of companies and products mapped into the five layers. Vendors that span layers appear in multiple rows.</p>
+
+    <div class="grid3">
+      <!-- Identity & Access -->
+      <div class="landLabel">Identity &amp; Access</div>
+      <div class="landBox">
+        <span class="chip">Microsoft Entra ID / Azure AD</span>
+        <span class="chip">JumpCloud</span>
+        <span class="chip">Okta</span>
+        <span class="chip">Google Workspace</span>
+        <span class="chip">Electric.ai<span class="tag">managed</span></span>
+      </div>
+
+      <!-- Endpoint / IT Ops (RMM / MDM / Asset) -->
+      <div class="landLabel">Endpoint / IT Ops</div>
+      <div class="landBox">
+        <span class="chip">NinjaOne</span>
+        <span class="chip">ConnectWise Automate</span>
+        <span class="chip">Datto RMM</span>
+        <span class="chip">Kaseya VSA</span>
+        <span class="chip">N-able</span>
+        <span class="chip">Atera</span>
+        <span class="chip">Syncro</span>
+        <span class="chip">SuperOps.ai</span>
+        <span class="chip">ManageEngine Endpoint Central</span>
+        <span class="chip">Jamf</span>
+        <span class="chip">Microsoft Intune</span>
+        <span class="chip">AirMDM</span>
+        <span class="chip">SimpleMDM</span>
+        <span class="chip">FleetDM</span>
+        <span class="chip">UniFi Network</span>
+        <span class="chip">Electric.ai<span class="tag">managed</span></span>
+      </div>
+
+      <!-- Cloud / Tenant Automation -->
+      <div class="landLabel">Cloud / Tenant Automation</div>
+      <div class="landBox">
+        <span class="chip">Microsoft Lighthouse</span>
+        <span class="chip">CyberDrain CIPP</span>
+        <span class="chip">Augmentt</span>
+        <span class="chip">IT Glue</span>
+        <span class="chip">Electric.ai<span class="tag">managed</span></span>
+      </div>
+
+      <!-- Security / Detection & Response (grouped) -->
+      <div class="landLabel">Security / Detection &amp; Response</div>
+      <div class="landBox">
+        <!-- EDR / XDR -->
+        <span class="chip">CrowdStrike Falcon<span class="tag">EDR/XDR</span></span>
+        <span class="chip">SentinelOne<span class="tag">EDR/XDR</span></span>
+        <span class="chip">Microsoft Defender for Endpoint<span class="tag">EDR/XDR</span></span>
+        <span class="chip">Carbon Black<span class="tag">EDR/XDR</span></span>
+        <span class="chip">OpenEDR<span class="tag">EDR</span></span>
+        <span class="chip">Sophos<span class="tag">EDR/XDR</span></span>
+        <!-- HIDS / HIDPS / FIM -->
+        <span class="chip">OSSEC<span class="tag">HIDS</span></span>
+        <span class="chip">Wazuh<span class="tag">HIDS/SIEM</span></span>
+        <span class="chip">Tripwire<span class="tag">FIM</span></span>
+        <span class="chip">AIDE<span class="tag">FIM</span></span>
+        <span class="chip">Falco<span class="tag">HIDS/IPS</span></span>
+        <!-- NDR / NPR / Network -->
+        <span class="chip">Zeek<span class="tag">NDR/IDS</span></span>
+        <span class="chip">Wirespeed<span class="tag">NDR</span></span>
+        <span class="chip">UniFi Network<span class="tag">NPR</span></span>
+        <!-- SIEM / Logging -->
+        <span class="chip">Splunk<span class="tag">SIEM</span></span>
+        <!-- SOAR -->
+        <span class="chip">Shuffle<span class="tag">SOAR</span></span>
+        <!-- Threat Intel -->
+        <span class="chip">OpenCTI<span class="tag">Threat Intel</span></span>
+        <span class="chip">MISP<span class="tag">Threat Intel</span></span>
+        <span class="chip">Filigran<span class="tag">Threat Intel</span></span>
+        <!-- MDR / Services -->
+        <span class="chip">Huntress<span class="tag">MDR</span></span>
+        <span class="chip">Arctic Wolf<span class="tag">MDR</span></span>
+        <span class="chip">NetSPI<span class="tag">Offensive</span></span>
+        <span class="chip">Delve<span class="tag">Offensive</span></span>
+      </div>
+
+      <!-- Compliance & Assurance -->
+      <div class="landLabel landLast">Compliance &amp; Assurance</div>
+      <div class="landBox landLast">
+        <span class="chip">Drata</span>
+        <span class="chip">Vanta</span>
+        <span class="chip">Secureframe</span>
+        <span class="chip">Tugboat Logic</span>
+        <span class="chip">Wazuh<span class="tag">evidence</span></span>
+        <span class="chip">Splunk<span class="tag">evidence</span></span>
+      </div>
+
+      <div class="spanners3">
+        <div class="card">
+          <h3>Microsoft Suite</h3>
+          <div class="badges">
+            <span class="b on">Identity</span>
+            <span class="b on">Endpoint</span>
+            <span class="b on">Cloud</span>
+            <span class="b on">Security</span>
+            <span class="b on">Compliance</span>
+          </div>
+          <p class="muted">Entra ID, Intune, Lighthouse, Defender, Purview.</p>
+        </div>
+
+        <div class="card">
+          <h3>ZipSec</h3>
+          <div class="badges">
+            <span class="b on2">Identity</span>
+            <span class="b on2">Endpoint</span>
+            <span class="b on2">Cloud</span>
+            <span class="b on2">Security</span>
+            <span class="b on2">Compliance</span>
+          </div>
+          <p class="muted">Turnkey security + IT orchestration for SMBs.</p>
+        </div>
+
+        <div class="card">
+          <h3>Kaseya IT Complete</h3>
+          <div class="badges">
+            <span class="b on3">Endpoint</span>
+            <span class="b on3">Security</span>
+            <span class="b on3">Compliance</span>
+          </div>
+          <p class="muted">VSA, EDR, Vuln Mgmt, compliance modules.</p>
+        </div>
+
+        <div class="card">
+          <h3>Datto Platform</h3>
+          <div class="badges">
+            <span class="b on4">Endpoint</span>
+            <span class="b on4">Cloud</span>
+            <span class="b on4">Security</span>
+          </div>
+          <p class="muted">RMM, BCDR, SaaS protection, SIEM integrations.</p>
+        </div>
+
+        <div class="card">
+          <h3>CrowdStrike Platform</h3>
+          <div class="badges">
+            <span class="b on">Endpoint</span>
+            <span class="b on">Identity</span>
+            <span class="b on">Cloud</span>
+            <span class="b on">Security</span>
+          </div>
+          <p class="muted">Falcon EDR/XDR, Identity, Cloud Workload Protection.</p>
+        </div>
+
+        <div class="card">
+          <h3>SentinelOne Singularity</h3>
+          <div class="badges">
+            <span class="b on">Endpoint</span>
+            <span class="b on">Cloud</span>
+            <span class="b on">Security</span>
+          </div>
+          <p class="muted">EDR/XDR, Cloud Security, automation.</p>
+        </div>
+
+        <div class="card">
+          <h3>Sophos Central</h3>
+          <div class="badges">
+            <span class="b on">Endpoint</span>
+            <span class="b on">Cloud</span>
+            <span class="b on">Security</span>
+          </div>
+          <p class="muted">Endpoint, Firewall/NDR, Email, MDR.</p>
+        </div>
+
+        <div class="card">
+          <h3>Wazuh Platform</h3>
+          <div class="badges">
+            <span class="b on">Endpoint</span>
+            <span class="b on">Security</span>
+            <span class="b on">Compliance</span>
+          </div>
+          <p class="muted">HIDS, SIEM, compliance evidence.</p>
+        </div>
+
+        <div class="card">
+          <h3>Electric.ai</h3>
+          <div class="badges">
+            <span class="b on2">Identity</span>
+            <span class="b on2">Endpoint</span>
+            <span class="b on2">Cloud</span>
+            <span class="b on2">Security</span>
+            <span class="b on2">Compliance</span>
+          </div>
+          <p class="muted">Managed IT and Security services spanning layers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

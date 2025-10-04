@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Security & IT Landscape — Card View</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <script id="vendorData" type="application/json">[
+    {"name":"Microsoft Entra ID / Azure AD","url":"https://www.microsoft.com/security/business/identity-access/microsoft-entra-id","layers":["Identity","Security","Compliance"],"categories":["SSO","MFA","Conditional Access"],"primary":"Identity & Access Platforms","description":"Cloud identity, SSO and conditional access; integrates with Intune and Defender.","customers":["Mid-market","Enterprise","Gov/Regulated"]},
+    {"name":"JumpCloud","url":"https://jumpcloud.com","layers":["Identity","Device / IT Operations"],"categories":["Directory-as-a-Service","MDM-lite"],"primary":"Identity & Access Platforms","description":"Cloud directory with device trust, policies and SSO for SMB/mid-market.","customers":["SMB","Mid-market"],"model":"Hybrid"},
+    {"name":"Okta","url":"https://okta.com","layers":["Identity","Security"],"categories":["SSO","MFA"],"primary":"Identity & Access Platforms","description":"Enterprise SSO and access management with strong app ecosystem.","customers":["Mid-market","Enterprise"]},
+    {"name":"Google Workspace","url":"https://workspace.google.com","layers":["Identity","Security"],"categories":["SSO","Email","Collaboration"],"primary":"Identity & Access Platforms","description":"Productivity suite with directory/SSO and basic device controls.","customers":["SMB","Mid-market"]},
+    {"name":"Electric.ai","url":"https://www.electric.ai","layers":["Identity","Device / IT Operations","Cloud","Security","Compliance"],"categories":["Managed IT","MDM","Helpdesk"],"primary":"Identity & Access Platforms","description":"Managed IT provider spanning identity, device and security operations for SMBs.","customers":["SMB"],"model":"Service"},
+    {"name":"Microsoft 365 Platform (Entra + Intune + Defender + Purview)","url":"https://www.microsoft.com/microsoft-365/","layers":["Identity","Device / IT Operations","Cloud","Security","Compliance"],"categories":["Directory/SSO","MDM/UEM","EDR/XDR","SIEM","DLP","Compliance"],"primary":"Identity & Access Platforms","description":"Unified Microsoft ecosystem spanning identity, device, security, and compliance with strong integrations for MDM, XDR, and GRC.","customers":["Mid-market","Enterprise","Gov/Regulated","MSP"],"model":"Product"},
+
+    {"name":"NinjaOne","url":"https://www.ninjaone.com","layers":["Device / IT Operations"],"categories":["RMM","Patching","Automation"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Cloud RMM for MSPs and IT teams: patching, remote access, scripting.","customers":["MSP","SMB","Mid-market"]},
+    {"name":"ConnectWise Automate","url":"https://www.connectwise.com/software/automate","layers":["Device / IT Operations","Security","Compliance"],"categories":["RMM","Automation"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Deep RMM with PSA ecosystem for larger MSP practices.","customers":["MSP","Mid-market"]},
+    {"name":"Datto RMM","url":"https://www.datto.com/products/rmm/","layers":["Device / IT Operations","Cloud"],"categories":["RMM","BCDR"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Cloud RMM tied into Datto’s backup/continuity platform.","customers":["MSP","SMB"]},
+    {"name":"Kaseya VSA","url":"https://www.kaseya.com/products/vsa/","layers":["Device / IT Operations","Security","Compliance","Cloud"],"categories":["RMM","ITSM"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Part of Kaseya IT Complete suite spanning Endpoint, Security and Compliance.","customers":["MSP","Mid-market"]},
+    {"name":"N-able","url":"https://www.n-able.com","layers":["Device / IT Operations","Security","Compliance"],"categories":["RMM","Backup"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"MSP-focused RMM platform with strong monitoring and scaling features.","customers":["MSP","Mid-market"]},
+    {"name":"Atera","url":"https://www.atera.com","layers":["Device / IT Operations"],"categories":["RMM","PSA"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Per-technician pricing; bundled RMM + PSA for SMB MSPs.","customers":["MSP","SMB"]},
+    {"name":"Syncro","url":"https://syncromsp.com","layers":["Device / IT Operations"],"categories":["RMM","PSA"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"All-in-one RMM/PSA focused on small MSPs and automation.","customers":["MSP","SMB"]},
+    {"name":"SuperOps.ai","url":"https://superops.ai","layers":["Device / IT Operations"],"categories":["RMM","PSA"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Modern RMM+PSA challenger with AI-assisted workflows.","customers":["MSP","SMB"]},
+    {"name":"ManageEngine Endpoint Central","url":"https://www.manageengine.com/endpoint-central/","layers":["Device / IT Operations"],"categories":["UEM","Patching"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Unified endpoint management across OSes plus patching and inventory.","customers":["Mid-market","Enterprise"]},
+    {"name":"Jamf","url":"https://www.jamf.com","layers":["Device / IT Operations"],"categories":["MDM","Apple"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Apple-first MDM and management for macOS/iOS fleets.","customers":["SMB","Mid-market","Enterprise","Education"]},
+    {"name":"Microsoft Intune","url":"https://www.microsoft.com/microsoft-365/endpoint-manager/intune","layers":["Device / IT Operations","Identity"],"categories":["MDM/UEM","Compliance"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"UEM closely integrated with Entra ID and Defender.","customers":["Mid-market","Enterprise","Gov/Regulated"]},
+    {"name":"AirMDM","url":"#","layers":["Device / IT Operations"],"categories":["MDM"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Mobile device management.","customers":["SMB"]},
+    {"name":"SimpleMDM","url":"https://simplemdm.com","layers":["Device / IT Operations"],"categories":["MDM","Apple"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Simple Apple-centric MDM for SMBs.","customers":["SMB","Mid-market"]},
+    {"name":"FleetDM","url":"https://fleetdm.com","layers":["Device / IT Operations","Compliance"],"categories":["AIMS","osquery"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Open-source device inventory & telemetry using osquery.","customers":["SMB","Mid-market","Enterprise"]},
+    {"name":"UniFi Network","url":"https://ui.com/uniFi","layers":["Device / IT Operations","Security"],"categories":["NPR","AIMS"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Network gear and controller; inventory and basic network protection.","customers":["SMB","Prosumer"]},
+    {"name":"ZipSec","url":"https://www.zipsec.com","layers":["Identity","Device / IT Operations","Cloud","Security","Compliance"],"categories":["Converged","Automation"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Turnkey platform bundling identity, device, cloud and security.","customers":["SMB","Mid-market"],"model":"Service"},
+
+    {"name":"Microsoft Lighthouse","url":"https://learn.microsoft.com/microsoft-365/lighthouse/overview","layers":["Cloud","Device / IT Operations"],"categories":["MSP Multi-tenant"],"primary":"Cloud / Tenant Automation","description":"Multi-tenant management for Microsoft environments.","customers":["MSP"]},
+    {"name":"CyberDrain CIPP","url":"https://cipp.app","layers":["Cloud","Compliance"],"categories":["Automation","M365"],"primary":"Cloud / Tenant Automation","description":"Open-source MSP portal for Microsoft 365 tenant automation.","customers":["MSP"]},
+    {"name":"Augmentt","url":"https://www.augmentt.com","layers":["Cloud"],"categories":["SaaS Mgmt","Discovery"],"primary":"Cloud / Tenant Automation","description":"SaaS visibility and policy for MSPs.","customers":["MSP","SMB"]},
+    {"name":"IT Glue","url":"https://www.itglue.com","layers":["Cloud"],"categories":["Documentation"],"primary":"Cloud / Tenant Automation","description":"Documentation platform for MSP process and client data.","customers":["MSP"]},
+
+    {"name":"CrowdStrike Falcon","url":"https://www.crowdstrike.com/products/endpoint-security/","layers":["Identity","Cloud","Security"],"categories":["EDR/XDR","Identity Protection","Cloud Workload","IT Hygiene / Asset Visibility"],"primary":"Security — EDR / XDR Platforms","description":"EDR/XDR with identity and cloud modules; strong threat intel.","customers":["Mid-market","Enterprise","Gov/Regulated","MSSP"]},
+    {"name":"SentinelOne","url":"https://www.sentinelone.com","layers":["Cloud","Security"],"categories":["EDR/XDR","CWPP","IT Hygiene / Asset Visibility"],"primary":"Security — EDR / XDR Platforms","description":"Autonomous EDR/XDR plus cloud and data security options.","customers":["Mid-market","Enterprise","MSSP"]},
+    {"name":"Microsoft Defender for Endpoint","url":"https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint","layers":["Security","Cloud"],"categories":["EDR/XDR","M365 Defender"],"primary":"Security — EDR / XDR Platforms","description":"Part of Microsoft’s XDR suite integrated with Entra/Intune.","customers":["SMB","Mid-market","Enterprise","Gov/Regulated"]},
+    {"name":"Carbon Black","url":"https://www.vmware.com/products/carbon-black-cloud.html","layers":["Cloud","Security"],"categories":["EDR/XDR","CWPP"],"primary":"Security — EDR / XDR Platforms","description":"VMware Carbon Black for endpoint and workload protection.","customers":["Mid-market","Enterprise"]},
+    {"name":"OpenEDR","url":"https://www.openedr.com","layers":["Security"],"categories":["EDR"],"primary":"Security — EDR / XDR Platforms","description":"Open-source EDR project.","customers":["SMB","Mid-market"]},
+    {"name":"Sophos","url":"https://www.sophos.com","layers":["Cloud","Security"],"categories":["XDR","Firewall/NDR","Email Sec"],"primary":"Security — EDR / XDR Platforms","description":"Broad platform: endpoint, network, email and MDR services.","customers":["SMB","Mid-market"],"model":"Hybrid"},
+    {"name":"Huntress","url":"https://www.huntress.com","layers":["Security"],"categories":["MDR","Incident Response"],"primary":"Security — EDR / XDR Platforms","description":"MDR focused on SMB/MSP with 24/7 analyst response.","customers":["SMB","MSP"],"model":"Hybrid"},
+    {"name":"Arctic Wolf","url":"https://arcticwolf.com","layers":["Security","Cloud"],"categories":["MDR","Managed SIEM"],"primary":"Security — EDR / XDR Platforms","description":"Managed security operations across endpoint, network and cloud.","customers":["Mid-market","Enterprise","MSSP"],"model":"Hybrid"},
+
+    {"name":"OSSEC","url":"https://www.ossec.net","layers":["Security"],"categories":["HIDS","IPS"],"primary":"Security — HIDS / IPS / FIM","description":"Host intrusion detection and log analysis.","customers":["SMB","Mid-market","Enterprise"]},
+    {"name":"Wazuh","url":"https://wazuh.com","layers":["Security","Compliance"],"categories":["HIDS","SIEM","Compliance Evidence"],"primary":"Security — HIDS / IPS / FIM","description":"Open-source SIEM/HIDS with vulnerability and compliance mapping.","customers":["SMB","Mid-market","Enterprise","Gov/Regulated"]},
+    {"name":"Tripwire","url":"https://www.tripwire.com","layers":["Security"],"categories":["FIM"],"primary":"Security — HIDS / IPS / FIM","description":"File integrity monitoring for change detection and audit.","customers":["Mid-market","Enterprise","Gov/Regulated"]},
+    {"name":"AIDE","url":"https://aide.github.io","layers":["Security"],"categories":["FIM"],"primary":"Security — HIDS / IPS / FIM","description":"Advanced Intrusion Detection Environment, open-source FIM.","customers":["SMB","Mid-market","Enterprise"]},
+    {"name":"Falco","url":"https://falco.org","layers":["Security","Cloud"],"categories":["Runtime","HIDS/IPS"],"primary":"Security — HIDS / IPS / FIM","description":"Runtime security for containers/Kubernetes.","customers":["Mid-market","Enterprise","Cloud-native Teams"]},
+
+    {"name":"Zeek","url":"https://zeek.org","layers":["Security"],"categories":["NDR/IDS"],"primary":"Security — Network (NDR / NPR)","description":"Network security monitoring and protocol analysis (open-source).","customers":["Mid-market","Enterprise","Research/Education"]},
+    {"name":"Wirespeed","url":"#","layers":["Security"],"categories":["NDR"],"primary":"Security — Network (NDR / NPR)","description":"Network detection and response.","customers":["Mid-market"]},
+    {"name":"UniFi Network","url":"https://ui.com/uniFi","layers":["Device / IT Operations","Security"],"categories":["NPR","AIMS"],"primary":"Security — Network (NDR / NPR)","description":"Network infrastructure with controller-based management.","customers":["SMB","Prosumer"]},
+
+    {"name":"Splunk","url":"https://www.splunk.com","layers":["Security","Compliance"],"categories":["SIEM","Analytics"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Log analytics and SIEM used across enterprise and MSPs.","customers":["Mid-market","Enterprise","Gov/Regulated","MSSP"]},
+    {"name":"Shuffle","url":"https://shuffler.io","layers":["Security"],"categories":["SOAR"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Open-source SOAR for automating security workflows.","customers":["SMB","Mid-market","Enterprise"]},
+    {"name":"OpenCTI","url":"https://www.opencti.io","layers":["Security"],"categories":["Threat Intelligence"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Open platform to manage and share CTI knowledge.","customers":["Mid-market","Enterprise","Gov/Regulated"]},
+    {"name":"MISP","url":"https://www.misp-project.org","layers":["Security"],"categories":["Threat Intelligence"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Open-source platform for sharing indicators and intel.","customers":["SMB","Mid-market","Enterprise","Gov/Regulated"]},
+    {"name":"Filigran","url":"https://filigran.io","layers":["Security"],"categories":["Threat Intelligence"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Company behind OpenCTI ecosystem and CTI tooling.","customers":["Mid-market","Enterprise"]},
+    {"name":"NetSPI","url":"https://www.netspi.com","layers":["Security","Compliance"],"categories":["Offensive","Pen Testing"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Offensive security testing and attack surface management.","customers":["Enterprise","Gov/Regulated"]},
+    {"name":"Delve","url":"#","layers":["Security"],"categories":["Offensive"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Offensive testing/ASM services.","customers":["Mid-market","Enterprise"]},
+
+    {"name":"Drata","url":"https://drata.com","layers":["Compliance"],"categories":["GRC","SOC 2","ISO 27001"],"primary":"Compliance / GRC","description":"Continuous control monitoring and auditor workflows.","customers":["Startup","SMB","Mid-market"]},
+    {"name":"Vanta","url":"https://vanta.com","layers":["Compliance"],"categories":["GRC","Evidence"],"primary":"Compliance / GRC","description":"Automated evidence collection for SOC2/ISO.","customers":["Startup","SMB","Mid-market"]},
+    {"name":"Secureframe","url":"https://secureframe.com","layers":["Compliance"],"categories":["GRC"],"primary":"Compliance / GRC","description":"Security and privacy compliance automation.","customers":["Startup","SMB","Mid-market"]},
+    {"name":"Tugboat Logic","url":"https://www.tugboatlogic.com","layers":["Compliance"],"categories":["GRC"],"primary":"Compliance / GRC","description":"Policy management and audit readiness.","customers":["SMB","Mid-market"]},
+    
+    {"name":"VirusTotal","url":"https://www.virustotal.com","layers":["Security"],"categories":["Threat Intelligence","Malware Analysis"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Crowd-sourced malware scanning and reputation service aggregating dozens of engines.","customers":["SMB","Mid-market","Enterprise","MSSP"]},
+    {"name":"CrowdStrike Falcon Intelligence","url":"https://www.crowdstrike.com/products/threat-intelligence/","layers":["Security","Cloud"],"categories":["Threat Intelligence","Enrichment"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"CrowdStrike’s finished intel feeds, adversary profiles and enrichment APIs.","customers":["Mid-market","Enterprise","MSSP"]},
+    {"name":"AlienVault OTX","url":"https://otx.alienvault.com","layers":["Security"],"categories":["Threat Intelligence","IOCs"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Open Threat Exchange with community-contributed indicators of compromise.","customers":["SMB","Mid-market","Enterprise","MSSP"]},
+    {"name":"MITRE ATT&CK","url":"https://attack.mitre.org","layers":["Security"],"categories":["Framework","Knowledge Base"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Globally accessible knowledge base of adversary tactics, techniques, and procedures.","customers":["SMB","Mid-market","Enterprise","Gov/Regulated","MSSP"]},
+    {"name":"CISA Advisories","url":"https://www.cisa.gov","layers":["Security","Compliance"],"categories":["Advisories","KEV Catalog"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"US CISA alerts, Binding Operational Directives and Known Exploited Vulnerabilities.","customers":["Mid-market","Enterprise","Gov/Regulated"]},
+    {"name":"FS-ISAC","url":"https://www.fsisac.com","layers":["Security"],"categories":["Information Sharing","Threat Intelligence"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Financial Services Information Sharing and Analysis Center.","customers":["Enterprise","Gov/Regulated","MSSP"]},
+    {"name":"MS-ISAC","url":"https://www.cisecurity.org/ms-isac","layers":["Security"],"categories":["Information Sharing","Threat Intelligence"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Multi-State ISAC supporting US State, Local, Tribal, and Territorial governments.","customers":["Gov/Regulated"]},
+    {"name":"OpenPhish","url":"https://openphish.com","layers":["Security"],"categories":["Threat Intelligence","Phishing Feeds"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Automated phishing threat intelligence feeds and domain detections.","customers":["SMB","Mid-market","Enterprise","MSSP"]},
+    {"name":"MalwareBazaar","url":"https://bazaar.abuse.ch","layers":["Security"],"categories":["Threat Intelligence","Malware Samples"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Community repository of malware samples and indicators by abuse.ch.","customers":["Research/Education","Mid-market","Enterprise","MSSP"]},
+    {"name":"Exploit Database","url":"https://www.exploit-db.com","layers":["Security"],"categories":["Exploit Intel","Offensive"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Public archive of exploits and vulnerable software maintained by Offensive Security.","customers":["Mid-market","Enterprise","Research/Education"]},
+    {"name":"Hybrid Analysis","url":"https://www.hybrid-analysis.com","layers":["Security","Cloud"],"categories":["Sandbox","Malware Analysis"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Cloud malware sandboxing and behavioral analysis platform (CrowdStrike community).","customers":["SMB","Mid-market","Enterprise","MSSP"]},
+    {"name":"CVE Databases","url":"https://www.cve.org","layers":["Security","Compliance"],"categories":["Vulnerability Catalog","Advisories"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Canonical identifiers for publicly disclosed vulnerabilities (CVE/NVD ecosystems).","customers":["SMB","Mid-market","Enterprise","Gov/Regulated"]},
+    {"name":"Recorded Future","url":"https://www.recordedfuture.com","layers":["Security","Cloud"],"categories":["Threat Intelligence","Risk Intelligence"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Commercial threat intelligence platform with broad OSINT, dark web and enrichment.","customers":["Mid-market","Enterprise","Gov/Regulated","MSSP"]},
+    {"name":"Flashpoint","url":"https://flashpoint.io","layers":["Security","Cloud"],"categories":["Threat Intelligence","Risk Intelligence"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Threat/Risk intelligence with deep/dark web collections and brand monitoring.","customers":["Mid-market","Enterprise","Gov/Regulated","MSSP"]},
+    {"name":"Intel471","url":"https://intel471.com","layers":["Security","Cloud"],"categories":["Threat Intelligence","Actor Tracking"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Adversary intelligence focused on actor tracking and underground marketplaces.","customers":["Mid-market","Enterprise","MSSP"]},
+    {"name":"Coalition","url":"https://www.coalitioninc.com","layers":["Security","Compliance"],"categories":["Cyber Insurance","Risk Transfer"],"primary":"Compliance / GRC","description":"Cyber insurance with active monitoring and incident response services.","customers":["SMB","Mid-market"]},
+    {"name":"Corvus","url":"https://www.corvusinsurance.com","layers":["Security","Compliance"],"categories":["Cyber Insurance","Risk Transfer"],"primary":"Compliance / GRC","description":"Cyber insurance provider with security scanning-driven underwriting.","customers":["SMB","Mid-market"]},
+
+    {"name":"Patch Management","url":"#","layers":["Device / IT Operations"],"categories":["Patching"],"primary":"Device / IT Operations (RMM • MDM • UEM • AIMS)","description":"Capability area: OS and application patch orchestration across fleets.","customers":["MSP","SMB","Mid-market","Enterprise"]},
+    {"name":"Lynis","url":"https://cisofy.com/lynis","layers":["Security","Compliance"],"categories":["Audit","Benchmarking"],"primary":"Security — HIDS / IPS / FIM","description":"Open-source security auditing tool for Unix/Linux systems.","customers":["SMB","Mid-market","Enterprise","Research/Education"]},
+    {"name":"chkrootkit","url":"http://www.chkrootkit.org","layers":["Security"],"categories":["Rootkit Detection","HIDS"],"primary":"Security — HIDS / IPS / FIM","description":"Lightweight tool to locally check for signs of rootkits on Unix systems.","customers":["SMB","Mid-market","Enterprise"]},
+    {"name":"rkhunter","url":"http://rkhunter.sourceforge.net","layers":["Security"],"categories":["Rootkit Detection","HIDS"],"primary":"Security — HIDS / IPS / FIM","description":"Rootkit Hunter scans for known rootkits, backdoors, and local exploits.","customers":["SMB","Mid-market","Enterprise"]},
+    {"name":"OpenVAS / Greenbone","url":"https://www.greenbone.net/en/openvas/","layers":["Security","Compliance"],"categories":["Vulnerability Scanning","VM"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Open-source vulnerability scanning engine from Greenbone.","customers":["SMB","Mid-market","Enterprise","MSSP"]},
+    {"name":"Nessus","url":"https://www.tenable.com/products/nessus","layers":["Security","Compliance"],"categories":["Vulnerability Scanning","VM"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Widely used vulnerability assessment scanner by Tenable.","customers":["SMB","Mid-market","Enterprise","MSSP"]},
+    {"name":"Qualys VM","url":"https://www.qualys.com/apps/vulnerability-management/","layers":["Security","Compliance"],"categories":["Vulnerability Scanning","VM"],"primary":"SIEM • SOAR • Threat Intelligence • Offensive","description":"Cloud platform for vulnerability management and policy compliance.","customers":["Mid-market","Enterprise","MSSP"]}
+  ]</script>
+  <style>
+    :root{
+      --bg:#0b1016;--panel:#121823;--ink:#e7eef7;--muted:#9bb0c8;--line:#2a3a50;--chip:#172233;
+      --c1:#5aa9ff;--c2:#7bd389;--c3:#ffb86b;--c4:#de6fff;--c5:#ff6f91;--c6:#6ef2ff;
+      --labelw: 86px;
+    }
+    /* Light theme overrides */
+    :root.light{
+      --bg:#ffffff;
+      --panel:#ffffff;
+      --ink:#0b1016;
+      --muted:#4a5568;
+      --line:#d8e1ea;
+      --chip:#f3f7fb;
+      --c1:#1e88e5;--c2:#2e7d32;--c3:#ef6c00;--c4:#8e24aa;--c5:#d81b60;--c6:#00838f;
+      --labelw: 86px;
+    }
+    .themeToggle{position:fixed;right:16px;top:16px;z-index:9999;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+    .themeToggle:hover{box-shadow:0 2px 6px rgba(0,0,0,.08)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Lato', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial; background:var(--bg); color:var(--ink)}
+    .wrap{max-width:100%;margin:16px auto;padding:0 24px}
+    h1{font-size:28px;margin:12px 0 6px;font-weight:900;letter-spacing:.2px}
+    h2{font-size:20px;margin:28px 0 12px;color:var(--ink);font-weight:700;letter-spacing:.2px}
+    p.lead{color:var(--muted);margin:0 0 16px}
+
+    /* Card wall */
+    .wall{display:grid;grid-template-columns:repeat( auto-fill, minmax(320px, 1fr) );gap:14px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 16px 10px}
+    .card{position:relative}
+    .platform{box-shadow:none}
+    .toolbar{position:static;margin:8px 0 16px;display:flex;gap:8px;flex-wrap:wrap}
+    .btn{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;cursor:pointer}
+    .btn.active{outline:2px solid #FFA500}
+
+    /* Filter chip bars */
+    .filters{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px}
+    .fgroup{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .capGroup{position:relative;align-items:flex-start;flex-basis:100%}
+    .flabel{
+      font-size:12px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      margin-right:6px;
+      display:block;
+      width:100%;
+    }
+    .fchip{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;cursor:pointer}
+    .fchip.on{outline:2px solid #3eb5c1}
+    .fchip.on.cust{outline:2px solid #a78bfa}
+    .fchip.all.on{outline:2px solid #3eb5c1}
+    .fchip.all.on.cust{outline:2px solid #a78bfa}
+    /* Layer filter chips (orange outline) */
+    .fchip.on.layer{ outline:2px solid #FFA500 }
+    .fchip.all.on.layer{ outline:2px solid #FFA500 }
+
+    .capTopRow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:relative}
+    .capActiveList{display:flex;flex-wrap:wrap;gap:8px}
+    .capMoreBtn{position:relative;padding-right:28px}
+    .capMoreBtn::after{content:"";position:absolute;right:10px;top:50%;width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:translateY(-50%) rotate(45deg);opacity:.6}
+    .capMoreBtn[aria-expanded="true"]::after{transform:translateY(-20%) rotate(225deg)}
+
+    .capPopover{position:absolute;top:calc(100% + 8px);left:0;background:var(--bg);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 36px rgba(15,23,42,0.35);padding:16px;min-width:260px;max-width:320px;max-height:340px;overflow:auto;z-index:90}
+    .capPopover.hidden{display:none}
+    .capPopover:focus{outline:none}
+    .capSearch{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;margin-bottom:12px}
+    .capList{display:flex;flex-direction:column;gap:6px}
+    .capOption{display:flex;align-items:center;gap:8px;padding:4px 6px;border-radius:6px;font-size:12px;cursor:pointer}
+    .capOption input{width:14px;height:14px;pointer-events:none}
+    .capOption:hover{background:rgba(62,181,193,0.08)}
+    .capActions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}
+    .capActions button{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--ink);cursor:pointer}
+    .capActions button.primary{border-color:#3eb5c1}
+
+    .card h3{margin:0 0 10px;font-size:16px}
+    .card h3 a{color:inherit;text-decoration:none} .card h3 a:hover{text-decoration:underline}
+    .badges{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0;align-items:center}
+    .b{background:var(--chip);color:var(--ink);border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-size:12px;white-space:nowrap}
+    .muted{color:var(--muted);font-size:13px;margin-top:12px;margin-bottom:0;padding-top:8px;border-top:none}
+
+    /* Layer pill styling: muted orange outlines; primary bright orange, no fill */
+    .layersRow .b{ background:transparent; border:2px solid rgba(255,165,0,0.50); opacity:1 }
+    .layersRow .b.primaryLayer{ border:2px solid #FFA500 }
+    /* Capabilities (teal) and Customers (lavender) outlines */
+    .categoriesRow .b{ background:transparent; border:2px solid rgba(62,181,193,0.50); opacity:1 }
+    .customersRow  .b{ background:transparent; border:2px solid rgba(167,139,250,0.50); opacity:1 }
+    .categoriesRow .b.primaryCap{ border:2px solid #3eb5c1 }
+    .customersRow  .b.primaryCust{ border:2px solid #a78bfa }
+
+    /* Labeled chip rows (labels above, pills below) */
+    .layersRow::before,
+    .categoriesRow::before,
+    .customersRow::before{
+      content:"";
+      display:block;
+      width:100%;
+      margin:0 0 6px 0;
+      font-size:10px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      opacity:.9;
+    }
+    .layersRow::before{ content:"Layers"; }
+    .categoriesRow::before{ content:"Capabilities"; }
+    .customersRow::before{ content:"Customers"; }
+
+    /* Unified spacing (no separators) */
+    .layersRow,
+    .customersRow,
+    .categoriesRow{
+      margin-bottom:16px;
+      padding-bottom:8px;
+      border-bottom:none;
+    }
+
+    /* Group sections */
+    .group{margin:18px 0 8px;padding-top:12px}
+    .groupTitle{font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px}
+
+    /* Customer/Industry grid (kept from earlier in case you use it later) */
+    .grid{display:grid;grid-template-columns:260px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+    .colL,.colR{background:var(--panel);border-bottom:1px solid var(--line)}
+    .colL{padding:12px 14px;font-weight:700;border-right:1px solid var(--line);display:flex;align-items:center}
+    .colR{padding:12px 14px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{display:inline-flex;align-items:center;justify-content:center;background:var(--chip);padding:6px 12px;border-radius:999px;border:1px solid var(--line);font-size:13px;white-space:nowrap}
+    .last{border-bottom:none}
+
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr}
+      .colL{border-right:none}
+    }
+  </style>
+</head>
+<body>
+  <button class="themeToggle" id="themeToggle" aria-label="Toggle theme">Toggle theme</button>
+  <div class="wrap">
+    <h1>Security & IT Landscape</h1>
+    <p class="lead"></p>
+
+    <div class="toolbar">
+      <div class="fgroup" id="layerFilters" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <span class="flabel">Layers:</span>
+        <button class="btn" id="btnAll">Show all</button>
+        <button class="btn" id="btnPlatforms">All-in-one (≥4 layers)</button>
+        <button class="btn" id="btnSpanners">Spanners (≥3 layers)</button>
+        <!-- layer pills will be appended here by JS -->
+      </div>
+    </div>
+
+    <div class="filters">
+      <div class="fgroup" id="custFilters"><span class="flabel">Customers:</span></div>
+      <div class="fgroup" id="modelFilters"><span class="flabel">Delivery:</span></div>
+      <div class="fgroup capGroup" id="capFilters">
+        <div class="flabel">Capabilities:</div>
+      </div>
+    </div>
+
+    <!-- ===================== IDENTITY & ACCESS ===================== -->
+    <div class="group">
+      <p class="groupTitle">Identity & Access Platforms</p>
+      <div class="wall" id="wall-Identity & Access Platforms"></div>
+    </div>
+
+    <!-- ===================== DEVICE / IT OPS ===================== -->
+    <div class="group">
+      <p class="groupTitle">Device / IT Operations (RMM • MDM • UEM • AIMS)</p>
+      <div class="wall" id="wall-Device / IT Operations (RMM • MDM • UEM • AIMS)"></div>
+    </div>
+
+    <!-- ===================== CLOUD / TENANT ===================== -->
+    <div class="group">
+      <p class="groupTitle">Cloud / Tenant Automation</p>
+      <div class="wall" id="wall-Cloud / Tenant Automation"></div>
+    </div>
+
+    <!-- ===================== SECURITY: EDR/XDR ===================== -->
+    <div class="group">
+      <p class="groupTitle">Security — EDR / XDR Platforms</p>
+      <div class="wall" id="wall-Security — EDR / XDR Platforms"></div>
+    </div>
+
+    <!-- ===================== SECURITY: HIDS / IPS / FIM ===================== -->
+    <div class="group">
+      <p class="groupTitle">Security — HIDS / IPS / FIM</p>
+      <div class="wall" id="wall-Security — HIDS / IPS / FIM"></div>
+    </div>
+
+    <!-- ===================== SECURITY: NETWORK / NDR ===================== -->
+    <div class="group">
+      <p class="groupTitle">Security — Network (NDR / NPR)</p>
+      <div class="wall" id="wall-Security — Network (NDR / NPR)"></div>
+    </div>
+
+    <!-- ===================== SIEM / SOAR / TI / OFFENSIVE ===================== -->
+    <div class="group">
+      <p class="groupTitle">SIEM • SOAR • Threat Intelligence • Offensive</p>
+      <div class="wall" id="wall-SIEM • SOAR • Threat Intelligence • Offensive"></div>
+    </div>
+
+    <!-- ===================== COMPLIANCE / GRC ===================== -->
+    <div class="group">
+      <p class="groupTitle">Compliance / GRC</p>
+      <div class="wall" id="wall-Compliance / GRC"></div>
+    </div>
+  </div>
+</body>
+<script>
+(function(){
+  // ========= Theme bootstrap =========
+  const KEY='theme-preference';
+  const params=new URLSearchParams(location.search);
+  const qp=params.get('theme');
+  const stored=localStorage.getItem(KEY);
+  const prefersLight=window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  let theme='dark';
+  if(qp==='light' || qp==='dark'){ theme=qp; localStorage.setItem(KEY, theme); }
+  else if(stored){ theme=stored; }
+  else if(prefersLight){ theme='light'; }
+  document.documentElement.classList.toggle('light', theme==='light');
+  const btn=document.getElementById('themeToggle');
+  btn.addEventListener('click',()=>{
+    const isLight=document.documentElement.classList.toggle('light');
+    localStorage.setItem(KEY, isLight?'light':'dark');
+  });
+
+  // ========= Data & rendering =========
+  const dataEl=document.getElementById('vendorData');
+  const vendors=JSON.parse(dataEl.textContent);
+  const LAYERS=["Identity","Device / IT Operations","Cloud","Security","Compliance"];
+
+  // Filters state
+  const selectedCaps=new Set();
+  const selectedCusts=new Set();
+  const selectedModels=new Set();
+  const selectedLayers=new Set();
+  let mode='all'; // all | platforms | spanners
+
+  function el(tag, cls, html){
+    const e=document.createElement(tag); if(cls) e.className=cls; if(html!=null) e.innerHTML=html; return e;
+  }
+  function chip(text){
+    const s=el('span','b'); s.textContent=text; return s;
+  }
+
+  const byText = s=> s.textContent.trim();
+  function intersects(aSet, arr){ if(!aSet.size) return true; for(const v of arr){ if(aSet.has(v)) return true; } return false; }
+
+  function getPrimaryLayer(v){
+    const L = v.layers || [];
+    const p = (v.primary || '').toLowerCase();
+    if(p.includes('identity') && L.includes('Identity')) return 'Identity';
+    if((p.includes('endpoint') || p.includes('device')) && L.includes('Device / IT Operations')) return 'Device / IT Operations';
+    if(p.includes('cloud') && L.includes('Cloud')) return 'Cloud';
+    if(p.includes('compliance') && L.includes('Compliance')) return 'Compliance';
+    if(p.includes('security') && L.includes('Security')) return 'Security';
+    if(L.length === 1) return L[0];
+    for(const name of LAYERS){ if(L.includes(name)) return name; }
+    return null;
+  }
+
+  function buildCard(v){
+    const card=el('div','card');
+    const h3=el('h3'); const a=el('a'); a.href=v.url||'#'; a.target='_blank'; a.rel='noopener'; a.textContent=v.name; h3.appendChild(a); card.appendChild(h3);
+
+    // Layers row (only relevant layers, mark primary)
+    const layersRow=el('div','badges layersRow');
+    const L = v.layers||[];
+    const priLayer = getPrimaryLayer(v);
+    LAYERS.forEach(lbl=>{
+      if(L.includes(lbl)){
+        const pill = chip(lbl);
+        if(priLayer === lbl) pill.classList.add('primaryLayer');
+        layersRow.appendChild(pill);
+      }
+    });
+    card.appendChild(layersRow);
+
+    // Customers row (first is primary)
+    if(v.customers && v.customers.length){
+      const cust=el('div','badges customersRow');
+      v.customers.forEach((c,idx)=>{
+        const ch = chip(c);
+        if(idx===0) ch.classList.add('primaryCust');
+        cust.appendChild(ch);
+      });
+      card.appendChild(cust);
+    }
+
+    // Capabilities row (first is primary)
+    if(v.categories && v.categories.length){
+      const cats=el('div','badges categoriesRow');
+      v.categories.forEach((c,idx)=>{
+        const ch = chip(c);
+        if(idx===0) ch.classList.add('primaryCap');
+        cats.appendChild(ch);
+      });
+      card.appendChild(cats);
+    }
+
+    // Description
+    if(v.description){ const p=el('p','muted'); p.textContent=v.description; card.appendChild(p); }
+
+    // Datasets for filters
+    card.dataset.caps = (v.categories||[]).join('|');
+    card.dataset.customers = (v.customers||[]).join('|');
+    card.dataset.model = (v.model || 'Product');
+    card.dataset.layers = (v.layers || []).join('|');
+
+    return card;
+  }
+
+  // Group walls by primary
+  const walls={};
+  document.querySelectorAll('[id^="wall-"]').forEach(w=>{ walls[w.id.replace('wall-','')] = w; });
+  vendors.forEach(v=>{
+    const wall=walls[v.primary]; if(!wall) return; wall.appendChild(buildCard(v));
+  });
+
+  // Mark platform/spanner by count of layer pills
+  document.querySelectorAll('.card').forEach(card=>{
+    const count = card.querySelectorAll('.layersRow .b').length;
+    card.dataset.span = String(count);
+    card.classList.toggle('platform', count>=4);
+    card.classList.toggle('spanner', count>=3);
+  });
+
+  // Build unique capability, customer, model lists
+  const allCaps=new Set();
+  const capCounts=new Map();
+  const allCusts=new Set();
+  vendors.forEach(v=>{
+    (v.categories||[]).forEach(c=>{
+      allCaps.add(c);
+      capCounts.set(c, (capCounts.get(c) || 0) + 1);
+    });
+    (v.customers||[]).forEach(c=>allCusts.add(c));
+  });
+
+  const capBox=document.getElementById('capFilters');
+  const custBox=document.getElementById('custFilters');
+  const modelBox=document.getElementById('modelFilters');
+  const layerBox=document.getElementById('layerFilters');
+  let capAllBtn, custAllBtn, modelAllBtn, layerAllBtn;
+  const capButtons=new Map();
+  const capCheckboxes=new Map();
+  const capOptionRows=new Map();
+  const activeCapButtons=new Map();
+  let capMoreBtn, capMoreLabel, capPopover, capSearch, capActiveList;
+  let capPopoverOpen=false;
+
+  function makeFchip(text, group){
+    const isCust = group==='cust';
+    const isModel = group==='model';
+    const isLayer = group==='layer';
+    const b=document.createElement('button');
+    b.type='button';
+    b.className = 'fchip' +
+      (isCust ? ' cust' : '') +
+      (isLayer ? ' layer' : '');
+    b.textContent=text;
+    b.addEventListener('click',()=>{
+      let set, allBtn = null;
+      if(isCust){ set = selectedCusts; allBtn = custAllBtn; }
+      else if(isModel){ set = selectedModels; allBtn = modelAllBtn; }
+      else if(isLayer){ set = selectedLayers; allBtn = layerAllBtn || null; }
+      else return;
+      if(set.has(text)) set.delete(text); else set.add(text);
+      b.classList.toggle('on');
+      if(allBtn){
+        if(set.size>0) allBtn.classList.remove('on'); else allBtn.classList.add('on');
+      }
+      if (isLayer) {
+        mode = 'all';
+        clearButtons();
+      }
+      applyFilters();
+    });
+    return b;
+  }
+  function makeAllChip(group){
+    const isCust = group==='cust';
+    const isModel = group==='model';
+    const isLayer = group==='layer';
+    const b=document.createElement('button');
+    b.type='button';
+    b.className =
+      'fchip all on' +
+      (isCust ? ' cust' : '') +
+      (isLayer ? ' layer' : '');
+    b.textContent='Show all';
+    b.addEventListener('click',()=>{
+      let set, box;
+      if(isCust){ set = selectedCusts; box = custBox; }
+      else if(isModel){ set = selectedModels; box = modelBox; }
+      else if(isLayer){ set = selectedLayers; box = layerBox; }
+      else return;
+      if(!set.size) return;
+      set.clear();
+      box.querySelectorAll('.fchip').forEach(x=>{ if(!x.classList.contains('all')) x.classList.remove('on'); });
+      b.classList.add('on');
+      applyFilters();
+    });
+    return b;
+  }
+
+  function setCapSelected(cap, shouldSelect){
+    const already = selectedCaps.has(cap);
+    if(shouldSelect === already){
+      const btn = capButtons.get(cap); if(btn) btn.classList.toggle('on', shouldSelect);
+      const cb = capCheckboxes.get(cap); if(cb) cb.checked = shouldSelect;
+      return false;
+    }
+    if(shouldSelect) selectedCaps.add(cap); else selectedCaps.delete(cap);
+    const btn = capButtons.get(cap); if(btn) btn.classList.toggle('on', shouldSelect);
+    const cb = capCheckboxes.get(cap); if(cb) cb.checked = shouldSelect;
+    return true;
+  }
+
+  function refreshActiveCapChips(){
+    if(!capActiveList) return;
+    const extras = Array.from(selectedCaps).filter(cap=> !capButtons.has(cap));
+    const keep = new Set(extras);
+    activeCapButtons.forEach((btn, cap)=>{
+      if(!keep.has(cap)){
+        btn.remove();
+        activeCapButtons.delete(cap);
+      } else {
+        btn.classList.add('on');
+      }
+    });
+    extras.forEach(cap=>{
+      if(activeCapButtons.has(cap)) return;
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='fchip on';
+      btn.textContent=cap;
+      btn.title=`Remove ${cap}`;
+      btn.addEventListener('click',()=>{
+        setCapSelected(cap, false);
+        afterCapSelectionChange();
+      });
+      activeCapButtons.set(cap, btn);
+      capActiveList.appendChild(btn);
+    });
+  }
+
+  function updateCapSummary(){
+    if(!capMoreBtn) return;
+    const count = selectedCaps.size;
+    const label = count ? `More capabilities (${count})` : 'More capabilities';
+    if(capMoreLabel) capMoreLabel.textContent = label;
+    capMoreBtn.setAttribute('aria-label', count ? `${count} capabilities selected` : 'Show more capabilities');
+  }
+
+  function afterCapSelectionChange(){
+    if(selectedCaps.size>0) capAllBtn.classList.remove('on');
+    else capAllBtn.classList.add('on');
+    refreshActiveCapChips();
+    updateCapSummary();
+    applyFilters();
+  }
+
+  function createCapChip(name){
+    const btn=document.createElement('button');
+    btn.type='button';
+    btn.className='fchip';
+    btn.textContent=name;
+    capButtons.set(name, btn);
+    btn.classList.toggle('on', selectedCaps.has(name));
+    btn.addEventListener('click',()=>{
+      setCapSelected(name, !selectedCaps.has(name));
+      afterCapSelectionChange();
+    });
+    return btn;
+  }
+
+  function filterCapOptions(term){
+    const query = term.trim().toLowerCase();
+    capOptionRows.forEach((row, cap)=>{
+      const match = !query || cap.toLowerCase().includes(query);
+      row.style.display = match ? '' : 'none';
+    });
+  }
+
+  function closeCapPopover(){
+    if(!capPopoverOpen) return;
+    capPopoverOpen=false;
+    capPopover.classList.add('hidden');
+    capMoreBtn.setAttribute('aria-expanded','false');
+    capMoreBtn.focus();
+  }
+
+  function openCapPopover(){
+    if(capPopoverOpen) return;
+    capPopoverOpen=true;
+    capPopover.classList.remove('hidden');
+    capMoreBtn.setAttribute('aria-expanded','true');
+    if(capSearch){
+      capSearch.value='';
+      filterCapOptions('');
+      requestAnimationFrame(()=> capSearch.focus());
+    }
+  }
+
+  function toggleCapPopover(){
+    if(capPopoverOpen) closeCapPopover(); else openCapPopover();
+  }
+
+  // Populate UI with All chip, top quick list, and popover
+  const capTopRow = el('div','capTopRow');
+  capBox.appendChild(capTopRow);
+
+  capAllBtn = document.createElement('button');
+  capAllBtn.type='button';
+  capAllBtn.className='fchip all on';
+  capAllBtn.textContent='Show all';
+  capAllBtn.addEventListener('click',()=>{
+    if(!selectedCaps.size) return;
+    const toClear = Array.from(selectedCaps);
+    toClear.forEach(cap=> setCapSelected(cap, false));
+    capAllBtn.classList.add('on');
+    afterCapSelectionChange();
+  });
+  capTopRow.appendChild(capAllBtn);
+
+  const capByFrequency = Array.from(allCaps).sort((a,b)=>{
+    const diff = (capCounts.get(b) || 0) - (capCounts.get(a) || 0);
+    return diff !== 0 ? diff : a.localeCompare(b);
+  });
+  const topCaps = capByFrequency.slice(0, 6);
+  topCaps.forEach(cap=> capTopRow.appendChild(createCapChip(cap)));
+
+  capMoreBtn = document.createElement('button');
+  capMoreBtn.type='button';
+  capMoreBtn.className='fchip capMoreBtn';
+  capMoreLabel=document.createElement('span');
+  capMoreLabel.textContent='More capabilities';
+  capMoreBtn.appendChild(capMoreLabel);
+  capMoreBtn.setAttribute('aria-haspopup','true');
+  capMoreBtn.setAttribute('aria-expanded','false');
+  capTopRow.appendChild(capMoreBtn);
+
+  capActiveList = el('div','capActiveList');
+  capTopRow.appendChild(capActiveList);
+
+  capPopover = el('div','capPopover hidden');
+  capPopover.id='capPopover';
+  capPopover.tabIndex=-1;
+  capPopover.setAttribute('role','dialog');
+  capPopover.setAttribute('aria-label','Select capabilities');
+  capMoreBtn.appendChild(capPopover);
+
+  capSearch = document.createElement('input');
+  capSearch.type='search';
+  capSearch.placeholder='Search capabilities…';
+  capSearch.className='capSearch';
+  capPopover.appendChild(capSearch);
+
+  const capListEl = el('div','capList');
+  capPopover.appendChild(capListEl);
+
+  const capAlphabetical = Array.from(allCaps).sort((a,b)=> a.localeCompare(b));
+  capAlphabetical.forEach(cap=>{
+    const label = el('label','capOption');
+    const input=document.createElement('input');
+    input.type='checkbox';
+    input.checked = selectedCaps.has(cap);
+    capCheckboxes.set(cap, input);
+    input.addEventListener('change',()=>{
+      setCapSelected(cap, input.checked);
+      afterCapSelectionChange();
+    });
+    const textSpan=document.createElement('span');
+    textSpan.textContent=cap;
+    label.appendChild(input);
+    label.appendChild(textSpan);
+    capOptionRows.set(cap, label);
+    capListEl.appendChild(label);
+  });
+
+  const capActions = el('div','capActions');
+  const clearCapsBtn=document.createElement('button');
+  clearCapsBtn.type='button';
+  clearCapsBtn.textContent='Clear';
+  clearCapsBtn.addEventListener('click',()=>{
+    if(!selectedCaps.size) return;
+    const toClear = Array.from(selectedCaps);
+    toClear.forEach(cap=> setCapSelected(cap, false));
+    capAllBtn.classList.add('on');
+    afterCapSelectionChange();
+  });
+  const doneCapsBtn=document.createElement('button');
+  doneCapsBtn.type='button';
+  doneCapsBtn.className='primary';
+  doneCapsBtn.textContent='Done';
+  doneCapsBtn.addEventListener('click', closeCapPopover);
+  capActions.appendChild(clearCapsBtn);
+  capActions.appendChild(doneCapsBtn);
+  capPopover.appendChild(capActions);
+
+  capMoreBtn.addEventListener('click', toggleCapPopover);
+  capSearch.addEventListener('input',()=> filterCapOptions(capSearch.value));
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeCapPopover(); });
+  document.addEventListener('pointerdown', e=>{
+    if(!capPopoverOpen) return;
+    if(capPopover.contains(e.target) || capMoreBtn.contains(e.target)) return;
+    closeCapPopover();
+  });
+
+  refreshActiveCapChips();
+  updateCapSummary();
+
+  LAYERS.forEach(l => layerBox.appendChild(makeFchip(l, 'layer')));
+
+  custAllBtn = makeAllChip('cust'); custBox.appendChild(custAllBtn);
+  allCusts.forEach(c=> custBox.appendChild(makeFchip(c,'cust')));
+
+  const allModels = new Set(vendors.map(v=> v.model || 'Product'));
+  modelAllBtn = makeAllChip('model'); modelBox.appendChild(modelAllBtn);
+  allModels.forEach(m=> modelBox.appendChild(makeFchip(m,'model')));
+
+  // ===== Toolbar highlighting (group-collapsing filters) =====
+  const btnAll = document.getElementById('btnAll');
+  const btnPlatforms = document.getElementById('btnPlatforms');
+  const btnSpanners = document.getElementById('btnSpanners');
+  function syncToolbar(){
+    // Only Layers affect the Layers Show all highlight
+    const anyLayerFilters = selectedLayers.size;
+    if (anyLayerFilters) {
+      btnAll.classList.remove('active');
+    } else if (mode === 'all') {
+      btnAll.classList.add('active');
+    }
+  }
+
+  function clearButtons(){ [btnAll,btnPlatforms,btnSpanners].forEach(b=>b.classList.remove('active')); }
+
+  function updateGroupVisibility(){
+    document.querySelectorAll('.group').forEach(group=>{
+      const wall = group.querySelector('.wall');
+      if(!wall) return;
+      const visible = wall.querySelectorAll('.card:not([data-hidden="true"])').length;
+      group.style.display = visible ? '' : 'none';
+    });
+  }
+
+  function cardMatchesFilters(card){
+    // Mode filter
+    if(mode==='platforms' && !card.classList.contains('platform')) return false;
+    if(mode==='spanners' && !card.classList.contains('spanner')) return false;
+    // Layer filter
+    const layers=(card.dataset.layers||'').split('|').filter(Boolean);
+    if(selectedLayers.size && !intersects(selectedLayers, layers)) return false;
+    // Capability filter
+    const caps=(card.dataset.caps||'').split('|').filter(Boolean);
+    if(!intersects(selectedCaps, caps)) return false;
+    // Customer filter
+    const cust=(card.dataset.customers||'').split('|').filter(Boolean);
+    if(!intersects(selectedCusts, cust)) return false;
+    // Delivery model filter
+    const model = card.dataset.model || 'Product';
+    if(selectedModels.size && !selectedModels.has(model)) return false;
+    return true;
+  }
+
+  function applyFilters(){
+    document.querySelectorAll('.wall').forEach(wall=>{
+      wall.querySelectorAll('.card').forEach(card=>{
+        const keep = cardMatchesFilters(card);
+        if(keep){ card.removeAttribute('data-hidden'); card.style.display=''; }
+        else { card.setAttribute('data-hidden','true'); card.style.display='none'; }
+      });
+    });
+    updateGroupVisibility();
+    syncToolbar();
+  }
+
+  function showAll(){
+    clearButtons();
+    btnAll.classList.add('active');
+    mode='all';
+    // Clear selected LAYERS and their visual state
+    if(selectedLayers.size){
+      selectedLayers.clear();
+      const layerBox = document.getElementById('layerFilters');
+      if(layerBox){
+        layerBox.querySelectorAll('.fchip.layer').forEach(ch=> ch.classList.remove('on'));
+      }
+    }
+    applyFilters();
+  }
+  function highlightPlatforms(){ clearButtons(); btnPlatforms.classList.add('active'); mode='platforms'; applyFilters(); }
+  function highlightSpanners(){ clearButtons(); btnSpanners.classList.add('active'); mode='spanners'; applyFilters(); }
+  btnAll.addEventListener('click', showAll);
+  btnPlatforms.addEventListener('click', highlightPlatforms);
+  btnSpanners.addEventListener('click', highlightSpanners);
+
+  // default
+  showAll();
+  applyFilters();
+  syncToolbar();
+})();
+</script>
+</html>
