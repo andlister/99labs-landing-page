@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Security & IT Landscape — Relationship Graph</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1016;--panel:#121823;--ink:#e7eef7;--muted:#9bb0c8;--line:#2a3a50;--chip:#172233;
+      --c-layer:#FFA500;      /* orange outline for Layers */
+      --c-cap:#3eb5c1;        /* teal for Capabilities */
+      --c-cust:#a78bfa;       /* lavender for Customers */
+      --c-model:#7bd389;      /* green for Delivery Model */
+      --c-company:#5aa9ff;    /* blue for Companies */
+    }
+    :root.light{
+      --bg:#ffffff;--panel:#ffffff;--ink:#0b1016;--muted:#4a5568;--line:#d8e1ea;--chip:#f3f7fb;
+      --c-layer:#ef6c00;--c-cap:#00838f;--c-cust:#8e24aa;--c-model:#2e7d32;--c-company:#1e88e5;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Lato', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial}
+    .wrap{padding:10px 14px}
+    h1{margin:6px 0 8px;font-size:22px;font-weight:900}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 10px}
+    .btn{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;cursor:pointer}
+    .btn.on{outline:2px solid var(--c-company)}
+    .flabel{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-right:6px}
+    .legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 8px}
+    .key{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:12px;background:var(--panel)}
+    .dot{width:10px;height:10px;border-radius:999px}
+    .lay{border:2px solid var(--c-layer)}
+    .cap{border:2px solid var(--c-cap)}
+    .cus{border:2px solid var(--c-cust)}
+    .mod{border:2px solid var(--c-model)}
+    .com{border:2px solid var(--c-company)}
+
+    svg{width:100%;height:calc(100vh - 120px);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));border-top:1px solid var(--line)}
+    .node circle{fill:var(--panel)}
+    .node text{font-size:11px;fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+    .link{stroke:var(--line);stroke-opacity:.5}
+    .search{display:flex;gap:8px;margin:6px 0 8px}
+    .search input{flex:1;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:6px 10px;font-size:13px}
+    .themeToggle{position:fixed;right:12px;top:10px;z-index:10}
+  </style>
+</head>
+<body>
+  <button class="btn themeToggle" id="themeToggle">Toggle theme</button>
+  <div class="wrap">
+    <h1>Security & IT Landscape — Relationship Graph</h1>
+
+    <div class="toolbar">
+      <span class="flabel">Show:</span>
+      <button class="btn on" data-t="company">Companies</button>
+      <button class="btn on" data-t="layer">Layers</button>
+      <button class="btn on" data-t="cap">Capabilities</button>
+      <button class="btn on" data-t="cust">Customers</button>
+      <button class="btn on" data-t="model">Delivery</button>
+      <button class="btn" id="resetView">Reset view</button>
+    </div>
+
+    <div class="legend">
+      <span class="key"><span class="dot com"></span>Company</span>
+      <span class="key"><span class="dot lay"></span>Layer</span>
+      <span class="key"><span class="dot cap"></span>Capability</span>
+      <span class="key"><span class="dot cus"></span>Customer</span>
+      <span class="key"><span class="dot mod"></span>Delivery</span>
+    </div>
+
+    <div class="search">
+      <input id="searchBox" type="search" placeholder="Search company or tag…" />
+      <button class="btn" id="clearSearch">Clear</button>
+    </div>
+  </div>
+  <svg id="stage"></svg>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>
+(async function(){
+  // Theme init (match the other pages)
+  const KEY='theme-preference';
+  const stored=localStorage.getItem(KEY);
+  const prefersLight=window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  let theme= stored || (prefersLight? 'light':'dark');
+  document.documentElement.classList.toggle('light', theme==='light');
+  document.getElementById('themeToggle').addEventListener('click',()=>{
+    const isLight=document.documentElement.classList.toggle('light');
+    localStorage.setItem(KEY, isLight?'light':'dark');
+  });
+
+  // ----- Load shared vendor list -----
+  async function loadVendors(){
+    try{
+      const res = await fetch('vendors.json', {cache:'no-cache'});
+      if(!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    }catch(e){
+      console.error('Failed to load vendor data:', e);
+      alert('Could not load vendor data');
+      return [];
+    }
+  }
+
+  const vendors = await loadVendors();
+
+  // Build graph model
+  const LAYER_SET = new Set(["Identity","Device / IT Operations","Cloud","Security","Compliance"]);
+  const nodes=[], links=[];
+  const id = (()=>{ let i=0; return ()=>`n${++i}` })();
+  const nodeByKey = new Map();
+
+  function ensureNode(key, label, type, href){
+    if(nodeByKey.has(key)) return nodeByKey.get(key);
+    const n={ id:id(), key, label, type, href };
+    nodeByKey.set(key,n); nodes.push(n); return n;
+  }
+  function link(a,b, rel){ links.push({source:a.id, target:b.id, rel}); }
+
+  // Create hub nodes for each Layer, Capability, Customer, Delivery Model
+  const caps = new Set();
+  const custs = new Set();
+  const models = new Set();
+
+  vendors.forEach(v=>{
+    (v.categories||[]).forEach(c=> caps.add(c));
+    (v.customers||[]).forEach(c=> custs.add(c));
+    models.add(v.model || 'Product');
+  });
+
+  // Add layer/cap/cust/model nodes
+  LAYER_SET.forEach(L=> ensureNode(`layer:${L}`, L, 'layer'));
+  caps.forEach(c=> ensureNode(`cap:${c}`, c, 'cap'));
+  custs.forEach(c=> ensureNode(`cust:${c}`, c, 'cust'));
+  models.forEach(m=> ensureNode(`model:${m}`, m, 'model'));
+
+  // Add company nodes and connect
+  vendors.forEach(v=>{
+    const c = ensureNode(`co:${v.name}`, v.name, 'company', v.url);
+    (v.layers||[]).forEach(L=> link(c, ensureNode(`layer:${L}`, L, 'layer'), 'covers'));
+    (v.categories||[]).forEach(K=> link(c, ensureNode(`cap:${K}`, K, 'cap'), 'has'));
+    (v.customers||[]).forEach(C=> link(c, ensureNode(`cust:${C}`, C, 'cust'), 'targets'));
+    link(c, ensureNode(`model:${v.model||'Product'}`, v.model||'Product', 'model'), 'delivered-as');
+  });
+
+  // D3 force-directed graph
+  const svg=d3.select('#stage');
+  const g=svg.append('g');
+  const zoom=d3.zoom().scaleExtent([0.2, 2.5]).on('zoom', (e)=> g.attr('transform', e.transform));
+  svg.call(zoom);
+
+  const colorByType={
+    company:'var(--c-company)', layer:'var(--c-layer)', cap:'var(--c-cap)', cust:'var(--c-cust)', model:'var(--c-model)'
+  };
+
+  const linkSel = g.append('g').attr('stroke-width',1).selectAll('.link')
+    .data(links).enter().append('line').attr('class','link');
+
+  const node = g.selectAll('.node')
+    .data(nodes)
+    .enter().append('g')
+    .attr('class','node')
+    .call(d3.drag()
+      .on('start',(e,d)=>{ if(!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('drag',(e,d)=>{ d.fx=e.x; d.fy=e.y; })
+      .on('end',(e,d)=>{ if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; })
+    );
+
+  node.append('circle')
+    .attr('r', d=> d.type==='company'? 9 : 7)
+    .attr('stroke', d=> colorByType[d.type])
+    .attr('stroke-width', 2)
+    .attr('fill', 'var(--panel)')
+    .on('click', (e,d)=>{
+      if(d.href){ window.open(d.href, '_blank'); }
+    })
+    .append('title').text(d=> d.label);
+
+  node.append('text')
+    .attr('x', 12)
+    .attr('y', 4)
+    .text(d=> d.label);
+
+  const sim=d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(d=>d.id).distance(l=>{
+      return (l.source.type==='company'&&l.target.type==='layer')? 70 : 80;
+    }).strength(0.06))
+    .force('charge', d3.forceManyBody().strength(-120))
+    .force('center', d3.forceCenter(window.innerWidth/2, (window.innerHeight-120)/2))
+    .force('collision', d3.forceCollide().radius(d=> d.type==='company'? 18 : 14));
+
+  sim.on('tick', ()=>{
+    linkSel
+      .attr('x1', d=> nodes.find(n=>n.id===d.source).x)
+      .attr('y1', d=> nodes.find(n=>n.id===d.source).y)
+      .attr('x2', d=> nodes.find(n=>n.id===d.target).x)
+      .attr('y2', d=> nodes.find(n=>n.id===d.target).y);
+    node.attr('transform', d=> `translate(${d.x||0},${d.y||0})`);
+  });
+
+  // Filtering UI
+  const toggles=document.querySelectorAll('.toolbar .btn[data-t]');
+  const visibleTypes=new Set(['company','layer','cap','cust','model']);
+  function updateVisibility(){
+    // Hide nodes by type, hide links if any endpoint hidden
+    node.style('display', d=> visibleTypes.has(d.type)? null : 'none');
+    linkSel.style('display', d=>{
+      const s = nodes.find(n=>n.id===d.source);
+      const t = nodes.find(n=>n.id===d.target);
+      return (visibleTypes.has(s.type) && visibleTypes.has(t.type))? null : 'none';
+    });
+  }
+  toggles.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      btn.classList.toggle('on');
+      const t=btn.dataset.t;
+      if(btn.classList.contains('on')) visibleTypes.add(t); else visibleTypes.delete(t);
+      updateVisibility();
+    });
+  });
+
+  // Search highlight
+  const searchBox=document.getElementById('searchBox');
+  const clearBtn=document.getElementById('clearSearch');
+  searchBox.addEventListener('input', ()=>{
+    const q=searchBox.value.trim().toLowerCase();
+    node.select('text').attr('font-weight', d=> q && d.label.toLowerCase().includes(q)? 700 : 400);
+    node.select('circle').attr('stroke-width', d=> q && d.label.toLowerCase().includes(q)? 3 : 2);
+  });
+  clearBtn.addEventListener('click',()=>{ searchBox.value=''; searchBox.dispatchEvent(new Event('input')); });
+
+  // Reset view
+  document.getElementById('resetView').addEventListener('click',()=>{
+    svg.transition().duration(350).call(zoom.transform, d3.zoomIdentity);
+  });
+
+  // Resize
+  window.addEventListener('resize', ()=>{
+    sim.force('center', d3.forceCenter(window.innerWidth/2, (window.innerHeight-120)/2));
+    sim.alpha(0.2).restart();
+  });
+})();
+</script>
+</body>
+</html>
