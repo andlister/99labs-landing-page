@@ -44,7 +44,7 @@
 
     /* Filter chip bars */
     .filters{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px}
-    .fgroup{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .fgroup{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1 1 100%}
     .capGroup{position:relative;align-items:flex-start;flex-basis:100%}
     .flabel{
       font-size:12px;
@@ -63,6 +63,12 @@
     /* Layer filter chips (orange outline) */
     .fchip.on.layer{ outline:2px solid #FFA500 }
     .fchip.all.on.layer{ outline:2px solid #FFA500 }
+    /* Delivery filter chips (blue outline) */
+    .fchip.on.delivery{ outline:2px solid #5aa9ff }
+    .fchip.all.on.delivery{ outline:2px solid #5aa9ff }
+    /* Channels filter chips (pink outline) */
+    .fchip.on.channel{ outline:2px solid #ff6f91 }
+    .fchip.all.on.channel{ outline:2px solid #ff6f91 }
 
     .capTopRow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:relative}
     .capActiveList{display:flex;flex-wrap:wrap;gap:8px}
@@ -94,13 +100,19 @@
     /* Capabilities (teal) and Customers (lavender) outlines */
     .categoriesRow .b{ background:transparent; border:2px solid rgba(62,181,193,0.50); opacity:1 }
     .customersRow  .b{ background:transparent; border:2px solid rgba(167,139,250,0.50); opacity:1 }
+    .modelRow .b{ background:transparent; border:2px solid rgba(90,169,255,0.50); opacity:1 }
+    .channelsRow .b{ background:transparent; border:2px solid rgba(255,111,145,0.50); opacity:1 }
     .categoriesRow .b.primaryCap{ border:2px solid #3eb5c1 }
     .customersRow  .b.primaryCust{ border:2px solid #a78bfa }
+    .modelRow .b.primaryDelivery{ border:2px solid #5aa9ff }
+    .channelsRow .b.primaryChannel{ border:2px solid #ff6f91 }
 
     /* Labeled chip rows (labels above, pills below) */
     .layersRow::before,
     .categoriesRow::before,
-    .customersRow::before{
+    .customersRow::before,
+    .channelsRow::before,
+    .modelRow::before{
       content:"";
       display:block;
       width:100%;
@@ -114,11 +126,14 @@
     .layersRow::before{ content:"Layers"; }
     .categoriesRow::before{ content:"Capabilities"; }
     .customersRow::before{ content:"Customers"; }
+    .channelsRow::before{ content:"Channels"; }
+    .modelRow::before{ content:"Delivery"; }
 
     /* Unified spacing (no separators) */
     .layersRow,
     .customersRow,
-    .categoriesRow{
+    .categoriesRow,
+    .modelRow{
       margin-bottom:16px;
       padding-bottom:8px;
       border-bottom:none;
@@ -155,64 +170,48 @@
         <button class="btn" id="btnAll">Show all</button>
         <button class="btn" id="btnPlatforms">All-in-one (≥4 layers)</button>
         <button class="btn" id="btnSpanners">Spanners (≥3 layers)</button>
-        <!-- layer pills will be appended here by JS -->
+        <!-- layer pills appended dynamically -->
       </div>
     </div>
 
     <div class="filters">
       <div class="fgroup" id="custFilters"><span class="flabel">Customers:</span></div>
-      <div class="fgroup" id="modelFilters"><span class="flabel">Delivery:</span></div>
+      <div class="fgroup" id="channelFilters"><span class="flabel">Channels:</span></div>
+      <div class="fgroup" id="deliveryFilters"><span class="flabel">Delivery:</span></div>
       <div class="fgroup capGroup" id="capFilters">
         <div class="flabel">Capabilities:</div>
       </div>
     </div>
 
-    <!-- ===================== IDENTITY & ACCESS ===================== -->
+    <!-- Predeclared groups (new/unknown primaryLayer groups will be created dynamically at the end) -->
     <div class="group">
-      <p class="groupTitle">Identity & Access Platforms</p>
-      <div class="wall" id="wall-Identity & Access Platforms"></div>
+      <p class="groupTitle">Identity</p>
+      <div class="wall" id="wall-Identity"></div>
     </div>
 
-    <!-- ===================== DEVICE / IT OPS ===================== -->
     <div class="group">
-      <p class="groupTitle">Device / IT Operations (RMM • MDM • UEM • AIMS)</p>
-      <div class="wall" id="wall-Device / IT Operations (RMM • MDM • UEM • AIMS)"></div>
+      <p class="groupTitle">Device / IT Operations</p>
+      <div class="wall" id="wall-Device / IT Operations"></div>
     </div>
 
-    <!-- ===================== CLOUD / TENANT ===================== -->
     <div class="group">
-      <p class="groupTitle">Cloud / Tenant Automation</p>
-      <div class="wall" id="wall-Cloud / Tenant Automation"></div>
+      <p class="groupTitle">Cloud / Tenant</p>
+      <div class="wall" id="wall-Cloud / Tenant"></div>
     </div>
 
-    <!-- ===================== SECURITY: EDR/XDR ===================== -->
     <div class="group">
-      <p class="groupTitle">Security — EDR / XDR Platforms</p>
-      <div class="wall" id="wall-Security — EDR / XDR Platforms"></div>
+      <p class="groupTitle">Security</p>
+      <div class="wall" id="wall-Security"></div>
     </div>
 
-    <!-- ===================== SECURITY: HIDS / IPS / FIM ===================== -->
     <div class="group">
-      <p class="groupTitle">Security — HIDS / IPS / FIM</p>
-      <div class="wall" id="wall-Security — HIDS / IPS / FIM"></div>
+      <p class="groupTitle">Security Operations</p>
+      <div class="wall" id="wall-Security Operations"></div>
     </div>
 
-    <!-- ===================== SECURITY: NETWORK / NDR ===================== -->
     <div class="group">
-      <p class="groupTitle">Security — Network (NDR / NPR)</p>
-      <div class="wall" id="wall-Security — Network (NDR / NPR)"></div>
-    </div>
-
-    <!-- ===================== SIEM / SOAR / TI / OFFENSIVE ===================== -->
-    <div class="group">
-      <p class="groupTitle">SIEM • SOAR • Threat Intelligence • Offensive</p>
-      <div class="wall" id="wall-SIEM • SOAR • Threat Intelligence • Offensive"></div>
-    </div>
-
-    <!-- ===================== COMPLIANCE / GRC ===================== -->
-    <div class="group">
-      <p class="groupTitle">Compliance / GRC</p>
-      <div class="wall" id="wall-Compliance / GRC"></div>
+      <p class="groupTitle">Compliance</p>
+      <div class="wall" id="wall-Compliance"></div>
     </div>
   </div>
 </body>
@@ -250,12 +249,18 @@
     alert('Could not load vendor data');
     return;
   }
-  const LAYERS=["Identity","Device / IT Operations","Cloud","Security","Compliance"];
+
+  // Build LAYERS dynamically from data (show exactly what's in vendors.json)
+  let LAYERS = [];
+  const allLayerSet = new Set();
+  vendors.forEach(v => (v.layers || []).forEach(l => allLayerSet.add(l)));
+  LAYERS = Array.from(allLayerSet).sort((a,b)=> a.localeCompare(b));
 
   // Filters state
   const selectedCaps=new Set();
   const selectedCusts=new Set();
-  const selectedModels=new Set();
+  const selectedDeliveries=new Set();
+  const selectedChannels=new Set();
   const selectedLayers=new Set();
   let mode='all'; // all | platforms | spanners
 
@@ -269,75 +274,148 @@
   const byText = s=> s.textContent.trim();
   function intersects(aSet, arr){ if(!aSet.size) return true; for(const v of arr){ if(aSet.has(v)) return true; } return false; }
 
+  // Use vendors.json as source of truth without normalization
+  function deliveryTokens(val){
+    if(val==null || val==='') return [];
+    const toArray = (input)=>{
+      if(input==null || input==='') return [];
+      if(Array.isArray(input)) return input;
+      return [input];
+    };
+    const tokens=[];
+    const seen=new Set();
+    toArray(val).forEach(token=>{
+      if(token==null) return;
+      const t=String(token).trim();
+      if(!t) return;
+      if(seen.has(t)) return;
+      seen.add(t);
+      tokens.push(t);
+    });
+    return tokens;
+  }
+
   function getPrimaryLayer(v){
     const L = v.layers || [];
-    const p = (v.primary || '').toLowerCase();
-    if(p.includes('identity') && L.includes('Identity')) return 'Identity';
-    if((p.includes('endpoint') || p.includes('device')) && L.includes('Device / IT Operations')) return 'Device / IT Operations';
-    if(p.includes('cloud') && L.includes('Cloud')) return 'Cloud';
-    if(p.includes('compliance') && L.includes('Compliance')) return 'Compliance';
-    if(p.includes('security') && L.includes('Security')) return 'Security';
-    if(L.length === 1) return L[0];
-    for(const name of LAYERS){ if(L.includes(name)) return name; }
-    return null;
+    if(v.primaryLayer && L.includes(v.primaryLayer)) return v.primaryLayer;
+    return L.length ? L[0] : null;
   }
 
   function buildCard(v){
     const card=el('div','card');
+
+    // Determine primaries (fallback to first array element if explicit primary not set)
+    const priLayer = getPrimaryLayer(v);
+    const priCustomer = v.primaryCustomer || ((v.customers||[])[0] || null);
+    const priCategory = v.primaryCategory || ((v.categories||[])[0] || null);
+
     const h3=el('h3'); const a=el('a'); a.href=v.url||'#'; a.target='_blank'; a.rel='noopener'; a.textContent=v.name; h3.appendChild(a); card.appendChild(h3);
 
-    // Layers row (only relevant layers, mark primary)
+    // Layers row — show exactly what's in v.layers; mark primary if present
     const layersRow=el('div','badges layersRow');
-    const L = v.layers||[];
-    const priLayer = getPrimaryLayer(v);
-    LAYERS.forEach(lbl=>{
-      if(L.includes(lbl)){
-        const pill = chip(lbl);
-        if(priLayer === lbl) pill.classList.add('primaryLayer');
-        layersRow.appendChild(pill);
-      }
+    const L = v.layers || [];
+    L.forEach(lbl=>{
+      const pill = chip(lbl);
+      if(priLayer === lbl) pill.classList.add('primaryLayer');
+      layersRow.appendChild(pill);
     });
     card.appendChild(layersRow);
 
-    // Customers row (first is primary)
+    // Customers row (mark primary)
     if(v.customers && v.customers.length){
       const cust=el('div','badges customersRow');
       v.customers.forEach((c,idx)=>{
         const ch = chip(c);
-        if(idx===0) ch.classList.add('primaryCust');
+        if(priCustomer === c || (!priCustomer && idx===0)) ch.classList.add('primaryCust');
         cust.appendChild(ch);
       });
       card.appendChild(cust);
     }
 
-    // Capabilities row (first is primary)
+    // Capabilities row (mark primary)
     if(v.categories && v.categories.length){
       const cats=el('div','badges categoriesRow');
       v.categories.forEach((c,idx)=>{
         const ch = chip(c);
-        if(idx===0) ch.classList.add('primaryCap');
+        if(priCategory === c || (!priCategory && idx===0)) ch.classList.add('primaryCap');
         cats.appendChild(ch);
       });
       card.appendChild(cats);
     }
 
+    // Channels row (mark primary = first if not specified)
+    const channels = Array.isArray(v.channels) ? v.channels.filter(Boolean) : [];
+    const priChannel = channels.length ? channels[0] : null;
+    if(channels.length){
+      const chRow=el('div','badges channelsRow');
+      channels.forEach((c,idx)=>{
+        const chp = chip(c);
+        if(priChannel === c || (!priChannel && idx===0)) chp.classList.add('primaryChannel');
+        chRow.appendChild(chp);
+      });
+      card.appendChild(chRow);
+    }
+
+    // Delivery row
+    const deliveries = deliveryTokens(v.delivery);
+    const priDelivery = v.primaryDelivery || (deliveries[0] || null);
+    if(deliveries.length){
+      const modelRow=el('div','badges modelRow');
+      deliveries.forEach((d,idx)=>{
+        const chp = chip(d);
+        if(priDelivery === d || (!priDelivery && idx===0)) chp.classList.add('primaryDelivery');
+        modelRow.appendChild(chp);
+      });
+      card.appendChild(modelRow);
+    }
+
     // Description
     if(v.description){ const p=el('p','muted'); p.textContent=v.description; card.appendChild(p); }
 
-    // Datasets for filters
+    // Datasets for filters & sorting
     card.dataset.caps = (v.categories||[]).join('|');
     card.dataset.customers = (v.customers||[]).join('|');
-    card.dataset.model = (v.model || 'Product');
+    card.dataset.delivery = deliveries.join('|');
     card.dataset.layers = (v.layers || []).join('|');
+    card.dataset.primaryLayer = priLayer || '';
+    card.dataset.primaryCategory = priCategory || '';
+    card.dataset.primaryCustomer = priCustomer || '';
+    card.dataset.primaryDelivery = priDelivery || '';
+    card.dataset.channels = channels.join('|');
+    card.dataset.primaryChannel = priChannel || '';
 
     return card;
   }
 
-  // Group walls by primary
+  // Group walls by primaryLayer; create new walls dynamically for unknown values
   const walls={};
   document.querySelectorAll('[id^="wall-"]').forEach(w=>{ walls[w.id.replace('wall-','')] = w; });
+
+  function ensureWall(title){
+    if(!title) title = 'Unassigned';
+    if(walls[title]) return walls[title];
+    const existing = document.getElementById('wall-' + title);
+    if(existing){ walls[title] = existing; return existing; }
+    const wrap = document.querySelector('.wrap');
+    const group = document.createElement('div');
+    group.className = 'group';
+    const h = document.createElement('p');
+    h.className = 'groupTitle';
+    h.textContent = title;
+    const wall = document.createElement('div');
+    wall.className = 'wall';
+    wall.id = 'wall-' + title;
+    group.appendChild(h);
+    group.appendChild(wall);
+    wrap.appendChild(group);
+    walls[title] = wall;
+    return wall;
+  }
+
   vendors.forEach(v=>{
-    const wall=walls[v.primary]; if(!wall) return; wall.appendChild(buildCard(v));
+    const key = getPrimaryLayer(v) || 'Unassigned';
+    const wall = ensureWall(key);
+    wall.appendChild(buildCard(v));
   });
 
   // Mark platform/spanner by count of layer pills
@@ -348,23 +426,27 @@
     card.classList.toggle('spanner', count>=3);
   });
 
-  // Build unique capability, customer, model lists
+  // Build unique capability, customer, delivery, channel lists
   const allCaps=new Set();
   const capCounts=new Map();
   const allCusts=new Set();
+  const allChannels=new Set();
   vendors.forEach(v=>{
     (v.categories||[]).forEach(c=>{
       allCaps.add(c);
       capCounts.set(c, (capCounts.get(c) || 0) + 1);
     });
     (v.customers||[]).forEach(c=>allCusts.add(c));
+    (v.channels||[]).forEach(ch=>allChannels.add(ch));
   });
 
   const capBox=document.getElementById('capFilters');
   const custBox=document.getElementById('custFilters');
-  const modelBox=document.getElementById('modelFilters');
+  const channelBox=document.getElementById('channelFilters');
+  const deliveryBox=document.getElementById('deliveryFilters');
   const layerBox=document.getElementById('layerFilters');
-  let capAllBtn, custAllBtn, modelAllBtn, layerAllBtn;
+  let capAllBtn, custAllBtn, channelAllBtn, deliveryAllBtn, layerAllBtn;
+  
   const capButtons=new Map();
   const capCheckboxes=new Map();
   const capOptionRows=new Map();
@@ -374,19 +456,23 @@
 
   function makeFchip(text, group){
     const isCust = group==='cust';
-    const isModel = group==='model';
+    const isDelivery = group==='delivery';
     const isLayer = group==='layer';
+    const isChannel = group==='channel';
     const b=document.createElement('button');
     b.type='button';
     b.className = 'fchip' +
       (isCust ? ' cust' : '') +
-      (isLayer ? ' layer' : '');
+      (isLayer ? ' layer' : '') +
+      (isDelivery ? ' delivery' : '') +
+      (isChannel ? ' channel' : '');
     b.textContent=text;
     b.addEventListener('click',()=>{
       let set, allBtn = null;
       if(isCust){ set = selectedCusts; allBtn = custAllBtn; }
-      else if(isModel){ set = selectedModels; allBtn = modelAllBtn; }
+      else if(isDelivery){ set = selectedDeliveries; allBtn = deliveryAllBtn; }
       else if(isLayer){ set = selectedLayers; allBtn = layerAllBtn || null; }
+      else if(isChannel){ set = selectedChannels; allBtn = channelAllBtn; }
       else return;
       if(set.has(text)) set.delete(text); else set.add(text);
       b.classList.toggle('on');
@@ -401,27 +487,65 @@
     });
     return b;
   }
+
   function makeAllChip(group){
     const isCust = group==='cust';
-    const isModel = group==='model';
+    const isDelivery = group==='delivery';
     const isLayer = group==='layer';
+    const isChannel = group==='channel';
     const b=document.createElement('button');
     b.type='button';
     b.className =
       'fchip all on' +
       (isCust ? ' cust' : '') +
-      (isLayer ? ' layer' : '');
+      (isLayer ? ' layer' : '') +
+      (isDelivery ? ' delivery' : '') +
+      (isChannel ? ' channel' : '');
     b.textContent='Show all';
     b.addEventListener('click',()=>{
       let set, box;
       if(isCust){ set = selectedCusts; box = custBox; }
-      else if(isModel){ set = selectedModels; box = modelBox; }
+      else if(isDelivery){ set = selectedDeliveries; box = deliveryBox; }
       else if(isLayer){ set = selectedLayers; box = layerBox; }
+      else if(isChannel){ set = selectedChannels; box = channelBox; }
       else return;
       if(!set.size) return;
       set.clear();
       box.querySelectorAll('.fchip').forEach(x=>{ if(!x.classList.contains('all')) x.classList.remove('on'); });
       b.classList.add('on');
+      applyFilters();
+    });
+    return b;
+  }
+  function makeFchip(text, group){
+    const isCust = group==='cust';
+    const isDelivery = group==='delivery';
+    const isLayer = group==='layer';
+    const isChannel = group==='channel';
+    const b=document.createElement('button');
+    b.type='button';
+    b.className = 'fchip' +
+      (isCust ? ' cust' : '') +
+      (isLayer ? ' layer' : '') +
+      (isDelivery ? ' delivery' : '') +
+      (isChannel ? ' channel' : '');
+    b.textContent=text;
+    b.addEventListener('click',()=>{
+      let set, allBtn = null;
+      if(isCust){ set = selectedCusts; allBtn = custAllBtn; }
+      else if(isDelivery){ set = selectedDeliveries; allBtn = deliveryAllBtn; }
+      else if(isLayer){ set = selectedLayers; allBtn = layerAllBtn || null; }
+      else if(isChannel){ set = selectedChannels; allBtn = channelAllBtn; }
+      else return;
+      if(set.has(text)) set.delete(text); else set.add(text);
+      b.classList.toggle('on');
+      if(allBtn){
+        if(set.size>0) allBtn.classList.remove('on'); else allBtn.classList.add('on');
+      }
+      if (isLayer) {
+        mode = 'all';
+        clearButtons();
+      }
       applyFilters();
     });
     return b;
@@ -571,7 +695,6 @@
   capPopover.id='capPopover';
   capPopover.tabIndex=-1;
   capPopover.setAttribute('role','dialog');
-  capPopover.setAttribute('aria-label','Select capabilities');
   capMoreBtn.appendChild(capPopover);
 
   capSearch = document.createElement('input');
@@ -634,21 +757,32 @@
   refreshActiveCapChips();
   updateCapSummary();
 
+  // Build dynamic Layer filter chips from LAYERS derived from data
   LAYERS.forEach(l => layerBox.appendChild(makeFchip(l, 'layer')));
 
   custAllBtn = makeAllChip('cust'); custBox.appendChild(custAllBtn);
-  allCusts.forEach(c=> custBox.appendChild(makeFchip(c,'cust')));
+  Array.from(allCusts).sort((a,b)=> a.localeCompare(b)).forEach(c=> custBox.appendChild(makeFchip(c,'cust')));
 
-  const allModels = new Set(vendors.map(v=> v.model || 'Product'));
-  modelAllBtn = makeAllChip('model'); modelBox.appendChild(modelAllBtn);
-  allModels.forEach(m=> modelBox.appendChild(makeFchip(m,'model')));
+  channelAllBtn = makeAllChip('channel'); channelBox.appendChild(channelAllBtn);
+  Array.from(allChannels).sort((a,b)=> a.localeCompare(b)).forEach(ch=> channelBox.appendChild(makeFchip(ch,'channel')));
+
+
+  const DELIVERY_ORDER = ['Product','Service','Open-source','Community','Data/Intel','Hybrid'];
+  const allDeliveries = new Set();
+  vendors.forEach(v=> deliveryTokens(v.delivery).forEach(d=> allDeliveries.add(d)));
+  const sortedDeliveries = Array.from(allDeliveries).sort((a,b)=>{
+    const ai=DELIVERY_ORDER.indexOf(a); const bi=DELIVERY_ORDER.indexOf(b);
+    if(ai!==-1 || bi!==-1){ return (ai===-1? 999:ai) - (bi===-1? 999:bi); }
+    return a.localeCompare(b);
+  });
+  deliveryAllBtn = makeAllChip('delivery'); deliveryBox.appendChild(deliveryAllBtn);
+  sortedDeliveries.forEach(m=> deliveryBox.appendChild(makeFchip(m,'delivery')));
 
   // ===== Toolbar highlighting (group-collapsing filters) =====
   const btnAll = document.getElementById('btnAll');
   const btnPlatforms = document.getElementById('btnPlatforms');
   const btnSpanners = document.getElementById('btnSpanners');
   function syncToolbar(){
-    // Only Layers affect the Layers Show all highlight
     const anyLayerFilters = selectedLayers.size;
     if (anyLayerFilters) {
       btnAll.classList.remove('active');
@@ -681,10 +815,63 @@
     // Customer filter
     const cust=(card.dataset.customers||'').split('|').filter(Boolean);
     if(!intersects(selectedCusts, cust)) return false;
-    // Delivery model filter
-    const model = card.dataset.model || 'Product';
-    if(selectedModels.size && !selectedModels.has(model)) return false;
+    // Channels filter
+    const chans=(card.dataset.channels||'').split('|').filter(Boolean);
+    if(selectedChannels.size && !intersects(selectedChannels, chans)) return false;
+    // Delivery filter
+    const deliveries=(card.dataset.delivery||'').split('|').filter(Boolean);
+    if(selectedDeliveries.size && !intersects(selectedDeliveries, deliveries)) return false;
     return true;
+  }
+
+  // ======= Primary-aware sorting helpers =======
+  function arrFromDataset(card, key){
+    const v = card.dataset[key] || '';
+    return v ? v.split('|').filter(Boolean) : [];
+  }
+  function intersectsSet(set, arr){
+    if(!set.size) return false;
+    for(const v of arr){ if(set.has(v)) return true; }
+    return false;
+  }
+  function scoreCard(card){
+    let s = 0;
+    // Primary matches score higher than non-primary matches
+    if(selectedLayers.size){
+      if(selectedLayers.has(card.dataset.primaryLayer)) s += 1000;
+      else if(intersectsSet(selectedLayers, arrFromDataset(card,'layers'))) s += 10;
+    }
+    if(selectedCaps.size){
+      if(selectedCaps.has(card.dataset.primaryCategory)) s += 1000;
+      else if(intersectsSet(selectedCaps, arrFromDataset(card,'caps'))) s += 10;
+    }
+    if(selectedCusts.size){
+      if(selectedCusts.has(card.dataset.primaryCustomer)) s += 1000;
+      else if(intersectsSet(selectedCusts, arrFromDataset(card,'customers'))) s += 10;
+    }
+    if(selectedChannels.size){
+      if(selectedChannels.has(card.dataset.primaryChannel)) s += 1000;
+      else if(intersectsSet(selectedChannels, arrFromDataset(card,'channels'))) s += 10;
+    }
+    if(selectedDeliveries.size){
+      if(selectedDeliveries.has(card.dataset.primaryDelivery)) s += 1000;
+      else if(intersectsSet(selectedDeliveries, arrFromDataset(card,'delivery'))) s += 10;
+    }
+    if(mode==='platforms' && card.classList.contains('platform')) s += 1;
+    if(mode==='spanners' && card.classList.contains('spanner')) s += 1;
+    return s;
+  }
+  function sortWall(wall){
+    const cards = Array.from(wall.querySelectorAll('.card'));
+    cards.sort((a,b)=>{
+      const da = scoreCard(a), db = scoreCard(b);
+      if(db !== da) return db - da;
+      // tie-breaker: alphabetical by name
+      const na = a.querySelector('h3 a')?.textContent?.trim() || '';
+      const nb = b.querySelector('h3 a')?.textContent?.trim() || '';
+      return na.localeCompare(nb);
+    });
+    cards.forEach(c=> wall.appendChild(c));
   }
 
   function applyFilters(){
@@ -694,6 +881,8 @@
         if(keep){ card.removeAttribute('data-hidden'); card.style.display=''; }
         else { card.setAttribute('data-hidden','true'); card.style.display='none'; }
       });
+      // Reorder visible cards so primaries for selected filters rise to the top
+      sortWall(wall);
     });
     updateGroupVisibility();
     syncToolbar();
@@ -706,7 +895,6 @@
     // Clear selected LAYERS and their visual state
     if(selectedLayers.size){
       selectedLayers.clear();
-      const layerBox = document.getElementById('layerFilters');
       if(layerBox){
         layerBox.querySelectorAll('.fchip.layer').forEach(ch=> ch.classList.remove('on'));
       }

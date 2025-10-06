@@ -3,244 +3,274 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Security & IT Landscape — Relationship Graph</title>
+  <title>Security & IT Landscape — Mindmap</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg:#0b1016;--panel:#121823;--ink:#e7eef7;--muted:#9bb0c8;--line:#2a3a50;--chip:#172233;
-      --c-layer:#FFA500;      /* orange outline for Layers */
-      --c-cap:#3eb5c1;        /* teal for Capabilities */
-      --c-cust:#a78bfa;       /* lavender for Customers */
-      --c-model:#7bd389;      /* green for Delivery Model */
-      --c-company:#5aa9ff;    /* blue for Companies */
+      --c-identity:#5aa9ff;--c-device:#ffb86b;--c-cloud:#7bd389;--c-security:#de6fff;--c-compliance:#ff6f91;--c-default:#6ef2ff;
     }
     :root.light{
       --bg:#ffffff;--panel:#ffffff;--ink:#0b1016;--muted:#4a5568;--line:#d8e1ea;--chip:#f3f7fb;
-      --c-layer:#ef6c00;--c-cap:#00838f;--c-cust:#8e24aa;--c-model:#2e7d32;--c-company:#1e88e5;
+      --c-identity:#1e88e5;--c-device:#ef6c00;--c-cloud:#2e7d32;--c-security:#8e24aa;--c-compliance:#d81b60;--c-default:#00838f;
     }
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Lato', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial}
-    .wrap{padding:10px 14px}
-    h1{margin:6px 0 8px;font-size:22px;font-weight:900}
-    .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 10px}
+    body{margin:0;font-family:'Lato',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--ink)}
+    .wrap{max-width:1200px;margin:16px auto 0;padding:0 24px}
+    h1{font-size:28px;margin:12px 0 6px;font-weight:900;letter-spacing:.2px}
+    p.lead{color:var(--muted);margin:0 0 16px}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
     .btn{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;cursor:pointer}
-    .btn.on{outline:2px solid var(--c-company)}
-    .flabel{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-right:6px}
-    .legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 8px}
+    .btn[hidden]{display:none}
+    .switch{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+    .legend{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
     .key{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:12px;background:var(--panel)}
-    .dot{width:10px;height:10px;border-radius:999px}
-    .lay{border:2px solid var(--c-layer)}
-    .cap{border:2px solid var(--c-cap)}
-    .cus{border:2px solid var(--c-cust)}
-    .mod{border:2px solid var(--c-model)}
-    .com{border:2px solid var(--c-company)}
+    .swatch{width:10px;height:10px;border-radius:999px;display:inline-block}
+    .themeToggle{margin-left:auto}
 
-    svg{width:100%;height:calc(100vh - 120px);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));border-top:1px solid var(--line)}
-    .node circle{fill:var(--panel)}
-    .node text{font-size:11px;fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
-    .link{stroke:var(--line);stroke-opacity:.5}
-    .search{display:flex;gap:8px;margin:6px 0 8px}
-    .search input{flex:1;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:6px 10px;font-size:13px}
-    .themeToggle{position:fixed;right:12px;top:10px;z-index:10}
+    .chartWrap{display:flex;gap:24px;align-items:flex-start;padding-bottom:40px}
+    svg{flex:1;min-width:0;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));border:1px solid var(--line);border-radius:18px}
+    #details{width:360px;flex-shrink:0;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:0 12px 24px rgba(15,23,42,0.20);min-height:240px}
+    #details h2{margin:0 0 8px;font-size:18px;font-weight:800}
+    #details p{margin:0 0 10px;font-size:14px;line-height:1.5;color:var(--ink)}
+    #details p.muted{color:var(--muted)}
+    .meta{margin:10px 0 0;padding:0;list-style:none;font-size:13px;color:var(--muted)}
+    .meta li{margin:4px 0}
+    .meta strong{color:var(--ink)}
+    .visitBtn{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border:1px solid var(--line);color:var(--ink);padding:6px 12px;border-radius:999px;font-size:12px;text-decoration:none;margin-top:12px}
+
+    .link{fill:none;stroke:var(--line);stroke-opacity:.4;stroke-width:1.3px}
+    .node{cursor:pointer}
+    .node.root circle{r:14;stroke-width:3}
+    .node.layer circle{r:10;stroke-width:3}
+    .node.vendor circle{r:5.5;stroke-width:2.2}
+    .node.vendor.primary circle{stroke-dasharray:3 2}
+    .node text{font-size:12px;fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+    .node.layer text{font-weight:700}
+    .node.root text{font-weight:800;font-size:16px}
+    .node.vendor text{font-size:11px}
+
+    @media (max-width:1024px){.chartWrap{flex-direction:column}#details{width:100%}svg{min-height:520px}}
+    @media (max-width:640px){h1{font-size:24px}p.lead{font-size:14px}}
   </style>
 </head>
 <body>
-  <button class="btn themeToggle" id="themeToggle">Toggle theme</button>
   <div class="wrap">
-    <h1>Security & IT Landscape — Relationship Graph</h1>
-
     <div class="toolbar">
-      <span class="flabel">Show:</span>
-      <button class="btn on" data-t="company">Companies</button>
-      <button class="btn on" data-t="layer">Layers</button>
-      <button class="btn on" data-t="cap">Capabilities</button>
-      <button class="btn on" data-t="cust">Customers</button>
-      <button class="btn on" data-t="model">Delivery</button>
-      <button class="btn" id="resetView">Reset view</button>
+      <button class="btn" id="btnBack" hidden>Back to overview</button>
+      <label class="switch"><input type="checkbox" id="toggleLabels" checked> Show labels</label>
+      <button class="btn themeToggle" id="themeToggle">Toggle theme</button>
     </div>
+    <h1>Security & IT Landscape — Mindmap</h1>
+    <p class="lead">Click a layer to focus. In focus mode, vendor labels are readable; use the toggle to hide them if crowded.</p>
+    <div class="legend" id="legend"></div>
 
-    <div class="legend">
-      <span class="key"><span class="dot com"></span>Company</span>
-      <span class="key"><span class="dot lay"></span>Layer</span>
-      <span class="key"><span class="dot cap"></span>Capability</span>
-      <span class="key"><span class="dot cus"></span>Customer</span>
-      <span class="key"><span class="dot mod"></span>Delivery</span>
-    </div>
-
-    <div class="search">
-      <input id="searchBox" type="search" placeholder="Search company or tag…" />
-      <button class="btn" id="clearSearch">Clear</button>
+    <div class="chartWrap">
+      <svg id="stage" role="img" aria-label="Mindmap of vendors by layer"></svg>
+      <div id="details">
+        <h2 id="detailTitle">Select a vendor</h2>
+        <p id="detailDescription" class="muted">Hover or tap a vendor to view its summary.</p>
+        <ul class="meta" id="detailMeta"></ul>
+        <a id="detailLink" class="visitBtn" href="#" target="_blank" rel="noopener" style="display:none;">Visit site →</a>
+      </div>
     </div>
   </div>
-  <svg id="stage"></svg>
 
-<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
-<script>
-(async function(){
-  // Theme init (match the other pages)
-  const KEY='theme-preference';
-  const stored=localStorage.getItem(KEY);
-  const prefersLight=window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-  let theme= stored || (prefersLight? 'light':'dark');
-  document.documentElement.classList.toggle('light', theme==='light');
-  document.getElementById('themeToggle').addEventListener('click',()=>{
-    const isLight=document.documentElement.classList.toggle('light');
-    localStorage.setItem(KEY, isLight?'light':'dark');
-  });
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script>
+  (async function(){
+    const KEY='theme-preference';
+    const stored=localStorage.getItem(KEY);
+    const prefersLight=window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    document.documentElement.classList.toggle('light', (stored|| (prefersLight? 'light':'dark'))==='light');
+    document.getElementById('themeToggle').addEventListener('click',()=>{
+      const isLight=document.documentElement.classList.toggle('light');
+      localStorage.setItem(KEY, isLight?'light':'dark');
+    });
 
-  // ----- Load shared vendor list -----
-  async function loadVendors(){
-    try{
+    async function load(){
       const res = await fetch('vendors.json', {cache:'no-cache'});
-      if(!res.ok) throw new Error(`HTTP ${res.status}`);
-      return await res.json();
-    }catch(e){
-      console.error('Failed to load vendor data:', e);
-      alert('Could not load vendor data');
-      return [];
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      return res.json();
     }
-  }
 
-  const vendors = await loadVendors();
+    let vendors=[];
+    try{ vendors=await load(); }catch(e){ alert('Could not load vendor data'); console.error(e); return; }
 
-  // Build graph model
-  const LAYER_SET = new Set(["Identity","Device / IT Operations","Cloud","Security","Compliance"]);
-  const nodes=[], links=[];
-  const id = (()=>{ let i=0; return ()=>`n${++i}` })();
-  const nodeByKey = new Map();
+    const LAYERS=['Identity','Device / IT Operations','Cloud / Tenant','Security','Compliance'];
+    const COLORS={
+      'Identity':'var(--c-identity)',
+      'Device / IT Operations':'var(--c-device)',
+      'Cloud / Tenant':'var(--c-cloud)',
+      'Security':'var(--c-security)',
+      'Compliance':'var(--c-compliance)',
+      'Other':'var(--c-default)'
+    };
 
-  function ensureNode(key, label, type, href){
-    if(nodeByKey.has(key)) return nodeByKey.get(key);
-    const n={ id:id(), key, label, type, href };
-    nodeByKey.set(key,n); nodes.push(n); return n;
-  }
-  function link(a,b, rel){ links.push({source:a.id, target:b.id, rel}); }
-
-  // Create hub nodes for each Layer, Capability, Customer, Delivery Model
-  const caps = new Set();
-  const custs = new Set();
-  const models = new Set();
-
-  vendors.forEach(v=>{
-    (v.categories||[]).forEach(c=> caps.add(c));
-    (v.customers||[]).forEach(c=> custs.add(c));
-    models.add(v.model || 'Product');
-  });
-
-  // Add layer/cap/cust/model nodes
-  LAYER_SET.forEach(L=> ensureNode(`layer:${L}`, L, 'layer'));
-  caps.forEach(c=> ensureNode(`cap:${c}`, c, 'cap'));
-  custs.forEach(c=> ensureNode(`cust:${c}`, c, 'cust'));
-  models.forEach(m=> ensureNode(`model:${m}`, m, 'model'));
-
-  // Add company nodes and connect
-  vendors.forEach(v=>{
-    const c = ensureNode(`co:${v.name}`, v.name, 'company', v.url);
-    (v.layers||[]).forEach(L=> link(c, ensureNode(`layer:${L}`, L, 'layer'), 'covers'));
-    (v.categories||[]).forEach(K=> link(c, ensureNode(`cap:${K}`, K, 'cap'), 'has'));
-    (v.customers||[]).forEach(C=> link(c, ensureNode(`cust:${C}`, C, 'cust'), 'targets'));
-    link(c, ensureNode(`model:${v.model||'Product'}`, v.model||'Product', 'model'), 'delivered-as');
-  });
-
-  // D3 force-directed graph
-  const svg=d3.select('#stage');
-  const g=svg.append('g');
-  const zoom=d3.zoom().scaleExtent([0.2, 2.5]).on('zoom', (e)=> g.attr('transform', e.transform));
-  svg.call(zoom);
-
-  const colorByType={
-    company:'var(--c-company)', layer:'var(--c-layer)', cap:'var(--c-cap)', cust:'var(--c-cust)', model:'var(--c-model)'
-  };
-
-  const linkSel = g.append('g').attr('stroke-width',1).selectAll('.link')
-    .data(links).enter().append('line').attr('class','link');
-
-  const node = g.selectAll('.node')
-    .data(nodes)
-    .enter().append('g')
-    .attr('class','node')
-    .call(d3.drag()
-      .on('start',(e,d)=>{ if(!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
-      .on('drag',(e,d)=>{ d.fx=e.x; d.fy=e.y; })
-      .on('end',(e,d)=>{ if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; })
-    );
-
-  node.append('circle')
-    .attr('r', d=> d.type==='company'? 9 : 7)
-    .attr('stroke', d=> colorByType[d.type])
-    .attr('stroke-width', 2)
-    .attr('fill', 'var(--panel)')
-    .on('click', (e,d)=>{
-      if(d.href){ window.open(d.href, '_blank'); }
-    })
-    .append('title').text(d=> d.label);
-
-  node.append('text')
-    .attr('x', 12)
-    .attr('y', 4)
-    .text(d=> d.label);
-
-  const sim=d3.forceSimulation(nodes)
-    .force('link', d3.forceLink(links).id(d=>d.id).distance(l=>{
-      return (l.source.type==='company'&&l.target.type==='layer')? 70 : 80;
-    }).strength(0.06))
-    .force('charge', d3.forceManyBody().strength(-120))
-    .force('center', d3.forceCenter(window.innerWidth/2, (window.innerHeight-120)/2))
-    .force('collision', d3.forceCollide().radius(d=> d.type==='company'? 18 : 14));
-
-  sim.on('tick', ()=>{
-    linkSel
-      .attr('x1', d=> nodes.find(n=>n.id===d.source).x)
-      .attr('y1', d=> nodes.find(n=>n.id===d.source).y)
-      .attr('x2', d=> nodes.find(n=>n.id===d.target).x)
-      .attr('y2', d=> nodes.find(n=>n.id===d.target).y);
-    node.attr('transform', d=> `translate(${d.x||0},${d.y||0})`);
-  });
-
-  // Filtering UI
-  const toggles=document.querySelectorAll('.toolbar .btn[data-t]');
-  const visibleTypes=new Set(['company','layer','cap','cust','model']);
-  function updateVisibility(){
-    // Hide nodes by type, hide links if any endpoint hidden
-    node.style('display', d=> visibleTypes.has(d.type)? null : 'none');
-    linkSel.style('display', d=>{
-      const s = nodes.find(n=>n.id===d.source);
-      const t = nodes.find(n=>n.id===d.target);
-      return (visibleTypes.has(s.type) && visibleTypes.has(t.type))? null : 'none';
+    const legend=document.getElementById('legend');
+    LAYERS.concat(['Other']).forEach(layer=>{
+      const el=document.createElement('span');
+      el.className='key';
+      el.innerHTML=`<span class="swatch" style="background:${COLORS[layer]}"></span>${layer}`;
+      legend.appendChild(el);
     });
-  }
-  toggles.forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      btn.classList.toggle('on');
-      const t=btn.dataset.t;
-      if(btn.classList.contains('on')) visibleTypes.add(t); else visibleTypes.delete(t);
-      updateVisibility();
+
+    // Use vendors.json values as-is; only show a fallback for missing delivery when rendering
+    vendors = vendors.map(v=> ({ ...v }));
+
+    const byLayer=new Map();
+    function ensureLayer(name){ if(!byLayer.has(name)) byLayer.set(name, []); return byLayer.get(name); }
+    LAYERS.forEach(ensureLayer);
+    vendors.forEach(v=>{
+      const rawLayers = (v.layers && v.layers.length) ? v.layers : ['Other'];
+      const L = rawLayers.map(l => LAYERS.includes(l) ? l : 'Other');
+      const pl = v.primaryLayer || null;
+      L.forEach(layer => ensureLayer(layer).push({ v, primary: pl && pl === layer }));
     });
-  });
+    // Sort vendors within each layer by name for stable layout
+    for(const [k,arr] of byLayer.entries()) arr.sort((a,b)=> a.v.name.localeCompare(b.v.name));
 
-  // Search highlight
-  const searchBox=document.getElementById('searchBox');
-  const clearBtn=document.getElementById('clearSearch');
-  searchBox.addEventListener('input', ()=>{
-    const q=searchBox.value.trim().toLowerCase();
-    node.select('text').attr('font-weight', d=> q && d.label.toLowerCase().includes(q)? 700 : 400);
-    node.select('circle').attr('stroke-width', d=> q && d.label.toLowerCase().includes(q)? 3 : 2);
-  });
-  clearBtn.addEventListener('click',()=>{ searchBox.value=''; searchBox.dispatchEvent(new Event('input')); });
+    const svg=d3.select('#stage');
+    const g=svg.append('g');
+    const linksG=g.append('g');
+    const nodesG=g.append('g');
+    const labelsG=g.append('g');
 
-  // Reset view
-  document.getElementById('resetView').addEventListener('click',()=>{
-    svg.transition().duration(350).call(zoom.transform, d3.zoomIdentity);
-  });
+    const btnBack=document.getElementById('btnBack');
+    const toggleLabels=document.getElementById('toggleLabels');
 
-  // Resize
-  window.addEventListener('resize', ()=>{
-    sim.force('center', d3.forceCenter(window.innerWidth/2, (window.innerHeight-120)/2));
-    sim.alpha(0.2).restart();
-  });
-})();
-</script>
+    let mode='overview'; // 'overview' | 'focus'
+    let focusLayer=null;
+
+    function size(){
+      const w=Math.max(700, window.innerWidth-420);
+      const h=Math.max(560, window.innerHeight-180);
+      const R=Math.min(w,h)/2-60;
+      svg.attr('viewBox', `${-w/2} ${-h/2} ${w} ${h}`);
+      return {w,h,R};
+    }
+
+    function clear(){ linksG.selectAll('*').remove(); nodesG.selectAll('*').remove(); labelsG.selectAll('*').remove(); }
+
+    function layerColor(layer){ return COLORS[layer] || COLORS['Other']; }
+
+    function renderOverview(){
+      clear();
+      btnBack.hidden=true;
+      const {R}=size();
+      const Rlayer=R*0.45;
+      const center={x:0,y:0};
+
+      // center node
+      const root=nodesG.append('g').attr('class','node root').attr('transform',`translate(0,0)`);
+      root.append('circle').attr('r',14).attr('fill','var(--panel)').attr('stroke','var(--ink)').attr('stroke-width',3);
+      root.append('text').attr('y',-24).attr('text-anchor','middle').text('Security & IT Landscape');
+
+      LAYERS.forEach((L,i)=>{
+        const angle=(i/LAYERS.length)*2*Math.PI - Math.PI/2; // start at top
+        const x=Rlayer*Math.cos(angle), y=Rlayer*Math.sin(angle);
+        linksG.append('line').attr('class','link').attr('x1',center.x).attr('y1',center.y).attr('x2',x).attr('y2',y);
+        const gL=nodesG.append('g').attr('class','node layer').attr('transform',`translate(${x},${y})`).on('click',()=>{ focusLayer=L; mode='focus'; render(); });
+        gL.append('circle').attr('r',10).attr('fill','var(--panel)').attr('stroke',layerColor(L)).attr('stroke-width',3);
+        // label radial
+        const tx=x+(x>=0? 14:-14), anchor=x>=0?'start':'end';
+        gL.append('text').attr('x', x>=0? 14:-14).attr('text-anchor',anchor).attr('transform', x<0? 'rotate(180)':null).text(L);
+      });
+    }
+
+    function renderFocus(){
+      clear();
+      btnBack.hidden=false;
+      const {R}=size();
+      const Rlayer=R*0.28;
+      const Rring=R*0.82;
+
+      const center={x:0,y:0};
+      // focused layer node near center
+      const gL=nodesG.append('g').attr('class','node layer').attr('transform',`translate(0,0)`);
+      gL.append('circle').attr('r',10).attr('fill','var(--panel)').attr('stroke',layerColor(focusLayer)).attr('stroke-width',3);
+      gL.append('text').attr('y',-20).attr('text-anchor','middle').text(focusLayer);
+
+      const items = byLayer.get(focusLayer) || [];
+      const n=items.length;
+      const showLabels=toggleLabels.checked;
+      // dynamic label thinning to keep <= 36 labels visible when enabled
+      const step = showLabels ? Math.max(1, Math.ceil(n/36)) : Infinity;
+
+      // vendor nodes evenly around full circle
+      items.forEach((item,idx)=>{
+        const angle=(idx/n)*2*Math.PI - Math.PI/2;
+        const x=Rring*Math.cos(angle), y=Rring*Math.sin(angle);
+        // link from layer to vendor (curve via small radial control)
+        linksG.append('path').attr('class','link')
+          .attr('d', d3.line().curve(d3.curveBundle.beta(0.7))([[0,0],[Rlayer*Math.cos(angle),Rlayer*Math.sin(angle)],[x,y]]));
+
+        const gV=nodesG.append('g')
+          .attr('class',`node vendor${item.primary?' primary':''}`)
+          .attr('transform',`translate(${x},${y})`)
+          .on('mouseenter',()=> renderDetails(item.v))
+          .on('focus',()=> renderDetails(item.v))
+          .on('click',()=>{ if(item.v.url) window.open(item.v.url,'_blank','noopener'); })
+          .attr('tabindex',0)
+          .on('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(item.v.url) window.open(item.v.url,'_blank','noopener'); }});
+
+        gV.append('circle').attr('r',5.5).attr('fill','var(--panel)').attr('stroke',layerColor(focusLayer)).attr('stroke-width',2.2);
+
+        if(idx % step === 0 && showLabels){
+          const flip = angle>Math.PI/2 || angle<-Math.PI/2;
+          const tx = flip ? -12:12;
+          const ta = flip ? 'end':'start';
+          labelsG.append('text')
+            .attr('class','vendorLabel')
+            .attr('transform',`translate(${x},${y}) ${flip? 'rotate(180)':''}`)
+            .attr('x', tx)
+            .attr('dy','0.31em')
+            .attr('text-anchor', ta)
+            .text(item.v.name);
+        }
+      });
+    }
+
+    function render(){
+      if(mode==='overview') renderOverview(); else renderFocus();
+    }
+
+    btnBack.addEventListener('click', ()=>{ mode='overview'; focusLayer=null; renderDetails(null); render(); });
+    toggleLabels.addEventListener('change', ()=>{ if(mode==='focus') render(); });
+    window.addEventListener('resize', render);
+
+    // Details panel
+    const detailTitle=document.getElementById('detailTitle');
+    const detailDescription=document.getElementById('detailDescription');
+    const detailMeta=document.getElementById('detailMeta');
+    const detailLink=document.getElementById('detailLink');
+    function renderDetails(data){
+      if(!data){
+        detailTitle.textContent='Select a vendor';
+        detailDescription.textContent='Hover or tap a vendor to view its summary.';
+        detailDescription.classList.add('muted');
+        detailMeta.innerHTML='';
+        detailLink.style.display='none';
+        return;
+      }
+      detailTitle.textContent=data.name;
+      detailDescription.textContent=data.description || 'No description provided.';
+      detailDescription.classList.toggle('muted', !data.description);
+      const metas=[
+        `<strong>Layers:</strong> ${(data.layers||[]).join(', ') || 'Not specified'}`,
+        `<strong>Capabilities:</strong> ${(data.categories||[]).join(', ') || 'Not specified'}`,
+        `<strong>Customers:</strong> ${(data.customers||[]).join(', ') || 'Not specified'}`,
+        `<strong>Delivery:</strong> ${(data.delivery==null || data.delivery==='') ? 'Product' : data.delivery}`
+      ];
+      detailMeta.innerHTML=metas.map(m=>`<li>${m}</li>`).join('');
+      if(data.url){ detailLink.href=data.url; detailLink.style.display='inline-flex'; } else { detailLink.style.display='none'; }
+    }
+
+    // initial render
+    render();
+  })();
+  </script>
 </body>
 </html>

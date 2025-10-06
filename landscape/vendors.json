@@ -2,1428 +2,1701 @@
   {
     "name": "Microsoft Entra ID / Azure AD",
     "url": "https://www.microsoft.com/security/business/identity-access/microsoft-entra-id",
-    "layers": [
-      "Identity",
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "SSO",
-      "MFA",
-      "Conditional Access"
-    ],
-    "primary": "Identity & Access Platforms",
+    "layers": ["Identity","Security","Compliance"],
+    "categories": ["SSO","MFA","Conditional Access"],
+    "primaryCategory": "SSO",
+    "customers": ["Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Mid-market",
     "description": "Cloud identity, SSO and conditional access; integrates with Intune and Defender.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated"
-    ]
+    "primaryLayer": "Identity",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Per user (P1/P2, annual)",
+      "list": null,
+      "currency": "USD",
+      "unit": "user/month",
+      "notes": "Standalone: Entra ID P1 $6/user/mo, P2 $9/user/mo (annual). Entra Suite available; some capabilities bundled in M365 E3/E5 or Business Premium.",
+      "tiers": [
+        {"name": "Entra ID P1", "price": 6.0},
+        {"name": "Entra ID P2", "price": 9.0}
+      ],
+      "sources": [
+        "https://www.microsoft.com/en-us/security/business/microsoft-entra-pricing",
+        "https://learn.microsoft.com/en-us/entra/external-id/external-identities-pricing"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Widely adopted IDaaS; praised for Conditional Access depth and ecosystem; complexity/licensing sprawl noted as cons.",
+      "pros": ["Conditional Access depth","Ecosystem integrations","Bundled with M365"],
+      "cons": ["Licensing complexity","UX sprawl across portals"],
+      "sources": [
+        "https://www.g2.com/products/microsoft-entra-id/reviews"
+      ]
+    }
   },
   {
     "name": "JumpCloud",
     "url": "https://jumpcloud.com",
-    "layers": [
-      "Identity",
-      "Device / IT Operations"
-    ],
-    "categories": [
-      "Directory-as-a-Service",
-      "MDM-lite"
-    ],
-    "primary": "Identity & Access Platforms",
+    "layers": ["Identity","Device / IT Operations"],
+    "categories": ["Directory-as-a-Service","MDM-lite"],
+    "primaryCategory": "Directory-as-a-Service",
+    "customers": ["SMB","Mid-market"],
+    "primaryCustomer": "SMB",
     "description": "Cloud directory with device trust, policies and SSO for SMB/mid-market.",
-    "customers": [
-      "SMB",
-      "Mid-market"
-    ],
-    "model": "Hybrid"
+    "primaryLayer": "Identity",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Per user (modules, monthly/annual)",
+      "list": null,
+      "currency": "USD",
+      "unit": "user/month",
+      "notes": "Public pricing per module; examples: Device Management $9 (annual) or $11 monthly; SSO $11 annual or $13 monthly.",
+      "tiers": [
+        {"name": "Device Management (annual)", "price": 9.0},
+        {"name": "Device Management (monthly)", "price": 11.0},
+        {"name": "SSO (annual)", "price": 11.0},
+        {"name": "SSO (monthly)", "price": 13.0}
+      ],
+      "sources": [
+        "https://jumpcloud.com/pricing",
+        "https://www.vendr.com/marketplace/jumpcloud"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Strong for SMB/mid-market unified directory + device trust; praised for ease of use; some note advanced policy gaps vs. Entra/Jamf.",
+      "pros": ["Ease of setup","Cross-OS device policies","Integrated SSO/MFA"],
+      "cons": ["Advanced Apple/Windows policy depth","Pricing across modules"],
+      "sources": [
+        "https://www.g2.com/products/jumpcloud/reviews"
+      ]
+    }
   },
   {
     "name": "Okta",
     "url": "https://okta.com",
-    "layers": [
-      "Identity",
-      "Security"
-    ],
-    "categories": [
-      "SSO",
-      "MFA"
-    ],
-    "primary": "Identity & Access Platforms",
+    "layers": ["Identity","Security"],
+    "categories": ["SSO","MFA"],
+    "primaryCategory": "SSO",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
     "description": "Enterprise SSO and access management with strong app ecosystem.",
-    "customers": [
-      "Mid-market",
-      "Enterprise"
-    ]
+    "primaryLayer": "Identity",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Per user suites (annual)",
+      "list": null,
+      "currency": "USD",
+      "unit": "user/month",
+      "notes": "Workforce Identity suites: Starter $6/user/mo, Essentials $17/user/mo; higher tiers are quote-based.",
+      "tiers": [
+        {"name": "Starter Suite", "price": 6.0},
+        {"name": "Essentials Suite", "price": 17.0}
+      ],
+      "sources": [
+        "https://www.okta.com/pricing/"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Enterprise SSO leader; lauded for integrations and reliability; cost and admin complexity cited as tradeoffs.",
+      "pros": ["App catalog/integrations","Reliability","Mature ecosystem"],
+      "cons": ["Cost at scale","Admin complexity"],
+      "sources": [
+        "https://www.g2.com/products/okta/reviews"
+      ]
+    }
   },
   {
     "name": "Google Workspace",
     "url": "https://workspace.google.com",
-    "layers": [
-      "Identity",
-      "Security"
-    ],
-    "categories": [
-      "SSO",
-      "Email",
-      "Collaboration"
-    ],
-    "primary": "Identity & Access Platforms",
+    "layers": ["Identity","Security"],
+    "categories": ["SSO","Email","Collaboration"],
+    "primaryCategory": "SSO",
+    "customers": ["SMB","Mid-market"],
+    "primaryCustomer": "SMB",
     "description": "Productivity suite with directory/SSO and basic device controls.",
-    "customers": [
-      "SMB",
-      "Mid-market"
-    ]
+    "primaryLayer": "Identity",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Per user (Business/Enterprise tiers)",
+      "list": null,
+      "currency": "USD",
+      "unit": "user/month",
+      "notes": "US pricing (annual): Starter $7, Standard $14, Plus $22 per user/month. Flexible monthly: $8.40 / $16.80 / $26.40. Enterprise via sales.",
+      "tiers": [
+        {"name": "Business Starter (annual)", "price": 7.0},
+        {"name": "Business Standard (annual)", "price": 14.0},
+        {"name": "Business Plus (annual)", "price": 22.0}
+      ],
+      "sources": [
+        "https://workspace.google.com/pricing",
+        "https://support.google.com/a/answer/13062337?hl=en",
+        "https://support.google.com/a/answer/1247360?hl=en"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Top collaboration suite; praised for ease and integrations; admin wishes include finer device controls vs. M365/Intune.",
+      "pros": ["Collaboration UX","Meet/Calendar/Drive integration"],
+      "cons": ["Advanced device controls vs. Intune"],
+      "sources": [
+        "https://www.g2.com/products/google-workspace/reviews"
+      ]
+    }
   },
   {
     "name": "Electric.ai",
     "url": "https://www.electric.ai",
-    "layers": [
-      "Identity",
-      "Device / IT Operations",
-      "Cloud",
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Managed IT",
-      "MDM",
-      "Helpdesk"
-    ],
-    "primary": "Identity & Access Platforms",
+    "layers": ["Identity","Device / IT Operations","Cloud / Tenant","Security","Compliance"],
+    "categories": ["Managed IT","MDM","Helpdesk"],
+    "primaryCategory": "Managed IT",
+    "customers": ["SMB"],
+    "primaryCustomer": "SMB",
     "description": "Managed IT provider spanning identity, device and security operations for SMBs.",
-    "customers": [
-      "SMB"
-    ],
-    "model": "Service"
+    "primaryLayer": "Identity",
+    "delivery": ["Service"],
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "MSP service (quote-based)",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Managed IT provider with packaged services; pricing via sales only.",
+      "sources": ["https://www.electric.ai/pricing"]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Appeals to SMBs seeking outsourced IT; reviews cite responsiveness; cost vs. in-house or local MSPs noted.",
+      "pros": ["Fast support","All-in-one offering"],
+      "cons": ["Pricing transparency","Customization limits"],
+      "sources": ["https://www.g2.com/products/electric-ai/reviews"]
+    }
   },
   {
     "name": "Microsoft 365 Platform (Entra + Intune + Defender + Purview)",
     "url": "https://www.microsoft.com/microsoft-365/",
-    "layers": [
-      "Identity",
-      "Device / IT Operations",
-      "Cloud",
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Directory/SSO",
-      "MDM/UEM",
-      "EDR/XDR",
-      "SIEM",
-      "DLP",
-      "Compliance"
-    ],
-    "primary": "Identity & Access Platforms",
+    "layers": ["Identity","Device / IT Operations","Cloud / Tenant","Security","Compliance"],
+    "categories": ["Directory/SSO","MDM/UEM","EDR/XDR","SIEM","DLP","Compliance"],
+    "primaryCategory": "Directory/SSO",
+    "customers": ["Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSP"],
     "description": "Unified Microsoft ecosystem spanning identity, device, security, and compliance with strong integrations for MDM, XDR, and GRC.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated",
-      "MSP"
-    ],
-    "model": "Product"
+    "primaryLayer": "Identity",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Per user (Business/Enterprise bundles)",
+      "list": null,
+      "currency": "USD",
+      "unit": "user/month",
+      "notes": "US pricing (annual): Business Basic $6, Business Standard $12.50, Business Premium $22 per user/month. Monthly options: Basic $7.20, Standard $15, Premium $26.40. Enterprise E3/E5 vary.",
+      "tiers": [
+        {"name": "Business Basic (annual)", "price": 6.0},
+        {"name": "Business Standard (annual)", "price": 12.5},
+        {"name": "Business Premium (annual)", "price": 22.0}
+      ],
+      "sources": [
+        "https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing",
+        "https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-basic",
+        "https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-standard",
+        "https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-premium"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "End-to-end stack valued for integration depth; complexity and admin overhead are common themes.",
+      "pros": ["Deep integration","Security breadth"],
+      "cons": ["Portal sprawl","Licensing complexity"],
+      "sources": ["https://www.g2.com/products/microsoft-365/reviews"]
+    }
   },
   {
     "name": "NinjaOne",
     "url": "https://www.ninjaone.com",
-    "layers": [
-      "Device / IT Operations"
-    ],
-    "categories": [
-      "RMM",
-      "Patching",
-      "Automation"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations"],
+    "categories": ["RMM","Patching","Automation"],
+    "primaryCategory": "RMM",
+    "customers": ["SMB","Mid-market"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSP"],
     "description": "Cloud RMM for MSPs and IT teams: patching, remote access, scripting.",
-    "customers": [
-      "MSP",
-      "SMB",
-      "Mid-market"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Per device (tiered volume discounts)",
+      "list": null,
+      "currency": "USD",
+      "unit": "device/month",
+      "notes": "Official page cites $1.50/device at ~10,000 endpoints and ~$3.75/device at 50 or fewer; typical real-world ranges reported at ~$2–$4/device depending on modules and volume.",
+      "ranges": [{"devices": ">=10000", "price": 1.50}, {"devices": "<=50", "price": 3.75}, {"typical": true, "price_range": [2.0, 4.0]}],
+      "sources": [
+        "https://www.ninjaone.com/pricing/",
+        "https://faddom.com/ninjaone-pricing-model-and-typical-costs-in-2025/"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": 4.7,
+      "g2_reviews_count": 2770,
+      "summary": "High marks for ease of use, automation, and support; common asks include deeper reporting and a few missing features.",
+      "pros": ["Ease of Use", "Automation", "Remote Access", "Customer Support"],
+      "cons": ["Missing Features", "Feature Issues", "Reporting depth"],
+      "sources": [
+        "https://www.g2.com/products/ninjaone/reviews"
+      ]
+    }
   },
   {
     "name": "ConnectWise Automate",
     "url": "https://www.connectwise.com/software/automate",
-    "layers": [
-      "Device / IT Operations",
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "RMM",
-      "Automation"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations","Security","Compliance"],
+    "categories": ["RMM","Automation"],
+    "primaryCategory": "RMM",
+    "customers": ["Mid-market"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSP"],
     "description": "Deep RMM with PSA ecosystem for larger MSP practices.",
-    "customers": [
-      "MSP",
-      "Mid-market"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Quote-based (per device/tech bundles)",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Pricing via sales; varies by modules and volume.",
+      "sources": ["https://www.connectwise.com/software/automate"]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Powerful legacy RMM favored by larger MSPs; setup/maintenance complexity noted.",
+      "pros": ["Automation depth","PSA ecosystem"],
+      "cons": ["Complex to administer"],
+      "sources": ["https://www.g2.com/products/connectwise-automate/reviews"]
+    }
   },
   {
     "name": "Datto RMM",
     "url": "https://www.datto.com/products/rmm/",
-    "layers": [
-      "Device / IT Operations",
-      "Cloud"
-    ],
-    "categories": [
-      "RMM",
-      "BCDR"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
-    "description": "Cloud RMM tied into Datto\u2019s backup/continuity platform.",
-    "customers": [
-      "MSP",
-      "SMB"
-    ]
+    "layers": ["Device / IT Operations","Cloud / Tenant"],
+    "categories": ["RMM","BCDR"],
+    "primaryCategory": "RMM",
+    "customers": ["SMB"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSP"],
+    "description": "Cloud RMM tied into Datto’s backup/continuity platform.",
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Quote-based (per device)",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Pricing via sales; known to bundle with Datto BCDR.",
+      "sources": ["https://www.datto.com/products/rmm/"]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Well-rated RMM with strong patching and API; reviewers cite good support.",
+      "pros": ["Ease of use","API integrations","Support"],
+      "cons": ["Feature gaps vs. leaders in some areas"],
+      "sources": ["https://www.g2.com/products/datto-rmm/reviews"]
+    }
   },
   {
     "name": "Kaseya VSA",
     "url": "https://www.kaseya.com/products/vsa/",
-    "layers": [
-      "Device / IT Operations",
-      "Security",
-      "Compliance",
-      "Cloud"
-    ],
-    "categories": [
-      "RMM",
-      "ITSM"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations","Security","Compliance","Cloud / Tenant"],
+    "categories": ["RMM","ITSM"],
+    "primaryCategory": "RMM",
+    "customers": ["Mid-market"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSP"],
     "description": "Part of Kaseya IT Complete suite spanning Endpoint, Security and Compliance.",
-    "customers": [
-      "MSP",
-      "Mid-market"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Quote-based (bundles via IT Complete/partners)",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Often sold in bundles; partner programs influence pricing.",
+      "sources": ["https://www.kaseya.com/products/vsa/"]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Feature-rich with automation; some feedback on stability and UX.",
+      "pros": ["Automation","Remote control"],
+      "cons": ["Stability/UX concerns"],
+      "sources": ["https://www.g2.com/products/kaseya-vsa/reviews"]
+    }
   },
   {
     "name": "N-able",
     "url": "https://www.n-able.com",
-    "layers": [
-      "Device / IT Operations",
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "RMM",
-      "Backup"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations","Security","Compliance"],
+    "categories": ["RMM","Backup"],
+    "primaryCategory": "RMM",
+    "customers": ["Mid-market"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSP"],
     "description": "MSP-focused RMM platform with strong monitoring and scaling features.",
-    "customers": [
-      "MSP",
-      "Mid-market"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Quote-based (per device/technician)",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Pricing via sales; multiple bundles (N-sight, N-central).",
+      "sources": ["https://www.n-able.com/products/n-sight-rmm"]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Broad MSP toolset; reviewers like ease of rollout; desires for faster UI and deeper reporting.",
+      "pros": ["All-in-one MSP focus","Deployment ease"],
+      "cons": ["UI performance","Reporting depth"],
+      "sources": ["https://www.g2.com/products/n-able-n-sight-rmm/reviews"]
+    }
   },
   {
     "name": "Atera",
     "url": "https://www.atera.com",
-    "layers": [
-      "Device / IT Operations"
-    ],
-    "categories": [
-      "RMM",
-      "PSA"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations"],
+    "categories": ["RMM","PSA"],
+    "primaryCategory": "RMM",
+    "customers": ["SMB"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSP"],
     "description": "Per-technician pricing; bundled RMM + PSA for SMB MSPs.",
-    "customers": [
-      "MSP",
-      "SMB"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Per technician (RMM/PSA bundles)",
+      "list": null,
+      "currency": "USD",
+      "unit": "technician/month",
+      "notes": "Transparent per-tech pricing; MSP page lists plans (e.g., Standard/Pro/Power)",
+      "tiers": [
+        {"name": "Standard (PSA only)", "price": 79.0},
+        {"name": "RMM only", "price": 99.0},
+        {"name": "Unified (annual)", "price": 129.0}
+      ],
+      "sources": [
+        "https://www.atera.com/msp-pricing/",
+        "https://www.atera.com/it-department-pricing/"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": 4.6,
+      "g2_reviews_count": null,
+      "summary": "Praised for value and ease; growing feature set; some advanced features behind roadmap.",
+      "pros": ["Value per-tech","Ease of setup","AI-assisted workflows"],
+      "cons": ["Advanced reporting/features require workarounds"],
+      "sources": ["https://www.g2.com/products/atera/reviews","https://www.atera.com/blog/atera-g2/"]
+    }
   },
   {
     "name": "Syncro",
     "url": "https://syncromsp.com",
-    "layers": [
-      "Device / IT Operations"
-    ],
-    "categories": [
-      "RMM",
-      "PSA"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations"],
+    "categories": ["RMM","PSA"],
+    "primaryCategory": "RMM",
+    "customers": ["SMB"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSP"],
     "description": "All-in-one RMM/PSA focused on small MSPs and automation.",
-    "customers": [
-      "MSP",
-      "SMB"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Per user (unlimited endpoints)",
+      "list": 129.0,
+      "currency": "USD",
+      "unit": "user/month",
+      "notes": "Flat monthly fee per user for unlimited endpoints; discounts annually.",
+      "sources": ["https://syncromsp.com/pricing/"]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "All-in-one RMM/PSA for small MSPs; community notes steady improvement; desires for deeper integrations.",
+      "pros": ["Simple pricing","PSA+RMM in one"],
+      "cons": ["Depth vs. larger suites"],
+      "sources": ["https://www.g2.com/products/syncro/reviews"]
+    }
   },
   {
     "name": "SuperOps.ai",
     "url": "https://superops.ai",
-    "layers": [
-      "Device / IT Operations"
-    ],
-    "categories": [
-      "RMM",
-      "PSA"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations"],
+    "categories": ["RMM","PSA"],
+    "primaryCategory": "RMM",
+    "customers": ["SMB"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSP"],
     "description": "Modern RMM+PSA challenger with AI-assisted workflows.",
-    "customers": [
-      "MSP",
-      "SMB"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Per technician (PSA/RMM)",
+      "list": null,
+      "currency": "USD",
+      "unit": "technician/month",
+      "notes": "Public pricing examples: PSA-only $79, RMM-only $99, Unified $129 (annual billing typical).",
+      "tiers": [
+        {"name": "PSA only (annual)", "price": 79.0},
+        {"name": "RMM only (annual)", "price": 99.0},
+        {"name": "Unified Basic (annual)", "price": 129.0}
+      ],
+      "sources": ["https://superops.com/pricing"]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Modern UX with fast iteration; praised support; still maturing depth in some modules.",
+      "pros": ["Modern UI","Fast support","Active roadmap"],
+      "cons": ["Feature depth still growing"],
+      "sources": ["https://www.g2.com/products/superops/reviews"]
+    }
   },
   {
     "name": "ManageEngine Endpoint Central",
     "url": "https://www.manageengine.com/endpoint-central/",
-    "layers": [
-      "Device / IT Operations"
-    ],
-    "categories": [
-      "UEM",
-      "Patching"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations"],
+    "categories": ["UEM","Patching"],
+    "primaryCategory": "UEM",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
     "description": "Unified endpoint management across OSes plus patching and inventory.",
-    "customers": [
-      "Mid-market",
-      "Enterprise"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Per endpoint (editions; perpetual/subscription)",
+      "list": null,
+      "currency": "USD",
+      "unit": "endpoint/month",
+      "notes": "Pricing varies by edition and deployment; contact sales for quotes.",
+      "sources": ["https://www.manageengine.com/endpoint-central/"]
+    },
+    "sentiment": {
+      "g2_rating": 4.4,
+      "g2_reviews_count": 990,
+      "summary": "Robust UEM with broad OS coverage; UI complexity and learning curve mentioned.",
+      "pros": ["Patch breadth","Multi-OS UEM"],
+      "cons": ["UI complexity","Learning curve"],
+      "sources": ["https://www.g2.com/products/manageengine-endpoint-central/reviews"]
+    }
   },
   {
     "name": "Jamf",
     "url": "https://www.jamf.com",
-    "layers": [
-      "Device / IT Operations"
-    ],
-    "categories": [
-      "MDM",
-      "Apple"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations"],
+    "categories": ["MDM","Apple"],
+    "primaryCategory": "MDM",
+    "customers": ["SMB","Mid-market","Enterprise","Education"],
+    "primaryCustomer": "SMB",
     "description": "Apple-first MDM and management for macOS/iOS fleets.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "Education"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Per device (Apple-first; annual)",
+      "list": null,
+      "currency": "USD",
+      "unit": "device/month",
+      "notes": "Examples: Jamf for Mobile $5.75/device/mo (annual, 25 min); Jamf Now $4/device/mo; Jamf Business ~ $13.65/device/mo (estimates).",
+      "tiers": [
+        {"name": "Jamf for Mobile (annual)", "price": 5.75},
+        {"name": "Jamf Now", "price": 4.0}
+      ],
+      "sources": [
+        "https://www.jamf.com/pricing/",
+        "https://www.spendflo.com/blog/comprehensive-guide-to-jamf-pricing-understanding-customer-costs"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Gold standard for Apple fleet management; powerful but can be complex and premium-priced.",
+      "pros": ["Apple ecosystem depth","Zero-touch"],
+      "cons": ["Learning curve","Cost vs. SMB needs"],
+      "sources": ["https://www.g2.com/products/jamf-pro/reviews"]
+    }
   },
   {
     "name": "Microsoft Intune",
     "url": "https://www.microsoft.com/microsoft-365/endpoint-manager/intune",
-    "layers": [
-      "Device / IT Operations",
-      "Identity"
-    ],
-    "categories": [
-      "MDM/UEM",
-      "Compliance"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations","Identity"],
+    "categories": ["MDM/UEM","Compliance"],
+    "primaryCategory": "MDM/UEM",
+    "customers": ["Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Mid-market",
     "description": "UEM closely integrated with Entra ID and Defender.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "AirMDM",
-    "url": "#",
-    "layers": [
-      "Device / IT Operations"
-    ],
-    "categories": [
-      "MDM"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "url": "https://aircloudy.co/",
+    "layers": ["Device / IT Operations"],
+    "categories": ["MDM"],
+    "primaryCategory": "MDM",
+    "customers": ["SMB"],
+    "primaryCustomer": "SMB",
     "description": "Mobile device management.",
-    "customers": [
-      "SMB"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "SimpleMDM",
     "url": "https://simplemdm.com",
-    "layers": [
-      "Device / IT Operations"
-    ],
-    "categories": [
-      "MDM",
-      "Apple"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations"],
+    "categories": ["MDM","Apple"],
+    "primaryCategory": "MDM",
+    "customers": ["SMB","Mid-market"],
+    "primaryCustomer": "SMB",
     "description": "Simple Apple-centric MDM for SMBs.",
-    "customers": [
-      "SMB",
-      "Mid-market"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "FleetDM",
     "url": "https://fleetdm.com",
-    "layers": [
-      "Device / IT Operations",
-      "Compliance"
-    ],
-    "categories": [
-      "AIMS",
-      "osquery"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations","Compliance"],
+    "categories": ["AIMS","osquery"],
+    "primaryCategory": "AIMS",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
     "description": "Open-source device inventory & telemetry using osquery.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["OSS","Product"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "UniFi Network",
     "url": "https://ui.com/uniFi",
-    "layers": [
-      "Device / IT Operations",
-      "Security"
-    ],
-    "categories": [
-      "NPR",
-      "AIMS"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations","Security"],
+    "categories": ["NPR","AIMS"],
+    "primaryCategory": "NPR",
+    "customers": ["SMB","Prosumer"],
+    "primaryCustomer": "SMB",
     "description": "Network gear and controller; inventory and basic network protection.",
-    "customers": [
-      "SMB",
-      "Prosumer"
-    ]
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "ZipSec",
     "url": "https://www.zipsec.com",
-    "layers": [
-      "Identity",
-      "Device / IT Operations",
-      "Cloud",
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Converged",
-      "Automation"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
+    "layers": ["Device / IT Operations","Identity","Cloud / Tenant","Security","Compliance"],
+    "categories": ["Converged","Automation"],
+    "primaryCategory": "Converged",
+    "customers": ["SMB","Mid-market"],
+    "primaryCustomer": "SMB",
     "description": "Turnkey platform bundling identity, device, cloud and security.",
-    "customers": [
-      "SMB",
-      "Mid-market"
-    ],
-    "model": "Service"
+    "primaryLayer": "Device / IT Operations",
+    "delivery": ["Service"],
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Subscription / SaaS (quote-based)",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "No public pricing; subscription service integrating endpoint, identity, compliance. Contact vendor for quote. Capterra lists a starting price of $795/year for “Zip Security” (flat rate).",
+      "sources": [
+        "https://www.zipsec.com/terms",
+        "https://www.zipsec.com/",
+        "https://www.capterra.com/p/10021734/Zip-Security/"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Young, automation-first security / compliance orchestration platform focused on SMEs. Integrates identity, device and compliance controls behind a unified UI.",
+      "pros": ["Unified security + compliance interface","Automation-first","Integrates with IdP, EDR, MDM"],
+      "cons": ["Opaque pricing","Less mature ecosystem compared to incumbents"],
+      "sources": [
+        "https://www.zipsec.com/",
+        "https://www.capterra.com/p/10021734/Zip-Security/"
+      ]
+    }
   },
   {
     "name": "Microsoft Lighthouse",
-    "url": "https://learn.microsoft.com/microsoft-365/lighthouse/overview",
-    "layers": [
-      "Cloud",
-      "Device / IT Operations"
-    ],
-    "categories": [
-      "MSP Multi-tenant"
-    ],
-    "primary": "Cloud / Tenant Automation",
-    "description": "Multi-tenant management for Microsoft environments.",
-    "customers": [
-      "MSP"
-    ]
+    "url": "https://learn.microsoft.com/en-us/microsoft-365/lighthouse/m365-lighthouse-overview",
+    "layers": ["Cloud / Tenant","Device / IT Operations"],
+    "categories": ["MSP Multi-tenant"],
+    "primaryCategory": "MSP Multi-tenant",
+    "customers": [],
+    "channels": ["MSP"],
+    "description": "Multi-tenant admin portal for MSPs to secure and manage Microsoft 365 Business tenants at scale: guided deployment journeys, an SMB security baseline, unified device/user alerts (incl. Defender XDR signal), service health/incidents, and AI-driven recommendations. Available to CSP partners at no additional cost.",
+    "primaryLayer": "Cloud / Tenant",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Free for CSP partners",
+      "list": 0,
+      "currency": "USD",
+      "unit": null,
+      "notes": "No additional cost to use Microsoft 365 Lighthouse for MSPs managing SMB tenants with a CSP relationship.",
+      "sources": [
+        "https://learn.microsoft.com/en-us/microsoft-365/lighthouse/m365-lighthouse-faq?view=o365-worldwide",
+        "https://learn.microsoft.com/en-us/microsoft-365/lighthouse/m365-lighthouse-overview?view=o365-worldwide"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Valued by MSPs for multi-tenant visibility and security baselines; commonly paired with CIPP for bulk automation. Some sentiment notes limited depth for advanced actions.",
+      "pros": ["Multi-tenant security baseline", "Unified alerts and incidents view", "Guided SMB hardening"],
+      "cons": ["Limited bulk/advanced actions vs. CIPP", "Feature gaps vs. dedicated M365 automation tools"],
+      "sources": [
+        "https://learn.microsoft.com/en-us/microsoft-365/lighthouse/m365-lighthouse-overview?view=o365-worldwide",
+        "https://www.reddit.com/r/msp/comments/1h19vve/microsoft_lighthouse/"
+      ]
+    }
   },
   {
     "name": "CyberDrain CIPP",
     "url": "https://cipp.app",
-    "layers": [
-      "Cloud",
-      "Compliance"
-    ],
-    "categories": [
-      "Automation",
-      "M365"
-    ],
-    "primary": "Cloud / Tenant Automation",
-    "description": "Open-source MSP portal for Microsoft 365 tenant automation.",
-    "customers": [
-      "MSP"
-    ]
+    "layers": ["Cloud / Tenant","Compliance"],
+    "categories": ["Automation","M365"],
+    "primaryCategory": "Automation",
+    "customers": [],
+    "channels": ["MSP"],
+    "description": "Open-source multi-tenant management & automation portal for Microsoft 365 used by MSPs—bulk actions (users, licensing, policies), scripted workflows, reporting, and guardrails that complement Microsoft 365 Lighthouse. Large, active community backing.",
+    "primaryLayer": "Cloud / Tenant",
+    "delivery": ["OSS"],
+    "primaryDelivery": "OSS",
+    "pricing": {
+      "model": "Open source (self-host) + optional hosted/support",
+      "list": null,
+      "currency": "USD",
+      "unit": "tenant/month",
+      "notes": "Self-host is free; hosted tiers commonly advertised around $69–$99/mo; optional paid onboarding available.",
+      "extras": [{"name": "Professional Onboarding", "price": 750, "unit": "one-time"}],
+      "sources": [
+        "https://cyberdrain.com/pricing/",
+        "https://go.cyberdrain.com/onboarding"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Strong MSP community adoption for Microsoft 365 bulk automation and reporting; frequently used to complement Lighthouse.",
+      "pros": ["Bulk actions across tenants", "Scripted workflows", "Active open-source community"],
+      "cons": ["DIY operations for self-host", "Support depends on community/tier"],
+      "sources": [
+        "https://cyberdrain.com/pricing/",
+        "https://www.reddit.com/r/msp/"
+      ]
+    }
   },
   {
     "name": "Augmentt",
     "url": "https://www.augmentt.com",
-    "layers": [
-      "Cloud"
-    ],
-    "categories": [
-      "SaaS Mgmt",
-      "Discovery"
-    ],
-    "primary": "Cloud / Tenant Automation",
-    "description": "SaaS visibility and policy for MSPs.",
-    "customers": [
-      "MSP",
-      "SMB"
-    ]
-  },
-  {
-    "name": "IT Glue",
-    "url": "https://www.itglue.com",
-    "layers": [
-      "Cloud"
-    ],
-    "categories": [
-      "Documentation"
-    ],
-    "primary": "Cloud / Tenant Automation",
-    "description": "Documentation platform for MSP process and client data.",
-    "customers": [
-      "MSP"
-    ]
+    "layers": ["Cloud / Tenant"],
+    "categories": ["SaaS Mgmt","Discovery"],
+    "primaryCategory": "SaaS Mgmt",
+    "customers": ["SMB"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSP"],
+    "description": "Multi-tenant SaaS security & Microsoft 365 management platform for MSPs: SaaS discovery/shadow IT, hardening via policy templates, breach/alert monitoring with 1-click remediation, and branded scheduled reporting across tenants.",
+    "primaryLayer": "Cloud / Tenant",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "CrowdStrike Falcon",
     "url": "https://www.crowdstrike.com/products/endpoint-security/",
-    "layers": [
-      "Identity",
-      "Cloud",
-      "Security"
-    ],
-    "categories": [
-      "EDR/XDR",
-      "Identity Protection",
-      "Cloud Workload",
-      "IT Hygiene / Asset Visibility"
-    ],
-    "primary": "Security \u2014 EDR / XDR Platforms",
-    "description": "EDR/XDR with identity and cloud modules; strong threat intel.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated",
-      "MSSP"
-    ]
+    "layers": ["Security","Identity","Cloud / Tenant"],
+    "categories": ["EDR/XDR","Identity Protection","Cloud Workload","IT Hygiene / Asset Visibility","MDR"],
+    "primaryCategory": "EDR/XDR",
+    "customers": ["Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "EDR/XDR with identity and cloud modules; strong threat intel. Provides managed detection and response (MDR) with 24/7 SOC coverage as a core offering.",
+    "primaryLayer": "Security",
+    "delivery": ["Product","Service"],
+    "primaryDelivery": "Service"
   },
   {
     "name": "SentinelOne",
     "url": "https://www.sentinelone.com",
-    "layers": [
-      "Cloud",
-      "Security"
-    ],
-    "categories": [
-      "EDR/XDR",
-      "CWPP",
-      "IT Hygiene / Asset Visibility"
-    ],
-    "primary": "Security \u2014 EDR / XDR Platforms",
-    "description": "Autonomous EDR/XDR plus cloud and data security options.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ]
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["EDR/XDR","CWPP","IT Hygiene / Asset Visibility","MDR"],
+    "primaryCategory": "EDR/XDR",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "Autonomous EDR/XDR plus cloud and data security options. Provides managed detection and response (MDR) with 24/7 SOC coverage as a core offering.",
+    "primaryLayer": "Security",
+    "delivery": ["Product","Service"],
+    "primaryDelivery": "Service"
   },
   {
     "name": "Microsoft Defender for Endpoint",
     "url": "https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint",
-    "layers": [
-      "Security",
-      "Cloud"
-    ],
-    "categories": [
-      "EDR/XDR",
-      "M365 Defender"
-    ],
-    "primary": "Security \u2014 EDR / XDR Platforms",
-    "description": "Part of Microsoft\u2019s XDR suite integrated with Entra/Intune.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated"
-    ]
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["EDR/XDR","M365 Defender"],
+    "primaryCategory": "EDR/XDR",
+    "customers": ["SMB","Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "SMB",
+    "description": "Part of Microsoft’s XDR suite integrated with Entra/Intune.",
+    "primaryLayer": "Security",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "Carbon Black",
     "url": "https://www.vmware.com/products/carbon-black-cloud.html",
-    "layers": [
-      "Cloud",
-      "Security"
-    ],
-    "categories": [
-      "EDR/XDR",
-      "CWPP"
-    ],
-    "primary": "Security \u2014 EDR / XDR Platforms",
+    "layers": ["Cloud / Tenant","Security"],
+    "categories": ["EDR/XDR","CWPP"],
+    "primaryCategory": "EDR/XDR",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
     "description": "VMware Carbon Black for endpoint and workload protection.",
-    "customers": [
-      "Mid-market",
-      "Enterprise"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Quote-based / enterprise licensing",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "No public per-device pricing. Now under Broadcom/VMware ownership; MDR comparison reports mention higher entry cost relative to peers.",
+      "sources": [
+        "https://www.peerspot.com/products/comparisons/carbon-black-managed-detection-and-response_vs_sophos-mdr"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Recognized for deep analytic capabilities and feature richness; sometimes critiqued for complexity, cost, and changes post-acquisition.",
+      "pros": ["Strong analytics & integration capabilities","Asset visibility","Feature depth"],
+      "cons": ["Higher cost / entry barriers","Complex deployment","Uncertainty post-Broadcom acquisition"],
+      "sources": [
+        "https://www.peerspot.com/products/comparisons/carbon-black-managed-detection-and-response_vs_sophos-mdr",
+        "https://www.reddit.com/r/cybersecurity/comments/1cylpyf/which_of_these_edr_solutions_would_be_the_best_to/"
+      ]
+    }
   },
   {
     "name": "OpenEDR",
     "url": "https://www.openedr.com",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "EDR"
-    ],
-    "primary": "Security \u2014 EDR / XDR Platforms",
+    "layers": ["Security"],
+    "categories": ["EDR"],
+    "primaryCategory": "EDR",
+    "customers": ["SMB","Mid-market"],
+    "primaryCustomer": "SMB",
     "description": "Open-source EDR project.",
-    "customers": [
-      "SMB",
-      "Mid-market"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "Sophos",
     "url": "https://www.sophos.com",
-    "layers": [
-      "Cloud",
-      "Security"
-    ],
-    "categories": [
-      "XDR",
-      "Firewall/NDR",
-      "Email Sec"
-    ],
-    "primary": "Security \u2014 EDR / XDR Platforms",
-    "description": "Broad platform: endpoint, network, email and MDR services.",
-    "customers": [
-      "SMB",
-      "Mid-market"
-    ],
-    "model": "Hybrid"
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["XDR","Firewall/NDR","Email Sec","MDR"],
+    "primaryCategory": "XDR",
+    "customers": ["SMB","Mid-market"],
+    "primaryCustomer": "SMB",
+    "description": "Broad platform: endpoint, network, email and managed detection and response (MDR) services with 24/7 SOC coverage.",
+    "primaryLayer": "Security",
+    "delivery": ["Product","Service"],
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Quote-based / per endpoint or per user",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Public pricing not clearly published for MDR / XDR; often sold via channel/partners. Recognized as a leader in MDR/EDR pricing & usability.",
+      "sources": [
+        "https://news.sophos.com/en-us/2025/09/16/sophos-tops-g2-fall-2025-reports",
+        "https://partnernews.sophos.com/en-us/2024/12/products/sophos-ranked-1-overall-for-firewall-mdr-and-edr-in-the-g2-winter-2025-reports"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Highly rated in MDR, EDR, and firewall categories across G2 reports; customers praise usability, integration, and threat response.",
+      "pros": ["Top G2 ranking","Strong usability and support","Full security stack integration"],
+      "cons": ["Pricing high for smaller orgs","Sometimes alert fatigue / prioritization challenges"],
+      "sources": [
+        "https://news.sophos.com/en-us/2025/09/16/sophos-tops-g2-fall-2025-reports",
+        "https://partnernews.sophos.com/en-us/2024/12/products/sophos-ranked-1-overall-for-firewall-mdr-and-edr-in-the-g2-winter-2025-reports",
+        "https://learn.g2.com/top-mdr-providers"
+      ]
+    }
   },
   {
     "name": "Huntress",
     "url": "https://www.huntress.com",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "MDR",
-      "Incident Response"
-    ],
-    "primary": "Security \u2014 EDR / XDR Platforms",
-    "description": "MDR focused on SMB/MSP with 24/7 analyst response.",
-    "customers": [
-      "SMB",
-      "MSP"
-    ],
-    "model": "Hybrid"
+    "layers": ["Security"],
+    "categories": ["MDR","Incident Response"],
+    "primaryCategory": "MDR",
+    "customers": ["SMB"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSP"],
+    "description": "Provides managed detection and response (MDR) with 24/7 Security Operations Center (SOC) coverage for SMB/MSP, including analyst response.",
+    "primaryLayer": "Security",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Per endpoint / identity / learner / datasource",
+      "list": null,
+      "currency": "USD",
+      "unit": "per-unit/month",
+      "notes": "Official pricing is quote-based; community-reported MSP rates indicate approximate ballpark per-unit pricing.",
+      "community_example": {"edr_per_endpoint": 1.95, "itdr_per_identity": 1.10, "sat_per_learner": 0.90, "siem_per_source": 1.25},
+      "sources": [
+        "https://www.huntress.com/pricing",
+        "https://www.huntress.com/pricing/edr",
+        "https://www.reddit.com/r/msp/comments/1juv5b8/huntress_pricing/"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": 4.9,
+      "g2_reviews_count": 790,
+      "summary": "Outstanding reviews for quality of support, ease of use, and detection; some feedback mentions occasional alert noise or integration gaps.",
+      "pros": ["Customer Support", "Ease of Use", "Threat Detection", "Protection", "Easy Deployment"],
+      "cons": ["Alert Issues", "Integration Issues", "False Positives"],
+      "sources": [
+        "https://www.g2.com/products/huntress-managed-edr/reviews"
+      ]
+    }
   },
   {
     "name": "Arctic Wolf",
     "url": "https://arcticwolf.com",
-    "layers": [
-      "Security",
-      "Cloud"
-    ],
-    "categories": [
-      "MDR",
-      "Managed SIEM"
-    ],
-    "primary": "Security \u2014 EDR / XDR Platforms",
-    "description": "Managed security operations across endpoint, network and cloud.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ],
-    "model": "Hybrid"
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["MDR","Managed SIEM"],
+    "primaryCategory": "MDR",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "Delivers managed security operations including MDR and SIEM, with 24/7 Security Operations Center (SOC) coverage across endpoint, network, and cloud.",
+    "primaryLayer": "Security",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Quote-based / managed service",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "No published per-endpoint prices. Some referencing in community pricing estimates for MDR in range $100/endpoint/month in small scale (though anecdotal).",
+      "sources": [
+        "https://www.g2.com/products/arctic-wolf/reviews",
+        "https://learn.g2.com/top-mdr-providers"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Strong in managed security operations and MDR; customers value the 24/7 SOC, responsive support, and proactive alerting.",
+      "pros": ["24/7 support","Concierge Security Team model","Strong threat visibility"],
+      "cons": ["Cost can be high","Alert volume/noise management","Dashboard customization may be limited"],
+      "sources": [
+        "https://www.g2.com/products/arctic-wolf/reviews",
+        "https://learn.g2.com/top-mdr-providers"
+      ]
+    }
   },
   {
     "name": "OSSEC",
     "url": "https://www.ossec.net",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "HIDS",
-      "IPS"
-    ],
-    "primary": "Security \u2014 HIDS / IPS / FIM",
+    "layers": ["Security"],
+    "categories": ["HIDS","IPS"],
+    "primaryCategory": "HIDS",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
     "description": "Host intrusion detection and log analysis.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "Wazuh",
     "url": "https://wazuh.com",
-    "layers": [
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "HIDS",
-      "SIEM",
-      "Compliance Evidence"
-    ],
-    "primary": "Security \u2014 HIDS / IPS / FIM",
+    "layers": ["Security","Compliance"],
+    "categories": ["HIDS","SIEM","Compliance Evidence"],
+    "primaryCategory": "HIDS",
+    "customers": ["SMB","Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "SMB",
     "description": "Open-source SIEM/HIDS with vulnerability and compliance mapping.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS","Product"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "Tripwire",
     "url": "https://www.tripwire.com",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "FIM"
-    ],
-    "primary": "Security \u2014 HIDS / IPS / FIM",
+    "layers": ["Security"],
+    "categories": ["FIM"],
+    "primaryCategory": "FIM",
+    "customers": ["Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Mid-market",
     "description": "File integrity monitoring for change detection and audit.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "AIDE",
     "url": "https://aide.github.io",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "FIM"
-    ],
-    "primary": "Security \u2014 HIDS / IPS / FIM",
+    "layers": ["Security"],
+    "categories": ["FIM"],
+    "primaryCategory": "FIM",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
     "description": "Advanced Intrusion Detection Environment, open-source FIM.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "Falco",
     "url": "https://falco.org",
-    "layers": [
-      "Security",
-      "Cloud"
-    ],
-    "categories": [
-      "Runtime",
-      "HIDS/IPS"
-    ],
-    "primary": "Security \u2014 HIDS / IPS / FIM",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["Runtime","HIDS/IPS"],
+    "primaryCategory": "Runtime",
+    "customers": ["Mid-market","Enterprise","Cloud-native Teams"],
+    "primaryCustomer": "Mid-market",
     "description": "Runtime security for containers/Kubernetes.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Cloud-native Teams"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "Zeek",
     "url": "https://zeek.org",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "NDR/IDS"
-    ],
-    "primary": "Security \u2014 Network (NDR / NPR)",
+    "layers": ["Security"],
+    "categories": ["NDR/IDS"],
+    "primaryCategory": "NDR/IDS",
+    "customers": ["Mid-market","Enterprise","Research/Education"],
+    "primaryCustomer": "Mid-market",
     "description": "Network security monitoring and protocol analysis (open-source).",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Research/Education"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "Wirespeed",
-    "url": "#",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "NDR"
-    ],
-    "primary": "Security \u2014 Network (NDR / NPR)",
+    "url": "https://wirespeed.co/",
+    "layers": ["Security"],
+    "categories": ["NDR"],
+    "primaryCategory": "NDR",
+    "customers": ["Mid-market"],
+    "primaryCustomer": "Mid-market",
     "description": "Network detection and response.",
-    "customers": [
-      "Mid-market"
-    ]
-  },
-  {
-    "name": "UniFi Network",
-    "url": "https://ui.com/uniFi",
-    "layers": [
-      "Device / IT Operations",
-      "Security"
-    ],
-    "categories": [
-      "NPR",
-      "AIMS"
-    ],
-    "primary": "Security \u2014 Network (NDR / NPR)",
-    "description": "Network infrastructure with controller-based management.",
-    "customers": [
-      "SMB",
-      "Prosumer"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "Splunk",
     "url": "https://www.splunk.com",
-    "layers": [
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "SIEM",
-      "Analytics"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security","Compliance"],
+    "categories": ["SIEM","Analytics"],
+    "primaryCategory": "SIEM",
+    "customers": ["Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
     "description": "Log analytics and SIEM used across enterprise and MSPs.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "Shuffle",
     "url": "https://shuffler.io",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "SOAR"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["SOAR"],
+    "primaryCategory": "SOAR",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
     "description": "Open-source SOAR for automating security workflows.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS","Product"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "OpenCTI",
     "url": "https://www.opencti.io",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Threat Intelligence"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["Threat Intelligence"],
+    "primaryCategory": "Threat Intelligence",
+    "customers": ["Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Mid-market",
     "description": "Open platform to manage and share CTI knowledge.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "MISP",
     "url": "https://www.misp-project.org",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Threat Intelligence"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["Threat Intelligence"],
+    "primaryCategory": "Threat Intelligence",
+    "customers": ["SMB","Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "SMB",
     "description": "Open-source platform for sharing indicators and intel.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "Filigran",
     "url": "https://filigran.io",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Threat Intelligence"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["Threat Intelligence"],
+    "primaryCategory": "Threat Intelligence",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
     "description": "Company behind OpenCTI ecosystem and CTI tooling.",
-    "customers": [
-      "Mid-market",
-      "Enterprise"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Product","Service"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "NetSPI",
     "url": "https://www.netspi.com",
-    "layers": [
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Offensive",
-      "Pen Testing"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security","Compliance"],
+    "categories": ["Offensive","Pen Testing"],
+    "primaryCategory": "Offensive",
+    "customers": ["Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Enterprise",
     "description": "Offensive security testing and attack surface management.",
-    "customers": [
-      "Enterprise",
-      "Gov/Regulated"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Service"],
+    "primaryDelivery": "Service"
   },
   {
     "name": "Delve",
-    "url": "#",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Offensive"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
-    "description": "Offensive testing/ASM services.",
-    "customers": [
-      "Mid-market",
-      "Enterprise"
-    ]
+    "url": "https://delve.co/",
+    "layers": ["Compliance","Security"],
+    "categories": ["GRC"],
+    "primaryCategory": "GRC",
+    "customers": ["Startup","SMB","Mid-market"],
+    "primaryCustomer": "Startup",
+    "description": "AI-driven security and compliance automation platform for frameworks like SOC 2 and ISO 27001, with optional penetration testing services.",
+    "primaryLayer": "Compliance",
+    "delivery": ["Product","Service"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "Drata",
     "url": "https://drata.com",
-    "layers": [
-      "Compliance"
-    ],
-    "categories": [
-      "GRC",
-      "SOC 2",
-      "ISO 27001"
-    ],
-    "primary": "Compliance / GRC",
-    "description": "Continuous control monitoring and auditor workflows.",
-    "customers": [
-      "Startup",
-      "SMB",
-      "Mid-market"
-    ]
+    "layers": ["Compliance"],
+    "categories": ["GRC"],
+    "primaryCategory": "GRC",
+    "customers": ["Startup","SMB","Mid-market"],
+    "primaryCustomer": "Startup",
+    "description": "Continuous control monitoring and auditor workflows supporting SOC 2, ISO 27001, and other frameworks.",
+    "primaryLayer": "Compliance",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Subscription / per seat or tiered",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Drata publishes pricing tiers starting $1400/month base + $10–$25/asset/user depending on modules. (According to third-party pricing aggregators.)",
+      "sources": [
+        "https://www.drata.com/pricing"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Well-regarded security/compliance automation tool; customers cite ease of evidence collection and audit readiness. Some note limitations when scaling complex environments.",
+      "pros": ["Audit automation","Ease of evidence gathering","Integrations"],
+      "cons": ["Cost scaling as entities grow","Complex environments may require customizations"],
+      "sources": [
+        "https://www.drata.com/pricing"
+      ]
+    }
   },
   {
     "name": "Vanta",
     "url": "https://vanta.com",
-    "layers": [
-      "Compliance"
-    ],
-    "categories": [
-      "GRC",
-      "Evidence"
-    ],
-    "primary": "Compliance / GRC",
-    "description": "Automated evidence collection for SOC2/ISO.",
-    "customers": [
-      "Startup",
-      "SMB",
-      "Mid-market"
-    ]
+    "layers": ["Compliance"],
+    "categories": ["GRC"],
+    "primaryCategory": "GRC",
+    "customers": ["Startup","SMB","Mid-market"],
+    "primaryCustomer": "Startup",
+    "description": "Automated evidence collection for SOC 2, ISO 27001, and related compliance frameworks.",
+    "primaryLayer": "Compliance",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Subscription / per user or per asset",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Vanta offers pricing by product and assets; typical starting bundles around $495/month (according to public sources). Exact rates vary by scope.",
+      "sources": [
+        "https://www.vanta.com/pricing"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Popular compliance automation (SOC 2, ISO 27001) with strong market adoption; praised for integration ecosystem and auditing ease.",
+      "pros": ["Integration breadth","Audit automation","Ease of onboarding"],
+      "cons": ["Escalating cost as scale increases","Less flexibility for non-standard frameworks"],
+      "sources": [
+        "https://www.vanta.com/pricing"
+      ]
+    }
   },
   {
     "name": "Secureframe",
     "url": "https://secureframe.com",
-    "layers": [
-      "Compliance"
-    ],
-    "categories": [
-      "GRC"
-    ],
-    "primary": "Compliance / GRC",
-    "description": "Security and privacy compliance automation.",
-    "customers": [
-      "Startup",
-      "SMB",
-      "Mid-market"
-    ]
+    "layers": ["Compliance"],
+    "categories": ["GRC"],
+    "primaryCategory": "GRC",
+    "customers": ["Startup","SMB","Mid-market"],
+    "primaryCustomer": "Startup",
+    "description": "Security and privacy compliance automation supporting SOC 2, ISO 27001, HIPAA, and other frameworks.",
+    "primaryLayer": "Compliance",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
   },
   {
-    "name": "Tugboat Logic",
-    "url": "https://www.tugboatlogic.com",
-    "layers": [
-      "Compliance"
-    ],
-    "categories": [
-      "GRC"
-    ],
-    "primary": "Compliance / GRC",
-    "description": "Policy management and audit readiness.",
-    "customers": [
-      "SMB",
-      "Mid-market"
-    ]
+    "name": "OneTrust",
+    "url": "https://www.onetrust.com",
+    "layers": ["Compliance"],
+    "categories": ["GRC"],
+    "primaryCategory": "GRC",
+    "customers": ["SMB","Mid-market"],
+    "primaryCustomer": "SMB",
+    "description": "Policy management and audit readiness for SOC 2, ISO 27001, and other compliance frameworks.",
+    "primaryLayer": "Compliance",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product",
+    "pricing": {
+      "model": "Quote-based / module-based",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "OneTrust sells via modules (e.g. Privacy, GRC, Vendor Risk, Ethics) under subscription; no public per-seat pricing. Pricing varies based on breadth of modules, users, and regulatory scope.",
+      "sources": [
+        "https://www.onetrust.com"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Leading GRC/privacy automation platform used widely in enterprises. Known for rich module ecosystem, strong compliance feature set, and market credibility.",
+      "pros": ["Modular & broad functionality","Brand recognition","Enterprise integrations","Regulatory focus"],
+      "cons": ["Pricing transparency low","Steep learning curve for complex setups","Overhead for small orgs"],
+      "sources": [
+        "https://www.onetrust.com"
+      ]
+    }
   },
   {
     "name": "VirusTotal",
     "url": "https://www.virustotal.com",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Threat Intelligence",
-      "Malware Analysis"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["Threat Intelligence","Malware Analysis"],
+    "primaryCategory": "Threat Intelligence",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSSP"],
     "description": "Crowd-sourced malware scanning and reputation service aggregating dozens of engines.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel","Product"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "CrowdStrike Falcon Intelligence",
     "url": "https://www.crowdstrike.com/products/threat-intelligence/",
-    "layers": [
-      "Security",
-      "Cloud"
-    ],
-    "categories": [
-      "Threat Intelligence",
-      "Enrichment"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
-    "description": "CrowdStrike\u2019s finished intel feeds, adversary profiles and enrichment APIs.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ]
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["Threat Intelligence","Enrichment"],
+    "primaryCategory": "Threat Intelligence",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "CrowdStrike’s finished intel feeds, adversary profiles and enrichment APIs.",
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel","Product"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "AlienVault OTX",
     "url": "https://otx.alienvault.com",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Threat Intelligence",
-      "IOCs"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["Threat Intelligence","IOCs"],
+    "primaryCategory": "Threat Intelligence",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSSP"],
     "description": "Open Threat Exchange with community-contributed indicators of compromise.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "MITRE ATT&CK",
     "url": "https://attack.mitre.org",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Framework",
-      "Knowledge Base"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["Framework","Knowledge Base"],
+    "primaryCategory": "Framework",
+    "customers": ["SMB","Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSSP"],
     "description": "Globally accessible knowledge base of adversary tactics, techniques, and procedures.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "CISA Advisories",
     "url": "https://www.cisa.gov",
-    "layers": [
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Advisories",
-      "KEV Catalog"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security","Compliance"],
+    "categories": ["Advisories","KEV Catalog"],
+    "primaryCategory": "Advisories",
+    "customers": ["Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Mid-market",
     "description": "US CISA alerts, Binding Operational Directives and Known Exploited Vulnerabilities.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "FS-ISAC",
     "url": "https://www.fsisac.com",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Information Sharing",
-      "Threat Intelligence"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["Information Sharing","Threat Intelligence"],
+    "primaryCategory": "Information Sharing",
+    "customers": ["Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Enterprise",
+    "channels": ["MSSP"],
     "description": "Financial Services Information Sharing and Analysis Center.",
-    "customers": [
-      "Enterprise",
-      "Gov/Regulated",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel","Community"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "MS-ISAC",
     "url": "https://www.cisecurity.org/ms-isac",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Information Sharing",
-      "Threat Intelligence"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["Information Sharing","Threat Intelligence"],
+    "primaryCategory": "Information Sharing",
+    "customers": ["Gov/Regulated"],
+    "primaryCustomer": "Gov/Regulated",
     "description": "Multi-State ISAC supporting US State, Local, Tribal, and Territorial governments.",
-    "customers": [
-      "Gov/Regulated"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel","Community"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "OpenPhish",
     "url": "https://openphish.com",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Threat Intelligence",
-      "Phishing Feeds"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["Threat Intelligence","Phishing Feeds"],
+    "primaryCategory": "Threat Intelligence",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSSP"],
     "description": "Automated phishing threat intelligence feeds and domain detections.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "MalwareBazaar",
     "url": "https://bazaar.abuse.ch",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Threat Intelligence",
-      "Malware Samples"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["Threat Intelligence","Malware Samples"],
+    "primaryCategory": "Threat Intelligence",
+    "customers": ["Research/Education","Mid-market","Enterprise"],
+    "primaryCustomer": "Research/Education",
+    "channels": ["MSSP"],
     "description": "Community repository of malware samples and indicators by abuse.ch.",
-    "customers": [
-      "Research/Education",
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "Exploit Database",
     "url": "https://www.exploit-db.com",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Exploit Intel",
-      "Offensive"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security"],
+    "categories": ["Exploit Intel","Offensive"],
+    "primaryCategory": "Exploit Intel",
+    "customers": ["Mid-market","Enterprise","Research/Education"],
+    "primaryCustomer": "Mid-market",
     "description": "Public archive of exploits and vulnerable software maintained by Offensive Security.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Research/Education"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "Hybrid Analysis",
     "url": "https://www.hybrid-analysis.com",
-    "layers": [
-      "Security",
-      "Cloud"
-    ],
-    "categories": [
-      "Sandbox",
-      "Malware Analysis"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["Sandbox","Malware Analysis"],
+    "primaryCategory": "Sandbox",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSSP"],
     "description": "Cloud malware sandboxing and behavioral analysis platform (CrowdStrike community).",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel","Product"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "CVE Databases",
     "url": "https://www.cve.org",
-    "layers": [
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Vulnerability Catalog",
-      "Advisories"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security","Compliance"],
+    "categories": ["Vulnerability Catalog","Advisories"],
+    "primaryCategory": "Vulnerability Catalog",
+    "customers": ["SMB","Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "SMB",
     "description": "Canonical identifiers for publicly disclosed vulnerabilities (CVE/NVD ecosystems).",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "Recorded Future",
     "url": "https://www.recordedfuture.com",
-    "layers": [
-      "Security",
-      "Cloud"
-    ],
-    "categories": [
-      "Threat Intelligence",
-      "Risk Intelligence"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["Threat Intelligence","Risk Intelligence"],
+    "primaryCategory": "Threat Intelligence",
+    "customers": ["Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
     "description": "Commercial threat intelligence platform with broad OSINT, dark web and enrichment.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel","Product"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "Flashpoint",
     "url": "https://flashpoint.io",
-    "layers": [
-      "Security",
-      "Cloud"
-    ],
-    "categories": [
-      "Threat Intelligence",
-      "Risk Intelligence"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["Threat Intelligence","Risk Intelligence"],
+    "primaryCategory": "Threat Intelligence",
+    "customers": ["Mid-market","Enterprise","Gov/Regulated"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
     "description": "Threat/Risk intelligence with deep/dark web collections and brand monitoring.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "Gov/Regulated",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel","Product"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "Intel471",
     "url": "https://intel471.com",
-    "layers": [
-      "Security",
-      "Cloud"
-    ],
-    "categories": [
-      "Threat Intelligence",
-      "Actor Tracking"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["Threat Intelligence","Actor Tracking"],
+    "primaryCategory": "Threat Intelligence",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
     "description": "Adversary intelligence focused on actor tracking and underground marketplaces.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Data/Intel","Product"],
+    "primaryDelivery": "Data/Intel"
   },
   {
     "name": "Coalition",
     "url": "https://www.coalitioninc.com",
-    "layers": [
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Cyber Insurance",
-      "Risk Transfer"
-    ],
-    "primary": "Compliance / GRC",
-    "description": "Cyber insurance with active monitoring and incident response services.",
-    "customers": [
-      "SMB",
-      "Mid-market"
-    ]
+    "layers": ["Compliance","Security"],
+    "categories": ["Cyber Insurance","Risk Management","Incident Response"],
+    "primaryCategory": "Cyber Insurance",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "description": "Active cyber insurance provider combining risk assessment, continuous security monitoring (Coalition Control), and incident response services.",
+    "primaryLayer": "Compliance",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service"
   },
   {
     "name": "Corvus",
     "url": "https://www.corvusinsurance.com",
-    "layers": [
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Cyber Insurance",
-      "Risk Transfer"
-    ],
-    "primary": "Compliance / GRC",
+    "layers": ["Compliance","Security"],
+    "categories": ["Cyber Insurance","Risk Transfer"],
+    "primaryCategory": "Cyber Insurance",
+    "customers": ["SMB","Mid-market"],
+    "primaryCustomer": "SMB",
     "description": "Cyber insurance provider with security scanning-driven underwriting.",
-    "customers": [
-      "SMB",
-      "Mid-market"
-    ]
-  },
-  {
-    "name": "Patch Management",
-    "url": "#",
-    "layers": [
-      "Device / IT Operations"
-    ],
-    "categories": [
-      "Patching"
-    ],
-    "primary": "Device / IT Operations (RMM \u2022 MDM \u2022 UEM \u2022 AIMS)",
-    "description": "Capability area: OS and application patch orchestration across fleets.",
-    "customers": [
-      "MSP",
-      "SMB",
-      "Mid-market",
-      "Enterprise"
-    ]
+    "primaryLayer": "Compliance",
+    "delivery": ["Service"],
+    "primaryDelivery": "Service"
   },
   {
     "name": "Lynis",
     "url": "https://cisofy.com/lynis",
-    "layers": [
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Audit",
-      "Benchmarking"
-    ],
-    "primary": "Security \u2014 HIDS / IPS / FIM",
+    "layers": ["Security","Compliance"],
+    "categories": ["Audit","Benchmarking"],
+    "primaryCategory": "Audit",
+    "customers": ["SMB","Mid-market","Enterprise","Research/Education"],
+    "primaryCustomer": "SMB",
     "description": "Open-source security auditing tool for Unix/Linux systems.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "Research/Education"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "chkrootkit",
     "url": "http://www.chkrootkit.org",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Rootkit Detection",
-      "HIDS"
-    ],
-    "primary": "Security \u2014 HIDS / IPS / FIM",
+    "layers": ["Security"],
+    "categories": ["Rootkit Detection","HIDS"],
+    "primaryCategory": "Rootkit Detection",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
     "description": "Lightweight tool to locally check for signs of rootkits on Unix systems.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "rkhunter",
     "url": "http://rkhunter.sourceforge.net",
-    "layers": [
-      "Security"
-    ],
-    "categories": [
-      "Rootkit Detection",
-      "HIDS"
-    ],
-    "primary": "Security \u2014 HIDS / IPS / FIM",
+    "layers": ["Security"],
+    "categories": ["Rootkit Detection","HIDS"],
+    "primaryCategory": "Rootkit Detection",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
     "description": "Rootkit Hunter scans for known rootkits, backdoors, and local exploits.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "OpenVAS / Greenbone",
     "url": "https://www.greenbone.net/en/openvas/",
-    "layers": [
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Vulnerability Scanning",
-      "VM"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security","Compliance"],
+    "categories": ["Vulnerability Scanning","VM"],
+    "primaryCategory": "Vulnerability Scanning",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSSP"],
     "description": "Open-source vulnerability scanning engine from Greenbone.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["OSS","Product"],
+    "primaryDelivery": "OSS"
   },
   {
     "name": "Nessus",
     "url": "https://www.tenable.com/products/nessus",
-    "layers": [
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Vulnerability Scanning",
-      "VM"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security","Compliance"],
+    "categories": ["Vulnerability Scanning","VM"],
+    "primaryCategory": "Vulnerability Scanning",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "SMB",
+    "channels": ["MSSP"],
     "description": "Widely used vulnerability assessment scanner by Tenable.",
-    "customers": [
-      "SMB",
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
   },
   {
     "name": "Qualys VM",
     "url": "https://www.qualys.com/apps/vulnerability-management/",
-    "layers": [
-      "Security",
-      "Compliance"
-    ],
-    "categories": [
-      "Vulnerability Scanning",
-      "VM"
-    ],
-    "primary": "SIEM \u2022 SOAR \u2022 Threat Intelligence \u2022 Offensive",
+    "layers": ["Security","Compliance"],
+    "categories": ["Vulnerability Scanning","VM"],
+    "primaryCategory": "Vulnerability Scanning",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
     "description": "Cloud platform for vulnerability management and policy compliance.",
-    "customers": [
-      "Mid-market",
-      "Enterprise",
-      "MSSP"
-    ]
+    "primaryLayer": "Security",
+    "delivery": ["Product"],
+    "primaryDelivery": "Product"
+  },
+  {
+    "name": "AirMDR",
+    "url": "https://airmdr.com",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["MDR"],
+    "primaryCategory": "MDR",
+    "customers": ["SMB","Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "description": "Managed detection and response platform delivering 24/7 SOC operations with AI-assisted triage and investigations, supervised by human analysts.",
+    "primaryLayer": "Security",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Quote-based MDR",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "No published pricing. As an MDR service, pricing is customized by scope, endpoints, and coverage.",
+      "sources": []
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Positioned as newer MDR offering with AI-assisted triage and human analyst oversight.",
+      "pros": ["AI-assisted investigations","Dedicated coverage model"],
+      "cons": ["Less public track record","Pricing transparency"],
+      "sources": []
+    }
+  },
+  {
+    "name": "Secureworks",
+    "url": "https://www.secureworks.com/services/managed-detection-and-response",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["MDR"],
+    "primaryCategory": "MDR",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "Provides managed detection and response (MDR) with 24/7 SOC coverage and incident response through its Taegis platform.",
+    "primaryLayer": "Security",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service"
+  },
+  {
+    "name": "Rapid7 MDR",
+    "url": "https://www.rapid7.com/services/managed-detection-and-response/",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["MDR"],
+    "primaryCategory": "MDR",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "Managed detection and response service providing 24/7 monitoring, threat hunting, and incident response.",
+    "primaryLayer": "Security",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service"
+  },
+  {
+    "name": "Expel",
+    "url": "https://expel.com",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["MDR"],
+    "primaryCategory": "MDR",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "Platform-led MDR service with 24/7 SOC operations and transparent incident workflows (Expel Workbench).",
+    "primaryLayer": "Security",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Quote-based / per endpoint / per volume",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "No official public pricing. In managed security pricing commentary, some list Expel around $15/endpoint/month (for 500 endpoints) in community estimates.",
+      "sources": [
+        "https://www.reddit.com/r/cybersecurity/comments/1bwijl5/deciphering_managed_security_services_pricing/"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "g2_reviews_count": null,
+      "summary": "Well-known platform-led MDR with transparency and strong reputation; customers appreciate visibility and response workflows. Some note cost vs. smaller setups.",
+      "pros": ["Transparent incident workflows","Platform + service blend","Strong reputation"],
+      "cons": ["Cost-effectiveness at small scale","Vendor lock sensitivity"],
+      "sources": [
+        "https://www.reddit.com/r/cybersecurity/comments/1bwijl5/deciphering_managed_security_services_pricing/"
+      ]
+    }
+  },
+  {
+    "name": "eSentire",
+    "url": "https://www.esentire.com",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["MDR"],
+    "primaryCategory": "MDR",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "Managed detection and response provider offering 24/7 threat hunting and response across endpoint, network, and cloud.",
+    "primaryLayer": "Security",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service"
+  },
+  {
+    "name": "Red Canary",
+    "url": "https://redcanary.com",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["MDR"],
+    "primaryCategory": "MDR",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "Provides MDR with continuous monitoring across endpoint, identity, and cloud; strong Microsoft and M365 integrations.",
+    "primaryLayer": "Security",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service"
+  },
+  {
+    "name": "ReliaQuest",
+    "url": "https://www.reliaquest.com",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["MDR"],
+    "primaryCategory": "MDR",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "MDR and SecOps-as-a-Service through GreyMatter platform integrating multiple security data sources.",
+    "primaryLayer": "Security",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service"
+  },
+  {
+    "name": "Mandiant Managed Defense",
+    "url": "https://www.mandiant.com/solutions/managed-defense",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["MDR"],
+    "primaryCategory": "MDR",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "Enterprise-grade MDR by Google Cloud’s Mandiant team with frontline threat intelligence and 24/7 response.",
+    "primaryLayer": "Security",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service"
+  },
+  {
+    "name": "Blackpoint Cyber",
+    "url": "https://blackpointcyber.com",
+    "layers": ["Security","Cloud / Tenant"],
+    "categories": ["MDR"],
+    "primaryCategory": "MDR",
+    "customers": ["Mid-market","Enterprise"],
+    "primaryCustomer": "Mid-market",
+    "channels": ["MSSP"],
+    "description": "MSP-focused MDR service delivering 24/7 monitoring, threat hunting, and response through its SNAP-Defense platform.",
+    "primaryLayer": "Security",
+    "delivery": ["Service","Product"],
+    "primaryDelivery": "Service"
   }
 ]
