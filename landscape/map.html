@@ -107,7 +107,66 @@
     .modelRow .b.primaryDelivery{ border:2px solid #5aa9ff }
     .channelsRow .b.primaryChannel{ border:2px solid #ff6f91 }
 
-    /* Labeled chip rows (labels above, pills below) */
+    /* Inline labeled rows (title + pills on same line) */
+    .row{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:6px 0}
+    .row .label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-right:2px}
+    .row .badges{margin:0}
+    /* Disable old pseudo-labels when using inline rows */
+    .layersRow::before,.categoriesRow::before,.customersRow::before,.channelsRow::before,.modelRow::before{content:none !important}
+
+    /* (Optional) box styles if you re-enable the grid later */
+    .pillGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 6px}
+    .box{border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--panel)}
+    .boxTitle{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+    .subLabel{font-size:10px;color:var(--muted);margin:6px 0 4px}
+    .box .badges{margin:0}
+
+    /* Pricing & Sentiment sections */
+    .meta{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+    .sectionTitle{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+    .kv{display:grid;grid-template-columns:120px 1fr;gap:6px;margin:8px 0}
+    .kv dt{font-size:13px;color:var(--muted)}
+    .kv dd{margin:0;font-size:13px}
+    .pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:12px;margin:2px 6px 2px 0;background:var(--chip);color:var(--ink)}
+    .sourceLink{font-size:13px;color:var(--muted)}
+    .sourceLink a{color:inherit;text-decoration:underline}
+    .proscons{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+    .proscons .pill{opacity:.9}
+
+    /* Compact meta with toggles */
+    .meta details{border:1px solid var(--line);border-radius:10px;padding:8px;margin-top:8px;background:var(--panel)}
+    .meta summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px}
+    .meta summary::marker{display:none}
+    .meta summary .arrow{
+      display:inline-block;
+      transform:rotate(0deg);
+      transition:transform .2s ease;
+      font-size:16px; /* bigger chevron */
+      color:var(--muted);
+      margin-right:6px;
+      line-height:1;
+      border:none;
+      border-radius:0;
+      width:auto;
+      height:auto;
+    }
+
+    .meta summary .label{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:var(--muted);
+      margin-right:6px;
+      width:var(--labelw);
+      display:inline-block;
+    }
+    .meta details[open] summary .arrow{transform:rotate(90deg)}
+    .compactLine{font-size:13px;color:var(--muted)}
+    .summaryLabel{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-right:6px}
+    .linkList{margin:6px 0 0;padding-left:16px}
+    .linkList li{font-size:13px;margin:2px 0}
+
+    /* Labeled chip rows (legacy layout kept in case you switch back) */
     .layersRow::before,
     .categoriesRow::before,
     .customersRow::before,
@@ -301,91 +360,163 @@
     return L.length ? L[0] : null;
   }
 
-  function buildCard(v){
-    const card=el('div','card');
+    function buildCard(v){
+      const card=el('div','card');
 
-    // Determine primaries (fallback to first array element if explicit primary not set)
-    const priLayer = getPrimaryLayer(v);
-    const priCustomer = v.primaryCustomer || ((v.customers||[])[0] || null);
-    const priCategory = v.primaryCategory || ((v.categories||[])[0] || null);
+      // Determine primaries (fallback to first array element if explicit primary not set)
+      const priLayer = getPrimaryLayer(v);
+      const priCustomer = v.primaryCustomer || ((v.customers||[])[0] || null);
+      const priCategory = v.primaryCategory || ((v.categories||[])[0] || null);
 
-    const h3=el('h3'); const a=el('a'); a.href=v.url||'#'; a.target='_blank'; a.rel='noopener'; a.textContent=v.name; h3.appendChild(a); card.appendChild(h3);
+      const h3=el('h3'); const a=el('a'); a.href=v.url||'#'; a.target='_blank'; a.rel='noopener'; a.textContent=v.name; h3.appendChild(a); card.appendChild(h3);
 
-    // Layers row — show exactly what's in v.layers; mark primary if present
-    const layersRow=el('div','badges layersRow');
-    const L = v.layers || [];
-    L.forEach(lbl=>{
-      const pill = chip(lbl);
-      if(priLayer === lbl) pill.classList.add('primaryLayer');
-      layersRow.appendChild(pill);
-    });
-    card.appendChild(layersRow);
+      // === Inline rows: label + pills on same line ===
+      function renderRow(title, className, items, primaryMatcher){
+        if(!items || !items.length) return null;
+        const row = el('div', `row ${className}`);
+        row.appendChild(el('span','label',title));
+        const wrap = el('div','badges');
+        items.forEach((val,idx)=>{
+          const chipEl = chip(val);
+          if(typeof primaryMatcher === 'function' && primaryMatcher(val, idx)){
+            // Add class based on row type
+            if(className.includes('layersRow')) chipEl.classList.add('primaryLayer');
+            if(className.includes('categoriesRow')) chipEl.classList.add('primaryCap');
+            if(className.includes('customersRow')) chipEl.classList.add('primaryCust');
+            if(className.includes('modelRow')) chipEl.classList.add('primaryDelivery');
+            if(className.includes('channelsRow')) chipEl.classList.add('primaryChannel');
+          }
+          wrap.appendChild(chipEl);
+        });
+        row.appendChild(wrap);
+        return row;
+      }
 
-    // Customers row (mark primary)
-    if(v.customers && v.customers.length){
-      const cust=el('div','badges customersRow');
-      v.customers.forEach((c,idx)=>{
-        const ch = chip(c);
-        if(priCustomer === c || (!priCustomer && idx===0)) ch.classList.add('primaryCust');
-        cust.appendChild(ch);
-      });
-      card.appendChild(cust);
+      const L = v.layers || [];
+      const priLayer_ = getPrimaryLayer(v);
+      const cats = v.categories || [];
+      const priCat = v.primaryCategory || cats[0] || null;
+      const custs = v.customers || [];
+      const priCust = v.primaryCustomer || custs[0] || null;
+      const deliveries = deliveryTokens(v.delivery);
+      const priDelivery = v.primaryDelivery || deliveries[0] || null;
+      const channels = Array.isArray(v.channels) ? v.channels.filter(Boolean) : [];
+      const priChannel = channels[0] || null;
+
+      const rowsFrag = document.createDocumentFragment();
+      const r1 = renderRow('Layers','layersRow', L, (val)=> val===priLayer_);
+      const r2 = renderRow('Capabilities','categoriesRow', cats, (val)=> val===priCat);
+      const r3 = renderRow('Customers','customersRow', custs, (val)=> val===priCust);
+      const r4 = renderRow('Delivery','modelRow', deliveries, (val)=> val===priDelivery);
+      const r5 = renderRow('Channels','channelsRow', channels, (val)=> val===priChannel);
+      [r1,r2,r3,r4,r5].forEach(r=>{ if(r) rowsFrag.appendChild(r); });
+      card.appendChild(rowsFrag);
+
+      // Description
+      if(v.description){ const p=el('p','muted'); p.textContent=v.description; card.appendChild(p); }
+
+      // Pricing & Sentiment sections (compact with toggles)
+      const hasPricing = v.pricing && (v.pricing.model || v.pricing.list != null || (Array.isArray(v.pricing.tiers) && v.pricing.tiers.length) || v.pricing.notes);
+      const hasSentiment = v.sentiment && (v.sentiment.g2_rating != null || v.sentiment.summary || (Array.isArray(v.sentiment.pros) && v.sentiment.pros.length) || (Array.isArray(v.sentiment.cons) && v.sentiment.cons.length));
+
+      if(hasPricing || hasSentiment){
+        const meta = el('div','meta');
+
+        if(hasPricing){
+          const det = document.createElement('details');
+          const sum = document.createElement('summary');
+          sum.appendChild(el('span','arrow','›'));
+          sum.appendChild(el('span','label','Price'));
+          const currency = (v.pricing.currency || '').toUpperCase();
+          const unit = v.pricing.unit || '';
+          const fmtMoney = (n)=>{
+            if(n==null || isNaN(Number(n))) return '';
+            const val = Number(n);
+            const sym = currency === 'USD' ? '$' : (currency ? currency + ' ' : '$');
+            return sym + (Math.round(val*100)/100).toString();
+          };
+          // Compact line
+          const headlineParts = [];
+          if(v.pricing.model) headlineParts.push(v.pricing.model);
+          const firstTier = Array.isArray(v.pricing.tiers) && v.pricing.tiers[0] ? v.pricing.tiers[0] : null;
+          if(firstTier && firstTier.price!=null){ headlineParts.push(`${firstTier.name}: ${fmtMoney(firstTier.price)}`); }
+          else if(v.pricing.list!=null){ headlineParts.push(`List: ${fmtMoney(v.pricing.list)}`); }
+          if(unit) headlineParts.push(unit);
+          const line = el('span','compactLine', headlineParts.join(' • '));
+          sum.appendChild(line);
+          det.appendChild(sum);
+
+          // Expanded content
+          const st = el('p','sectionTitle','Pricing');
+          const dl = el('dl','kv');
+          const addRow = (k,vv)=>{ const dt=el('dt',null,k); const dd=el('dd',null,vv); dl.appendChild(dt); dl.appendChild(dd); };
+          if(v.pricing.model) addRow('Model', v.pricing.model + (unit?` — ${unit}`:''));
+          if(v.pricing.list!=null) addRow('List', fmtMoney(v.pricing.list));
+          if(Array.isArray(v.pricing.tiers) && v.pricing.tiers.length){
+            const tiersWrap = document.createElement('div');
+            v.pricing.tiers.forEach(t=>{
+              const label = [t.name, (t.price!=null? fmtMoney(t.price): null)].filter(Boolean).join(' · ');
+              const pill = el('span','pill', label || 'Tier');
+              tiersWrap.appendChild(pill);
+            });
+            const dt=el('dt',null,'Tiers'); const dd=el('dd'); dd.appendChild(tiersWrap); dl.appendChild(dt); dl.appendChild(dd);
+          }
+          if(v.pricing.notes){ addRow('Notes', v.pricing.notes); }
+          if(Array.isArray(v.pricing.sources) && v.pricing.sources.length){
+            const list = document.createElement('ul'); list.className='linkList';
+            v.pricing.sources.forEach(u=>{ const li=document.createElement('li'); const a=document.createElement('a'); a.href=u; a.target='_blank'; a.rel='noopener'; a.textContent=u; li.appendChild(a); list.appendChild(li); });
+            det.appendChild(st); det.appendChild(dl); det.appendChild(list);
+          } else { det.appendChild(st); det.appendChild(dl); }
+          meta.appendChild(det);
+        }
+
+        if(hasSentiment){
+          const det2 = document.createElement('details');
+          const sum2 = document.createElement('summary');
+          sum2.appendChild(el('span','arrow','›'));
+          sum2.appendChild(el('span','label','Sentiment'));
+          const g2line = (v.sentiment.g2_rating!=null ? `G2: ${v.sentiment.g2_rating}` : null);
+          const sumline = v.sentiment.summary ? v.sentiment.summary : null;
+          sum2.appendChild(el('span','compactLine', [g2line, sumline].filter(Boolean).join(' • ')));
+          det2.appendChild(sum2);
+
+          const st2 = el('p','sectionTitle','Sentiment');
+          const dl2 = el('dl','kv');
+          const addRow2 = (k,vv)=>{ const dt=el('dt',null,k); const dd=el('dd',null,vv); dl2.appendChild(dt); dl2.appendChild(dd); };
+          if(v.sentiment.g2_rating!=null){
+            const rc = v.sentiment.g2_reviews_count!=null ? ` (${v.sentiment.g2_reviews_count} reviews)` : '';
+            addRow2('G2', `${v.sentiment.g2_rating}${rc}`);
+          }
+          if(v.sentiment.summary){ addRow2('Summary', v.sentiment.summary); }
+          const pros = Array.isArray(v.sentiment.pros) ? v.sentiment.pros : [];
+          const cons = Array.isArray(v.sentiment.cons) ? v.sentiment.cons : [];
+          if(pros.length){ const wrap = el('div','proscons'); pros.forEach(pv=> wrap.appendChild(el('span','pill','+ ' + pv))); const dt=el('dt',null,'Pros'); const dd=el('dd'); dd.appendChild(wrap); dl2.appendChild(dt); dl2.appendChild(dd); }
+          if(cons.length){ const wrap = el('div','proscons'); cons.forEach(cv=> wrap.appendChild(el('span','pill','− ' + cv))); const dt=el('dt',null,'Cons'); const dd=el('dd'); dd.appendChild(wrap); dl2.appendChild(dt); dl2.appendChild(dd); }
+          if(Array.isArray(v.sentiment.sources) && v.sentiment.sources.length){
+            const list = document.createElement('ul'); list.className='linkList';
+            v.sentiment.sources.forEach(u=>{ const li=document.createElement('li'); const a=document.createElement('a'); a.href=u; a.target='_blank'; a.rel='noopener'; a.textContent=u; li.appendChild(a); list.appendChild(li); });
+            det2.appendChild(st2); det2.appendChild(dl2); det2.appendChild(list);
+          } else { det2.appendChild(st2); det2.appendChild(dl2); }
+          meta.appendChild(det2);
+        }
+
+        card.appendChild(meta);
+      }
+
+      // Datasets for filters & sorting
+      card.dataset.caps = (v.categories||[]).join('|');
+      card.dataset.customers = (v.customers||[]).join('|');
+      card.dataset.delivery = deliveries.join('|');
+      card.dataset.layers = (v.layers || []).join('|');
+      card.dataset.primaryLayer = priLayer || '';
+      card.dataset.primaryCategory = priCategory || '';
+      card.dataset.primaryCustomer = priCustomer || '';
+      card.dataset.primaryDelivery = priDelivery || '';
+      card.dataset.channels = channels.join('|');
+      card.dataset.primaryChannel = priChannel || '';
+
+      return card;
     }
-
-    // Capabilities row (mark primary)
-    if(v.categories && v.categories.length){
-      const cats=el('div','badges categoriesRow');
-      v.categories.forEach((c,idx)=>{
-        const ch = chip(c);
-        if(priCategory === c || (!priCategory && idx===0)) ch.classList.add('primaryCap');
-        cats.appendChild(ch);
-      });
-      card.appendChild(cats);
-    }
-
-    // Channels row (mark primary = first if not specified)
-    const channels = Array.isArray(v.channels) ? v.channels.filter(Boolean) : [];
-    const priChannel = channels.length ? channels[0] : null;
-    if(channels.length){
-      const chRow=el('div','badges channelsRow');
-      channels.forEach((c,idx)=>{
-        const chp = chip(c);
-        if(priChannel === c || (!priChannel && idx===0)) chp.classList.add('primaryChannel');
-        chRow.appendChild(chp);
-      });
-      card.appendChild(chRow);
-    }
-
-    // Delivery row
-    const deliveries = deliveryTokens(v.delivery);
-    const priDelivery = v.primaryDelivery || (deliveries[0] || null);
-    if(deliveries.length){
-      const modelRow=el('div','badges modelRow');
-      deliveries.forEach((d,idx)=>{
-        const chp = chip(d);
-        if(priDelivery === d || (!priDelivery && idx===0)) chp.classList.add('primaryDelivery');
-        modelRow.appendChild(chp);
-      });
-      card.appendChild(modelRow);
-    }
-
-    // Description
-    if(v.description){ const p=el('p','muted'); p.textContent=v.description; card.appendChild(p); }
-
-    // Datasets for filters & sorting
-    card.dataset.caps = (v.categories||[]).join('|');
-    card.dataset.customers = (v.customers||[]).join('|');
-    card.dataset.delivery = deliveries.join('|');
-    card.dataset.layers = (v.layers || []).join('|');
-    card.dataset.primaryLayer = priLayer || '';
-    card.dataset.primaryCategory = priCategory || '';
-    card.dataset.primaryCustomer = priCustomer || '';
-    card.dataset.primaryDelivery = priDelivery || '';
-    card.dataset.channels = channels.join('|');
-    card.dataset.primaryChannel = priChannel || '';
-
-    return card;
-  }
 
   // Group walls by primaryLayer; create new walls dynamically for unknown values
   const walls={};
@@ -626,7 +757,6 @@
     const query = term.trim().toLowerCase();
     capOptionRows.forEach((row, cap)=>{
       const match = !query || cap.toLowerCase().includes(query);
-      row.style.display = match ? '' : 'none';
     });
   }
 

@@ -28,7 +28,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Widely adopted IDaaS; praised for Conditional Access depth and ecosystem; complexity/licensing sprawl noted as cons.",
       "pros": ["Conditional Access depth","Ecosystem integrations","Bundled with M365"],
       "cons": ["Licensing complexity","UX sprawl across portals"],
@@ -68,7 +67,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Strong for SMB/mid-market unified directory + device trust; praised for ease of use; some note advanced policy gaps vs. Entra/Jamf.",
       "pros": ["Ease of setup","Cross-OS device policies","Integrated SSO/MFA"],
       "cons": ["Advanced Apple/Windows policy depth","Pricing across modules"],
@@ -105,7 +103,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Enterprise SSO leader; lauded for integrations and reliability; cost and admin complexity cited as tradeoffs.",
       "pros": ["App catalog/integrations","Reliability","Mature ecosystem"],
       "cons": ["Cost at scale","Admin complexity"],
@@ -145,7 +142,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Top collaboration suite; praised for ease and integrations; admin wishes include finer device controls vs. M365/Intune.",
       "pros": ["Collaboration UX","Meet/Calendar/Drive integration"],
       "cons": ["Advanced device controls vs. Intune"],
@@ -176,7 +172,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Appeals to SMBs seeking outsourced IT; reviews cite responsiveness; cost vs. in-house or local MSPs noted.",
       "pros": ["Fast support","All-in-one offering"],
       "cons": ["Pricing transparency","Customization limits"],
@@ -216,7 +211,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "End-to-end stack valued for integration depth; complexity and admin overhead are common themes.",
       "pros": ["Deep integration","Security breadth"],
       "cons": ["Portal sprawl","Licensing complexity"],
@@ -282,7 +276,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Powerful legacy RMM favored by larger MSPs; setup/maintenance complexity noted.",
       "pros": ["Automation depth","PSA ecosystem"],
       "cons": ["Complex to administer"],
@@ -312,7 +305,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Well-rated RMM with strong patching and API; reviewers cite good support.",
       "pros": ["Ease of use","API integrations","Support"],
       "cons": ["Feature gaps vs. leaders in some areas"],
@@ -342,7 +334,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Feature-rich with automation; some feedback on stability and UX.",
       "pros": ["Automation","Remote control"],
       "cons": ["Stability/UX concerns"],
@@ -372,7 +363,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Broad MSP toolset; reviewers like ease of rollout; desires for faster UI and deeper reporting.",
       "pros": ["All-in-one MSP focus","Deployment ease"],
       "cons": ["UI performance","Reporting depth"],
@@ -410,7 +400,6 @@
     },
     "sentiment": {
       "g2_rating": 4.6,
-      "g2_reviews_count": null,
       "summary": "Praised for value and ease; growing feature set; some advanced features behind roadmap.",
       "pros": ["Value per-tech","Ease of setup","AI-assisted workflows"],
       "cons": ["Advanced reporting/features require workarounds"],
@@ -440,7 +429,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "All-in-one RMM/PSA for small MSPs; community notes steady improvement; desires for deeper integrations.",
       "pros": ["Simple pricing","PSA+RMM in one"],
       "cons": ["Depth vs. larger suites"],
@@ -475,7 +463,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Modern UX with fast iteration; praised support; still maturing depth in some modules.",
       "pros": ["Modern UI","Fast support","Active roadmap"],
       "cons": ["Feature depth still growing"],
@@ -540,7 +527,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Gold standard for Apple fleet management; powerful but can be complex and premium-priced.",
       "pros": ["Apple ecosystem depth","Zero-touch"],
       "cons": ["Learning curve","Cost vs. SMB needs"],
@@ -629,7 +615,7 @@
       "list": null,
       "currency": "USD",
       "unit": null,
-      "notes": "No public pricing; subscription service integrating endpoint, identity, compliance. Contact vendor for quote. Capterra lists a starting price of $795/year for “Zip Security” (flat rate).",
+      "notes": "Contact for quote. Capterra starting price of $795/year for “Zip Security” (flat rate).",
       "sources": [
         "https://www.zipsec.com/terms",
         "https://www.zipsec.com/",
@@ -638,7 +624,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Young, automation-first security / compliance orchestration platform focused on SMEs. Integrates identity, device and compliance controls behind a unified UI.",
       "pros": ["Unified security + compliance interface","Automation-first","Integrates with IdP, EDR, MDM"],
       "cons": ["Opaque pricing","Less mature ecosystem compared to incumbents"],
@@ -673,7 +658,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Valued by MSPs for multi-tenant visibility and security baselines; commonly paired with CIPP for bulk automation. Some sentiment notes limited depth for advanced actions.",
       "pros": ["Multi-tenant security baseline", "Unified alerts and incidents view", "Guided SMB hardening"],
       "cons": ["Limited bulk/advanced actions vs. CIPP", "Feature gaps vs. dedicated M365 automation tools"],
@@ -709,7 +693,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Strong MSP community adoption for Microsoft 365 bulk automation and reporting; frequently used to complement Lighthouse.",
       "pros": ["Bulk actions across tenants", "Scripted workflows", "Active open-source community"],
       "cons": ["DIY operations for self-host", "Support depends on community/tier"],
@@ -745,7 +728,37 @@
     "description": "EDR/XDR with identity and cloud modules; strong threat intel. Provides managed detection and response (MDR) with 24/7 SOC coverage as a core offering.",
     "primaryLayer": "Security",
     "delivery": ["Product","Service"],
-    "primaryDelivery": "Service"
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Per device (annual tiers)",
+      "list": null,
+      "currency": "USD",
+      "unit": "device/year",
+      "notes": "Public SMB bundles for endpoint protection (Falcon Go/Pro/Enterprise). Falcon Complete (MDR) is quote-based.",
+      "tiers": [
+        {"name": "Falcon Go", "price": 59.99},
+        {"name": "Falcon Pro", "price": 99.99},
+        {"name": "Falcon Enterprise", "price": 184.99}
+      ],
+      "sources": [
+        "https://www.crowdstrike.com/en-us/pricing/",
+        "https://www.crowdstrike.com/en-us/pricing/falcon-enterprise/",
+        "https://www.crowdstrike.com/en-us/pricing/falcon-pro/",
+        "https://www.crowdstrike.com/en-us/pricing/falcon-go/",
+        "https://www.crowdstrike.com/en-us/free-trial-guide/bundles-and-purchasing/"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "summary": "Market-leading EDR/XDR with strong detection, lightweight agent, and mature console; outage in 2024 noted in some discussions; high customer satisfaction overall.",
+      "pros": ["Detection quality","Lightweight agent","Console/UX","Threat intel"],
+      "cons": ["Cost at scale","Occasional alert noise"],
+      "sources": [
+        "https://www.g2.com/products/crowdstrike-falcon-endpoint-protection-platform/reviews",
+        "https://www.g2.com/products/crowdstrike-product-suite/reviews",
+        "https://www.g2.com/sellers/crowdstrike"
+      ]
+    }
   },
   {
     "name": "SentinelOne",
@@ -759,7 +772,35 @@
     "description": "Autonomous EDR/XDR plus cloud and data security options. Provides managed detection and response (MDR) with 24/7 SOC coverage as a core offering.",
     "primaryLayer": "Security",
     "delivery": ["Product","Service"],
-    "primaryDelivery": "Service"
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Per endpoint (annual tiers)",
+      "list": null,
+      "currency": "USD",
+      "unit": "endpoint/year",
+      "notes": "Public page lists Singularity tiers (Core/Control/Complete/Commercial); MDR (Vigilance) is quote-based.",
+      "tiers": [
+        {"name": "Singularity Core", "price": 69.99},
+        {"name": "Singularity Control", "price": 79.99},
+        {"name": "Singularity Complete", "price": 179.99},
+        {"name": "Singularity Commercial", "price": 229.99}
+      ],
+      "sources": [
+        "https://www.sentinelone.com/platform-packages/",
+        "https://underdefense.com/blog/sentinelone-pricing-2025-packages-comparison/",
+        "https://www.vertice.one/vendors/sentinelone"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "summary": "Strong autonomous prevention/detection; Vigilance MDR praised for responsiveness; some feedback on complexity by tier.",
+      "pros": ["Autonomous prevention","Fast response (Vigilance)","Coverage breadth"],
+      "cons": ["Cost for higher tiers","Learning curve"],
+      "sources": [
+        "https://www.g2.com/products/sentinelone-vigilance-respond/reviews?qs=pros-and-cons",
+        "https://www.g2.com/sellers/sentinelone"
+      ]
+    }
   },
   {
     "name": "Microsoft Defender for Endpoint",
@@ -798,7 +839,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Recognized for deep analytic capabilities and feature richness; sometimes critiqued for complexity, cost, and changes post-acquisition.",
       "pros": ["Strong analytics & integration capabilities","Asset visibility","Feature depth"],
       "cons": ["Higher cost / entry barriers","Complex deployment","Uncertainty post-Broadcom acquisition"],
@@ -846,7 +886,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Highly rated in MDR, EDR, and firewall categories across G2 reports; customers praise usability, integration, and threat response.",
       "pros": ["Top G2 ranking","Strong usability and support","Full security stack integration"],
       "cons": ["Pricing high for smaller orgs","Sometimes alert fatigue / prioritization challenges"],
@@ -885,7 +924,7 @@
     },
     "sentiment": {
       "g2_rating": 4.9,
-      "g2_reviews_count": 790,
+      "": 790,
       "summary": "Outstanding reviews for quality of support, ease of use, and detection; some feedback mentions occasional alert noise or integration gaps.",
       "pros": ["Customer Support", "Ease of Use", "Threat Detection", "Protection", "Easy Deployment"],
       "cons": ["Alert Issues", "Integration Issues", "False Positives"],
@@ -920,7 +959,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Strong in managed security operations and MDR; customers value the 24/7 SOC, responsive support, and proactive alerting.",
       "pros": ["24/7 support","Concierge Security Team model","Strong threat visibility"],
       "cons": ["Cost can be high","Alert volume/noise management","Dashboard customization may be limited"],
@@ -1137,7 +1175,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Well-regarded security/compliance automation tool; customers cite ease of evidence collection and audit readiness. Some note limitations when scaling complex environments.",
       "pros": ["Audit automation","Ease of evidence gathering","Integrations"],
       "cons": ["Cost scaling as entities grow","Complex environments may require customizations"],
@@ -1170,7 +1207,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Popular compliance automation (SOC 2, ISO 27001) with strong market adoption; praised for integration ecosystem and auditing ease.",
       "pros": ["Integration breadth","Audit automation","Ease of onboarding"],
       "cons": ["Escalating cost as scale increases","Less flexibility for non-standard frameworks"],
@@ -1216,7 +1252,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Leading GRC/privacy automation platform used widely in enterprises. Known for rich module ecosystem, strong compliance feature set, and market credibility.",
       "pros": ["Modular & broad functionality","Brand recognition","Enterprise integrations","Regulatory focus"],
       "cons": ["Pricing transparency low","Steep learning curve for complex setups","Overhead for small orgs"],
@@ -1560,7 +1595,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Positioned as newer MDR offering with AI-assisted triage and human analyst oversight.",
       "pros": ["AI-assisted investigations","Dedicated coverage model"],
       "cons": ["Less public track record","Pricing transparency"],
@@ -1579,7 +1613,28 @@
     "description": "Provides managed detection and response (MDR) with 24/7 SOC coverage and incident response through its Taegis platform.",
     "primaryLayer": "Security",
     "delivery": ["Service","Product"],
-    "primaryDelivery": "Service"
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Quote-based MDR (Taegis ManagedXDR)",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Pricing via sales; varies by data sources and coverage.",
+      "sources": [
+        "https://www.secureworks.com/services/managed-detection-and-response",
+        "https://www.g2.com/products/secureworks-taegis-managedxdr/reviews"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "summary": "Praised for analyst collaboration and visibility via Taegis; reviewers cite strong support and effective threat response.",
+      "pros": ["Analyst collaboration","Multi-signal visibility","Quality of support"],
+      "cons": ["Setup complexity for some","Learning curve"],
+      "sources": [
+        "https://www.g2.com/products/secureworks-taegis-managedxdr/reviews",
+        "https://www.g2.com/products/secureworks-taegis-xdr/reviews"
+      ]
+    }
   },
   {
     "name": "Rapid7 MDR",
@@ -1593,7 +1648,28 @@
     "description": "Managed detection and response service providing 24/7 monitoring, threat hunting, and incident response.",
     "primaryLayer": "Security",
     "delivery": ["Service","Product"],
-    "primaryDelivery": "Service"
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Quote-based MDR",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Pricing via sales; commonly bundled with Rapid7 platform modules.",
+      "sources": [
+        "https://www.rapid7.com/services/managed-detection-and-response/",
+        "https://www.g2.com/products/rapid7-managed-detection-and-response-services/reviews"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "summary": "Strong 24/7 SOC and response; customers call out knowledgeable analysts and reporting.",
+      "pros": ["Analyst expertise","Response time","Reporting"],
+      "cons": ["Cost for smaller teams"],
+      "sources": [
+        "https://www.g2.com/products/rapid7-managed-detection-and-response-services/reviews",
+        "https://www.g2.com/sellers/rapid7"
+      ]
+    }
   },
   {
     "name": "Expel",
@@ -1620,7 +1696,6 @@
     },
     "sentiment": {
       "g2_rating": null,
-      "g2_reviews_count": null,
       "summary": "Well-known platform-led MDR with transparency and strong reputation; customers appreciate visibility and response workflows. Some note cost vs. smaller setups.",
       "pros": ["Transparent incident workflows","Platform + service blend","Strong reputation"],
       "cons": ["Cost-effectiveness at small scale","Vendor lock sensitivity"],
@@ -1641,7 +1716,28 @@
     "description": "Managed detection and response provider offering 24/7 threat hunting and response across endpoint, network, and cloud.",
     "primaryLayer": "Security",
     "delivery": ["Service","Product"],
-    "primaryDelivery": "Service"
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Quote-based MDR",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Pricing via sales; scope depends on signal sources and coverage.",
+      "sources": [
+        "https://www.esentire.com",
+        "https://www.g2.com/products/esentire/reviews"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "summary": "Well-regarded MDR with high customer satisfaction and strong support.",
+      "pros": ["Quality of support","Rapid response","Multi-signal coverage"],
+      "cons": ["Premium pricing for some"],
+      "sources": [
+        "https://www.g2.com/products/esentire/reviews",
+        "https://www.g2.com/sellers/esentire"
+      ]
+    }
   },
   {
     "name": "Red Canary",
@@ -1655,7 +1751,29 @@
     "description": "Provides MDR with continuous monitoring across endpoint, identity, and cloud; strong Microsoft and M365 integrations.",
     "primaryLayer": "Security",
     "delivery": ["Service","Product"],
-    "primaryDelivery": "Service"
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Quote-based MDR",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Pricing via sales; platform-led MDR with broad signal coverage.",
+      "sources": [
+        "https://redcanary.com",
+        "https://www.g2.com/products/red-canary/reviews"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "summary": "Consistently high marks for support, detection quality, and usability.",
+      "pros": ["Customer support","Proactive hunting","Usability"],
+      "cons": ["Occasional response lag in escalations"],
+      "sources": [
+        "https://www.g2.com/products/red-canary/reviews",
+        "https://www.g2.com/sellers/red-canary",
+        "https://redcanary.com/blog/news-events/g2-summer-2025-mdr-reports/"
+      ]
+    }
   },
   {
     "name": "ReliaQuest",
@@ -1669,7 +1787,29 @@
     "description": "MDR and SecOps-as-a-Service through GreyMatter platform integrating multiple security data sources.",
     "primaryLayer": "Security",
     "delivery": ["Service","Product"],
-    "primaryDelivery": "Service"
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Quote-based MDR (GreyMatter)",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Pricing via sales; GreyMatter platform-based MDR.",
+      "sources": [
+        "https://www.reliaquest.com",
+        "https://www.g2.com/categories/extended-detection-and-response-xdr-platforms?order=g2_score&page=4",
+        "https://www.g2.com/categories/digital-risk-protection-drp-platforms?order=popular&page=3"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "summary": "Positive feedback around SOC operations and hunting; mixed third-party commentary on automation vs. human-led focus.",
+      "pros": ["Threat hunting","Integration breadth"],
+      "cons": ["Automation focus vs. fully managed expectations"],
+      "sources": [
+        "https://www.g2.com/categories/extended-detection-and-response-xdr-platforms?order=g2_score&page=4",
+        "https://www.esentire.com/esentire-mdr-vs-everyone/compare/esentire-vs-reliaquest"
+      ]
+    }
   },
   {
     "name": "Mandiant Managed Defense",
@@ -1683,7 +1823,28 @@
     "description": "Enterprise-grade MDR by Google Cloud’s Mandiant team with frontline threat intelligence and 24/7 response.",
     "primaryLayer": "Security",
     "delivery": ["Service","Product"],
-    "primaryDelivery": "Service"
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Quote-based MDR",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Pricing via sales; delivered by Google Cloud Mandiant team.",
+      "sources": [
+        "https://www.mandiant.com/solutions/managed-defense",
+        "https://www.g2.com/products/mandiant-advantage/reviews"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "summary": "Enterprise-focused MDR with strong frontline intel; reviews highlight expertise and incident response depth.",
+      "pros": ["Frontline threat intel","Expert analysts"],
+      "cons": ["Premium pricing"],
+      "sources": [
+        "https://www.g2.com/products/mandiant-advantage/reviews",
+        "https://www.gartner.com/reviews/market/managed-detection-and-response/vendor/google-mandiant/product/mandiant-managed-detection-and-response-services/likes-dislikes"
+      ]
+    }
   },
   {
     "name": "Blackpoint Cyber",
@@ -1697,6 +1858,27 @@
     "description": "MSP-focused MDR service delivering 24/7 monitoring, threat hunting, and response through its SNAP-Defense platform.",
     "primaryLayer": "Security",
     "delivery": ["Service","Product"],
-    "primaryDelivery": "Service"
+    "primaryDelivery": "Service",
+    "pricing": {
+      "model": "Quote-based MDR (MSP-centric)",
+      "list": null,
+      "currency": "USD",
+      "unit": null,
+      "notes": "Pricing via sales; common in MSP channel bundles.",
+      "sources": [
+        "https://blackpointcyber.com",
+        "https://www.g2.com/products/blackpoint-cyber/reviews"
+      ]
+    },
+    "sentiment": {
+      "g2_rating": null,
+      "summary": "Well-reviewed by MSPs for responsiveness and efficacy; pricing can be a concern for smaller teams.",
+      "pros": ["Quality of support","Real-time response","MSP fit"],
+      "cons": ["Cost for small teams"],
+      "sources": [
+        "https://www.g2.com/products/blackpoint-cyber/reviews",
+        "https://www.g2.com/sellers/blackpoint-cyber"
+      ]
+    }
   }
 ]
