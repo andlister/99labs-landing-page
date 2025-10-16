@@ -1881,4 +1881,42 @@
       ]
     }
   }
+,{
+  "name": "MiradorIT (Managed Services)",
+  "url": "https://www.miradorit.com/managed-services/",
+  "layers": ["Device / IT Operations","Security","Cloud / Tenant"],
+  "categories": ["Managed IT","RMM","Helpdesk","Backup","Email/Spam Protection"],
+  "primaryCategory": "Managed IT",
+  "customers": ["SMB"],
+  "primaryCustomer": "SMB",
+  "description": "Regional MSP serving northern New England offering flat-rate managed IT services (helpdesk, monitoring/patching, backup, email/spam protection) with 24/7 monitoring.",
+  "primaryLayer": "Device / IT Operations",
+  "delivery": ["Service"],
+  "primaryDelivery": "Service",
+  "pricing": {
+    "model": "MSP service (flat-rate, quote-based)",
+    "list": null,
+    "currency": "USD",
+    "unit": "per user/month",
+    "notes": "MiradorIT advertises flat-rate managed services; no public price card. Industry guides indicate typical MSP packages range ~$150–$400 per user/month depending on scope and maturity.",
+    "ranges": [
+      {"users": "typical", "price_range": [150, 400], "unit": "user/month"}
+    ],
+    "sources": [
+      "https://www.miradorit.com/managed-services/",
+      "https://www.vc3.com/guide/managed-it-services-cost-pricing",
+      "https://www.netgainit.com/blogs/managed-it-services-pricing-guide/"
+    ]
+  },
+  "sentiment": {
+    "g2_rating": null,
+    "summary": "Local MSP positioning focused on flat-rate support and 24/7 monitoring for small businesses; no major third‑party aggregate review data found. Website emphasizes uptime and predictable costs.",
+    "pros": ["Flat-rate model","24/7 monitoring","SMB focus"],
+    "cons": ["No public pricing","Limited third‑party review visibility"],
+    "sources": [
+      "https://www.miradorit.com/managed-services/",
+      "https://www.miradorit.com/"
+    ]
+  }
+}
 ]

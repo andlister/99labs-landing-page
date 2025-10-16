@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SMB Security Tiers — Microsoft Defender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1016;--panel:#121823;--ink:#e7eef7;--muted:#9bb0c8;--line:#2a3a50;--chip:#172233;
+      --c1:#5aa9ff;--c2:#7bd389;--c3:#ffb86b;--c4:#de6fff;--c5:#ff6f91;--c6:#6ef2ff;
+    }
+    /* Light theme overrides */
+    :root.light{
+      --bg:#ffffff;
+      --panel:#ffffff;
+      --ink:#0b1016;
+      --muted:#4a5568;
+      --line:#d8e1ea;
+      --chip:#f3f7fb;
+      --c1:#1e88e5;--c2:#2e7d32;--c3:#ef6c00;--c4:#8e24aa;--c5:#d81b60;--c6:#00838f;
+    }
+    .themeToggle{position:fixed;right:16px;top:16px;z-index:9999;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+    .themeToggle:hover{box-shadow:0 2px 6px rgba(0,0,0,.08)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Lato', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;background:var(--bg);color:var(--ink)}
+    .wrap{max-width:100%;margin:16px auto;padding:0 24px}
+    header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:8px 0 10px}
+    h1{font-size:28px;margin:12px 0 6px;font-weight:900;letter-spacing:.2px}
+    p.lead{color:var(--muted);margin:0 0 16px}
+
+    /* Cards (shadcn/ui-esque) */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 16px 12px;transition:box-shadow .2s ease}
+    .card.basic { border: 2px solid var(--c2); }
+    .card.silver { border: 2px solid var(--c1); }
+    .card.gold { border: 2px solid var(--c3); }
+    .card.prosumer { border: 2px solid var(--c6); }
+    .card h3{margin:0 0 6px;font-size:18px}
+    .card p{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .price{font-weight:700;font-size:13px;margin-top:8px}
+    ul.compact{margin:8px 0 0;padding-left:16px}
+    ul.compact li{margin:4px 0;font-size:13px}
+
+    /* Table */
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px}
+    .tableWrap{overflow:auto;border-radius:14px}
+    table.comp{width:100%;border-collapse:collapse;font-size:13px}
+    table.comp thead th{position:sticky;top:0;background:var(--chip);color:var(--ink);font-weight:700;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+    table.comp tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+    table.comp tbody tr:last-child td{border-bottom:none}
+
+    /* Helpers */
+    .muted{color:var(--muted)}
+    .center{display:flex;justify-content:center;align-items:center}
+    .mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mt24{margin-top:24px}
+    .pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px;background:var(--chip);color:var(--ink)}
+    .linkRow{margin-top:10px;display:flex;gap:8px;justify-content:center}
+  </style>
+</head>
+<body>
+  <button class="themeToggle" id="themeToggle" aria-label="Toggle theme">Toggle theme</button>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Microsoft Defender — SMB Security Tiers</h1>
+        <p class="lead">A clear progression from <strong>Basic</strong> → <strong>Silver</strong> → <strong>Gold</strong>. Short summaries first, full comparison below.</p>
+      </div>
+    </header>
+
+    <!-- Summary Cards -->
+    <section class="mt8">
+      <div class="grid">
+        <!-- Prosumer -->
+        <div class="card prosumer">
+          <h3>Prosumer — Solo / Micro</h3>
+          <p class="muted">Freelancer / 1–5 devices. Self-managed.</p>
+          <ul class="compact">
+            <li>Defender AV + OS auto-update</li>
+            <li>BitLocker / FileVault, OneDrive</li>
+            <li>MFA (Authenticator), password manager</li>
+            <li>DNS filter (optional)</li>
+          </ul>
+          <div class="price">$0–5 / user / mo</div>
+        </div>
+        <!-- Basic -->
+        <div class="card basic">
+          <h3>Basic — Secure Foundations</h3>
+          <p class="muted">Prosumer / 1–10 users. Minimum viable controls.</p>
+          <ul class="compact">
+            <li>Defender Antivirus (Windows/macOS)</li>
+            <li>BitLocker / FileVault, OneDrive versioning</li>
+            <li>MFA via Microsoft Authenticator</li>
+            <li>EOP email filtering baseline</li>
+          </ul>
+          <ul class="compact mt8">
+            <li>8x5 helpdesk</li>
+            <li>Onboarding / leavers</li>
+            <li>Patch mgmt</li>
+            <li>M365 backup</li>
+            <li>Monthly health report</li>
+          </ul>
+          <div class="price">MSP Sell: $35–45 / user / mo</div>
+        </div>
+        <!-- Silver -->
+        <div class="card silver">
+          <h3>Silver — Hardened & Managed</h3>
+          <p class="muted">Growing SMB / 10–150 users. Centralized management.</p>
+          <ul class="compact">
+            <li>Intune MDM + compliance</li>
+            <li>Defender for Business (EDR)</li>
+            <li>Conditional Access (Entra ID P1)</li>
+            <li>Defender for Office 365 Plan 1</li>
+          </ul>
+          <ul class="compact mt8">
+            <li>8x5 helpdesk + SLAs</li>
+            <li>Onboarding automation</li>
+            <li>Policy & CA tuning</li>
+            <li>Phishing sims & training</li>
+            <li>Asset mgmt • Quarterly vCIO</li>
+          </ul>
+          <div class="price">MSP Sell: $60–85 / user / mo</div>
+        </div>
+        <!-- Gold -->
+        <div class="card gold">
+          <h3>Gold — Full Defender XDR</h3>
+          <p class="muted">Mature / regulated SMB. XDR, automation, compliance.</p>
+          <ul class="compact">
+            <li>M365 Defender XDR + AIR</li>
+            <li>TVM / Exposure Mgmt</li>
+            <li>Defender for Office 365 Plan 2</li>
+            <li>Purview DLP • Sentinel/MDR (optional)</li>
+          </ul>
+          <ul class="compact mt8">
+            <li>24x7 or SOC/MDR</li>
+            <li>Compliance pack</li>
+            <li>IR playbooks</li>
+            <li>SIEM dashboards</li>
+            <li>Quarterly exercises</li>
+          </ul>
+          <div class="price">MSP Sell: $90–130 / user / mo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full Comparison Table -->
+    <section class="mt24">
+      <div class="panel tableWrap">
+        <table class="comp">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Prosumer</th>
+              <th>Basic</th>
+              <th>Silver</th>
+              <th>Gold</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Typical use case</td>
+              <td>Solo / 1–5 devices</td>
+              <td>Prosumer / 1–10 users</td>
+              <td>Growing SMB / 10–150 users</td>
+              <td>Mature SMB / 50–300 users</td>
+            </tr>
+            <tr>
+              <td title="Microsoft direct license cost (before MSP discount)">Microsoft License (Direct)</td>
+              <td>$0–5 / user / mo</td>
+              <td>$0–25 / user / mo</td>
+              <td>$27–35 / user / mo</td>
+              <td>$40–50 / user / mo</td>
+            </tr>
+            <tr>
+              <td>MSP cost (wholesale via CSP)</td>
+              <td>N/A</td>
+              <td>$0–20</td>
+              <td>$25–30</td>
+              <td>$35–45</td>
+            </tr>
+            <tr>
+              <td><strong>MSP Sell</strong></td>
+              <td><strong>N/A</strong></td>
+              <td><strong>$35–45</strong></td>
+              <td><strong>$60–85</strong></td>
+              <td><strong>$90–130</strong></td>
+            </tr>
+            <tr>
+              <td>MSP services (typical)</td>
+              <td>Self‑managed</td>
+              <td>8x5 helpdesk; onboarding; patch; M365 backup; monthly report</td>
+              <td>Helpdesk+SLAs; onboarding auto; CA tuning; phishing sims; asset mgmt; vCIO</td>
+              <td>24x7/SOC; compliance pack; IR playbooks; SIEM/MDR; exercises</td>
+            </tr>
+            <tr>
+              <td>Core Microsoft plan</td>
+              <td>Consumer M365 / none</td>
+              <td>M365 Basic / Personal / Standard</td>
+              <td>M365 Business Premium</td>
+              <td>Business Premium + security add‑ons</td>
+            </tr>
+            <tr>
+              <td>Endpoint protection</td>
+              <td>Defender AV</td>
+              <td>Defender Antivirus</td>
+              <td>Defender for Business (EDR)</td>
+              <td>Defender for Business + TVM</td>
+            </tr>
+            <tr>
+              <td>Device management</td>
+              <td>Local settings</td>
+              <td>Local OS controls</td>
+              <td>Intune compliance policies</td>
+              <td>Intune + security baselines</td>
+            </tr>
+            <tr>
+              <td>Policy enforcement</td>
+              <td>Manual</td>
+              <td>Manual practices</td>
+              <td>Conditional device compliance</td>
+              <td>Automated org‑wide</td>
+            </tr>
+            <tr>
+              <td>Encryption & backup</td>
+              <td>BitLocker/FileVault + OneDrive</td>
+              <td>BitLocker / FileVault + OneDrive</td>
+              <td>Intune‑managed encryption</td>
+              <td>Policy‑enforced + isolation</td>
+            </tr>
+            <tr>
+              <td>Email protection</td>
+              <td>Outlook/Gmail filters</td>
+              <td>EOP baseline</td>
+              <td>Defender for Office 365 P1</td>
+              <td>Defender for Office 365 P2</td>
+            </tr>
+            <tr>
+              <td>Identity provider</td>
+              <td>Microsoft Account</td>
+              <td>Microsoft Account</td>
+              <td>Entra ID (P1)</td>
+              <td>Entra ID (P2)</td>
+            </tr>
+            <tr>
+              <td>Multi‑factor auth</td>
+              <td>Authenticator app</td>
+              <td>Authenticator / SMS manual</td>
+              <td>Enforced via policy</td>
+              <td>Adaptive MFA</td>
+            </tr>
+            <tr>
+              <td>Conditional access</td>
+              <td>None</td>
+              <td>None</td>
+              <td>Basic (geo / device)</td>
+              <td>Advanced adaptive policies</td>
+            </tr>
+            <tr>
+              <td>Passwordless / Hello</td>
+              <td>Optional</td>
+              <td>Optional per device</td>
+              <td>Managed rollout</td>
+              <td>Mandatory baseline</td>
+            </tr>
+            <tr>
+              <td>Single sign‑on (SSO)</td>
+              <td>Consumer scope</td>
+              <td>Consumer scope only</td>
+              <td>Unified SSO across org</td>
+              <td>SSO + guest governance</td>
+            </tr>
+            <tr>
+              <td>Cloud app control</td>
+              <td>None</td>
+              <td>None</td>
+              <td>Defender for Cloud Apps (discovery)</td>
+              <td>Full CASB + session control</td>
+            </tr>
+            <tr>
+              <td>Vuln & patch mgmt</td>
+              <td>OS auto update</td>
+              <td>OS auto update</td>
+              <td>Vulnerability Mgmt (lite)</td>
+              <td>Exposure Mgmt / TVM</td>
+            </tr>
+            <tr>
+              <td>Threat detection & response</td>
+              <td>Local alerts</td>
+              <td>Local alerts only</td>
+              <td>Defender XDR (endpoint + email)</td>
+              <td>Full M365 Defender XDR</td>
+            </tr>
+            <tr>
+              <td>Automated remediation</td>
+              <td>None</td>
+              <td>None</td>
+              <td>Limited automation</td>
+              <td>Automated investigation & response</td>
+            </tr>
+            <tr>
+              <td>Compliance & data protection</td>
+              <td>None</td>
+              <td>None</td>
+              <td>Secure Score</td>
+              <td>Purview DLP & retention</td>
+            </tr>
+            <tr>
+              <td>SIEM / SOC integration</td>
+              <td>None</td>
+              <td>None</td>
+              <td>Optional</td>
+              <td>Sentinel or MDR</td>
+            </tr>
+            <tr>
+              <td>Reporting & visibility</td>
+              <td>Per‑device</td>
+              <td>Per‑device logs</td>
+              <td>Security portal dashboards</td>
+              <td>Unified incidents & reports</td>
+            </tr>
+            <tr>
+              <td>Scalability</td>
+              <td>Best ≤5</td>
+              <td>Up to ~10 devices</td>
+              <td>Up to 300 devices</td>
+              <td>300+ devices / MSP</td>
+            </tr>
+            <tr>
+              <td>Ideal buyer</td>
+              <td>Freelancer / solo</td>
+              <td>Freelancer / consultant / startup</td>
+              <td>Managed SMB / IT‑led team</td>
+              <td>Regulated SMB / MSP / high security</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="linkRow">
+        <a class="pill" href="/landscape/map.html">Vendor Landscape</a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+  (function(){
+    const KEY='theme-preference';
+    const params=new URLSearchParams(location.search);
+    const qp=params.get('theme');
+    const stored=localStorage.getItem(KEY);
+    const prefersLight=window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    let theme='dark';
+    if(qp==='light' || qp==='dark'){ theme=qp; localStorage.setItem(KEY, theme); }
+    else if(stored){ theme=stored; }
+    else if(prefersLight){ theme='light'; }
+    document.documentElement.classList.toggle('light', theme==='light');
+    const btn=document.getElementById('themeToggle');
+    btn.addEventListener('click',()=>{
+      const isLight=document.documentElement.classList.toggle('light');
+      localStorage.setItem(KEY, isLight?'light':'dark');
+    });
+  })();
+  </script>
+</body>
+</html>
