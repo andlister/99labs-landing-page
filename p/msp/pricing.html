@@ -7,10 +7,47 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <script>
+    // Initialize theme immediately to prevent flash
+    try {
+      const theme = localStorage.getItem('theme-preference');
+      if (theme === 'light') document.documentElement.classList.add('light');
+      else if (theme === 'dark') document.documentElement.classList.remove('light');
+    } catch(e) {}
+  </script>
+  <script src="../../site-nav.js" defer></script>
   <style>
     :root {
-      --bg:#ffffff; --panel:#ffffff; --ink:#0b1016; --muted:#4a5568; --line:#d8e1ea; --chip:#f3f7fb;
-      --c1:#1e88e5; --c2:#2e7d32; --c3:#ef6c00; --c4:#8e24aa; --c5:#d81b60; --c6:#00838f;
+      --bg:#0b1016;
+      --panel:#121823;
+      --ink:#e7eef7;
+      --muted:#9bb0c8;
+      --line:#2a3a50;
+      --chip:#172233;
+      --soft:color-mix(in srgb, var(--panel) 85%, transparent);
+      --hover:color-mix(in srgb, var(--c1, #5aa9ff) 18%, transparent);
+      --c1:#5aa9ff;
+      --c2:#7bd389;
+      --c3:#ffb86b;
+      --c4:#de6fff;
+      --c5:#ff6f91;
+      --c6:#6ef2ff;
+    }
+    :root.light {
+      --bg:#ffffff;
+      --panel:#ffffff;
+      --ink:#0b1016;
+      --muted:#4a5568;
+      --line:#d8e1ea;
+      --chip:#f3f7fb;
+      --soft:color-mix(in srgb, var(--panel) 94%, rgba(15,23,42,0.08));
+      --hover:color-mix(in srgb, var(--c1, #1e88e5) 18%, transparent);
+      --c1:#1e88e5;
+      --c2:#2e7d32;
+      --c3:#ef6c00;
+      --c4:#8e24aa;
+      --c5:#d81b60;
+      --c6:#00838f;
     }
     body {
       margin:0;
@@ -112,7 +149,14 @@
     .seg-tools{ background:var(--c6); }
     .seg-helpdesk{ background:var(--c2); }
     .seg-mdr{ background:var(--c4); }
-    .seg-margin{ background:linear-gradient(135deg, rgba(0,0,0,0.04) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.04) 50%, rgba(0,0,0,0.04) 75%, transparent 75%, transparent); background-size:12px 12px; border-top:1px solid var(--line); }
+    .seg-margin{
+      background:repeating-linear-gradient(135deg,
+        color-mix(in srgb, var(--ink) 12%, transparent) 0 6px,
+        transparent 6px 12px
+      );
+      background-size:12px 12px;
+      border-top:1px solid var(--line);
+    }
     .compLegend{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; font-size:12px; margin-top:10px; }
     .compLegend span::before{ content:''; display:inline-block; width:12px; height:12px; margin-right:6px; border-radius:3px; vertical-align:middle; }
     .lg-license::before{ background:var(--c1); }
@@ -125,8 +169,8 @@
     .tableWrap{overflow:auto;border-top:1px solid var(--line);margin-top:14px;padding-top:12px}
     table.costs{width:100%;border-collapse:collapse;font-size:13px}
     table.costs thead th{background:var(--chip);color:var(--ink);font-weight:700;text-align:left;padding:8px 10px;border:1px solid var(--line)}
-    table.costs tbody td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
-    table.costs tbody tr:nth-child(even) td{background:rgba(0,0,0,0.02)}
+    table.costs tbody td{padding:8px 10px;border:1px solid var(--line);vertical-align:top;background:var(--panel)}
+    table.costs tbody tr:nth-child(even) td{background:var(--soft)}
     .nowrap{white-space:nowrap}
     .strong{font-weight:700}
 

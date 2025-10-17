@@ -7,6 +7,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <script>
+    // Initialize theme immediately to prevent flash
+    try {
+      const theme = localStorage.getItem('theme-preference');
+      if (theme === 'light') document.documentElement.classList.add('light');
+      else if (theme === 'dark') document.documentElement.classList.remove('light');
+    } catch(e) {}
+  </script>
+  <script src="../../site-nav.js" defer></script>
   <style>
     :root{
       --bg:#0b1016;--panel:#121823;--ink:#e7eef7;--muted:#9bb0c8;--line:#2a3a50;--chip:#172233;
@@ -28,7 +37,6 @@
     .legend{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
     .key{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:12px;background:var(--panel)}
     .swatch{width:10px;height:10px;border-radius:999px;display:inline-block}
-    .themeToggle{margin-left:auto}
 
     .chartWrap{display:flex;gap:24px;align-items:flex-start;padding-bottom:40px}
     svg{flex:1;min-width:0;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));border:1px solid var(--line);border-radius:18px}
@@ -61,7 +69,6 @@
     <div class="toolbar">
       <button class="btn" id="btnBack" hidden>Back to overview</button>
       <label class="switch"><input type="checkbox" id="toggleLabels" checked> Show labels</label>
-      <button class="btn themeToggle" id="themeToggle">Toggle theme</button>
     </div>
     <h1>Security & IT Landscape — Mindmap</h1>
     <p class="lead">Click a layer to focus. In focus mode, vendor labels are readable; use the toggle to hide them if crowded.</p>
@@ -81,15 +88,6 @@
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
   <script>
   (async function(){
-    const KEY='theme-preference';
-    const stored=localStorage.getItem(KEY);
-    const prefersLight=window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    document.documentElement.classList.toggle('light', (stored|| (prefersLight? 'light':'dark'))==='light');
-    document.getElementById('themeToggle').addEventListener('click',()=>{
-      const isLight=document.documentElement.classList.toggle('light');
-      localStorage.setItem(KEY, isLight?'light':'dark');
-    });
-
     async function load(){
       const res = await fetch('vendors.json', {cache:'no-cache'});
       if(!res.ok) throw new Error('HTTP '+res.status);
