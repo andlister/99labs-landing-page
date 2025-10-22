@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Security & IT Landscape — Card View</title>
+  <title>Security & IT Landscape</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -11,8 +11,8 @@
     // Initialize theme immediately to prevent flash
     try {
       const theme = localStorage.getItem('theme-preference');
-      if (theme === 'light') document.documentElement.classList.add('light');
-      else if (theme === 'dark') document.documentElement.classList.remove('light');
+      if (theme === 'dark') document.documentElement.classList.remove('light');
+      else document.documentElement.classList.add('light');
     } catch(e) {}
   </script>
   <script src="../../site-nav.js" defer></script>
